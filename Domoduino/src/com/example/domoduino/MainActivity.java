@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -22,6 +23,7 @@ public class MainActivity extends Activity {
 	protected static final int REQUEST_ENABLE_BT = 0;
 	private Button btnBluetooth; 
 	private BluetoothAdapter bAdapter;
+	private ImageView imageView1;
 
 
 	@Override
@@ -31,9 +33,12 @@ public class MainActivity extends Activity {
 		
 		//Get Bluettoth Adapter
 				bAdapter = BluetoothAdapter.getDefaultAdapter();
-				
+			
 				btnBluetooth = (Button)findViewById(R.id.btnBluetooth);
-				btnBluetooth.setOnClickListener(new OnClickListener() 
+				btnBluetooth.setOnClickListener(new OnClickListener()
+//				
+//				imageView1 = (ImageView)findViewById(R.id.imageView1);
+//				imageView1.setOnClickListener(new OnClickListener()
 		        {
 
 					@Override
@@ -61,15 +66,10 @@ public class MainActivity extends Activity {
 							btnBluetooth.setText("Conectar");
 							bAdapter.disable();
 						}
-						
-						
 					}
 					
 		        });
 	}
-	
-
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

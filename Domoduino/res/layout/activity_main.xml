@@ -9,21 +9,20 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-
     <Button
         android:id="@+id/btnBluetooth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="20dp"
         android:text="@string/Conectar" />
 
     <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:layout_alignLeft="@+id/btnBluetooth"
+        android:id="@+id/imageView2"
+        android:layout_width="140dp"
+        android:layout_height="160dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="34dp"
-        android:src="@drawable/mueco" />
+        android:src="@drawable/fondoo" />
 
 </RelativeLayout>
