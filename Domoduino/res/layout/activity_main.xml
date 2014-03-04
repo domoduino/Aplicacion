@@ -14,9 +14,16 @@
         android:id="@+id/btnBluetooth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
         android:layout_marginTop="34dp"
         android:text="@string/Conectar" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_alignLeft="@+id/btnBluetooth"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="34dp"
+        android:src="@drawable/mueco" />
 
 </RelativeLayout>
