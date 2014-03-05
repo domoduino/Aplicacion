@@ -22,7 +22,6 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
 	
 	protected static final int REQUEST_ENABLE_BT = 0;
-	private Button btnBluetooth; 
 	private BluetoothAdapter bAdapter;
 	private ImageButton image;
 
@@ -40,15 +39,15 @@ public class MainActivity extends Activity {
 
 		 image = (ImageButton) findViewById (R.id.btnConectar);
 		//Get Bluettoth Adapter
-		bAdapter = BluetoothAdapter.getDefaultAdapter();
 
 		 image.setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				 
-				 //Notificación visual conectando...
+
+				    bAdapter = BluetoothAdapter.getDefaultAdapter();
+				    //Notificación visual conectando...
 					Toast toast1 = Toast.makeText(getApplicationContext(),"Conectando...", Toast.LENGTH_SHORT);
 					
 					// Check smartphone support Bluetooth
@@ -61,7 +60,7 @@ public class MainActivity extends Activity {
 					// Check Bluetooth enabled
 					if(!bAdapter.isEnabled()){
 						Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-						startActivityForResult(enableBtIntent, 1);
+						startActivityForResult(enableBtIntent,1);
 						toast1.show();
 					}
 					else
@@ -79,7 +78,7 @@ public class MainActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
-		return true; //modificado por Ofelia
+		return true;
 	}
 
 }

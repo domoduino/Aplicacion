@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-    <ImageView
+     <ImageButton
         android:id="@+id/btnConectar"
         android:layout_width="140dp"
         android:layout_height="160dp"
@@ -17,6 +17,8 @@
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="10dp"
+        android:scaleType="fitCenter"
+        android:background="@null" 
         android:src="@drawable/fondo" />
 
 </RelativeLayout>
