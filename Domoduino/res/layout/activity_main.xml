@@ -9,13 +9,14 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btnConectar"
         android:layout_width="140dp"
         android:layout_height="160dp"
         android:layout_alignParentBottom="true"
-        android:clickable="true"
-         android:onClick="clickNew"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="10dp"
         android:src="@drawable/fondo" />
 
 </RelativeLayout>
