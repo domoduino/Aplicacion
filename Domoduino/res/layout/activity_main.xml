@@ -23,6 +23,6 @@
         android:layout_width="140dp"
         android:layout_height="160dp"
         android:layout_alignParentBottom="true"
-        android:src="@drawable/fondoo" />
+        android:src="@drawable/fondo" />
 
 </RelativeLayout>
