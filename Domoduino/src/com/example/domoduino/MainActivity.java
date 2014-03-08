@@ -9,7 +9,10 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,62 +20,82 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	
-	protected static final int REQUEST_ENABLE_BT = 0;
-	private BluetoothAdapter bAdapter;
+	private static final int REQUEST_ENABLE_BT = 1;
+	private BluetoothAdapter bluetoothAdapter;
+	private ListView listDevicesFound;
 	private ImageButton image;
-
+	private ArrayAdapter<String> btArrayAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
-		addListenerOnButton ();
+        
+        	listDevicesFound = (ListView)findViewById(R.id.devicesfound);
+		    image = (ImageButton)findViewById(R.id.btnConectar);
+	        
+	        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+	        btArrayAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1);
+	        listDevicesFound.setAdapter(btArrayAdapter);
+
+	        image.setOnClickListener(btnScanDeviceOnClickListener);
+
+	        registerReceiver(ActionFoundReceiver, 
+	        		new IntentFilter(BluetoothDevice.ACTION_FOUND));
 	}
 	
-	public void addListenerOnButton () 
-	{
+	 private ImageButton.OnClickListener btnScanDeviceOnClickListener
+	    = new ImageButton.OnClickListener(){
 
-		 image = (ImageButton) findViewById (R.id.btnConectar);
-		//Get Bluettoth Adapter
-
-		 image.setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-
-				    bAdapter = BluetoothAdapter.getDefaultAdapter();
-				    //Notificación visual conectando...
-					Toast toast1 = Toast.makeText(getApplicationContext(),"Conectando...", Toast.LENGTH_SHORT);
-					
-					// Check smartphone support Bluetooth
-					if(bAdapter == null){
-						//Device does not support Bluetooth
-						Toast.makeText(getApplicationContext(), "Not support bluetooth", 5).show();
-						finish();
-					}
-					
-					// Check Bluetooth enabled
-					if(!bAdapter.isEnabled()){
-						Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-						startActivityForResult(enableBtIntent,1);
-						toast1.show();
-					}
-					else
-					{
-						bAdapter.disable();
-					}
+				if (bluetoothAdapter == null)
+		    	{
+					Toast.makeText(getApplicationContext(),"No soporta Bluetooth", Toast.LENGTH_SHORT).show();
+		        }
+		    	else
+		    	{
+		        	if (bluetoothAdapter.isEnabled())
+		        	{
+		        		if(bluetoothAdapter.isDiscovering())
+		        		{
+		        			Toast.makeText(getApplicationContext(),"Bluetooth en proceso ", Toast.LENGTH_SHORT).show();
+		        		}
+		        		else
+		        		{
+		        			Toast.makeText(getApplicationContext(),"Bluetooth ya activado", Toast.LENGTH_SHORT).show();
+		        		}
+		        	}
+		        	else
+		        	{
+		        		Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+		        	    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+		        	}
+		        }
+				btArrayAdapter.clear();
+				bluetoothAdapter.startDiscovery();
+			}};
 			
-			}
+	private final BroadcastReceiver ActionFoundReceiver = new BroadcastReceiver(){
 
-		 });
-
-	 }
+				@Override
+				public void onReceive(Context context, Intent intent) {
+					// TODO Auto-generated method stub
+					String action = intent.getAction();
+					if(BluetoothDevice.ACTION_FOUND.equals(action)) {
+			            BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+			            btArrayAdapter.add(device.getName() + "\n" + device.getAddress());
+			            btArrayAdapter.notifyDataSetChanged();
+			        }
+		}};
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
