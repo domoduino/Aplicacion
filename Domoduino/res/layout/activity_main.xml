@@ -10,22 +10,20 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-     <ImageButton
+    <ListView
+        android:id="@+id/devicesfound"
+        android:layout_width="fill_parent"
+        android:layout_height="194dp"
+        android:layout_weight="0.55" >
+    </ListView>
+
+    <ImageButton
         android:id="@+id/btnConectar"
         android:layout_width="140dp"
         android:layout_height="160dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="8dp"
         android:layout_marginLeft="10dp"
+        android:background="@null"
         android:scaleType="fitCenter"
-        android:background="@null" 
         android:src="@drawable/fondo" />
-     
-     <ListView
-    android:id="@+id/devicesfound" 
-    android:layout_width="fill_parent" 
-    android:layout_height="fill_parent"
-    /> 
 
 </LinearLayout>
