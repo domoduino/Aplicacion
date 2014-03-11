@@ -57,7 +57,6 @@ public class MainActivity extends Activity {
 	 private ImageButton.OnClickListener btnScanDeviceOnClickListener
 	    = new ImageButton.OnClickListener(){
 
-
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
