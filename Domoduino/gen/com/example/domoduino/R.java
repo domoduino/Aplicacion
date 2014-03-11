@@ -32,11 +32,22 @@ public final class R {
         public static final int logo=0x7f020008;
         public static final int mueco=0x7f020009;
         public static final int muneco1=0x7f02000a;
+        public static final int ruedabombillaapagada=0x7f02000b;
+        public static final int ruedasacelerometro=0x7f02000c;
+        public static final int ruedasbombillaencendida=0x7f02000d;
+        public static final int ruedasreloj=0x7f02000e;
+        public static final int ruedasstart=0x7f02000f;
+        public static final int ruedasstop=0x7f020010;
     }
     public static final class id {
-        public static final int action_settings=0x7f080002;
+        public static final int action_settings=0x7f080007;
         public static final int btnConectar=0x7f080001;
         public static final int devicesfound=0x7f080000;
+        public static final int imageButton1=0x7f080002;
+        public static final int imageButton2=0x7f080003;
+        public static final int imageButton3=0x7f080006;
+        public static final int imageView1=0x7f080004;
+        public static final int imageView2=0x7f080005;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;

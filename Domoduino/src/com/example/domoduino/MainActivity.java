@@ -7,12 +7,14 @@ import java.util.Set;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.Dialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,6 +32,8 @@ public class MainActivity extends Activity {
 	private ListView listDevicesFound;
 	private ImageButton image;
 	private ArrayAdapter<String> btArrayAdapter;
+    ListView list;
+    Dialog listDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -71,17 +75,33 @@ public class MainActivity extends Activity {
 		        		}
 		        		else
 		        		{
+		        			bluetoothAdapter.startDiscovery();
 		        			Toast.makeText(getApplicationContext(),"Bluetooth ya activado", Toast.LENGTH_SHORT).show();
 		        		}
 		        	}
 		        	else
 		        	{
-		        		Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-		        	    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+		        		Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);  //Muestra una actividad del sistema que permite al usuario activar Bluetooth.
+		        	    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT); //Iniciar una actividad para la que desea un resultado cuando se terminó. Cuando sale de esta actividad, su método onActivityResult () será llamada con el requestCode dado
+		        	    
+		        	    //if (bluetoothAdapter.isEnabled())
+			        	//{
+		        			Toast.makeText(getApplicationContext(),"Acaba de activar el bluetooth ", Toast.LENGTH_SHORT).show();
+
+		        	    	//if(!bluetoothAdapter.isDiscovering()) 
+		        	    	//{	
+		        	    		bluetoothAdapter.startDiscovery();
+			        			Toast.makeText(getApplicationContext(),"Bluetooth en proceso", Toast.LENGTH_SHORT).show();
+		        	    	//}
+		        	    //}
+		        	    /*else
+		        	    {
+		        	    	// El usuario no ha querido activar el bluetooth.
+		        	    }*/
 		        	}
 		        }
-				btArrayAdapter.clear();
-				bluetoothAdapter.startDiscovery();
+				btArrayAdapter.clear(); // Borra todos los elementos de la lista
+				//bluetoothAdapter.startDiscovery();
 			}};
 			
 	private final BroadcastReceiver ActionFoundReceiver = new BroadcastReceiver(){
