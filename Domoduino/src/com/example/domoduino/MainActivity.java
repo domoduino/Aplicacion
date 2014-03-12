@@ -18,10 +18,13 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -47,6 +50,7 @@ public class MainActivity extends Activity {
 
 	        btArrayAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1);
 	        listDevicesFound.setAdapter(btArrayAdapter);
+	        listDevicesFound.setOnItemClickListener(btn);
 
 	        image.setOnClickListener(btnScanDeviceOnClickListener);
 
@@ -54,12 +58,31 @@ public class MainActivity extends Activity {
 	        		new IntentFilter(BluetoothDevice.ACTION_FOUND));
 	}
 	
+	 private OnItemClickListener btn
+	    = new ListView.OnItemClickListener(){
+		 public void onItemClick(AdapterView<?> a, View v, int position,long id) {
+			 
+			 ListAdapter la = (ListAdapter) a.getAdapter();
+			 
+			 Toast.makeText(
+			         v.getContext()
+			         ,la.getItem(position).toString()
+			         ,Toast.LENGTH_LONG)
+			         .show();
+ 	    } 
+	 };
+	
 	 private ImageButton.OnClickListener btnScanDeviceOnClickListener
-	    = new ImageButton.OnClickListener(){
+	    = new ImageButton.OnClickListener()
+	 {
 
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
+			public void onClick(View v)
+			{
+				connect();
+	 }};
+			
+			public void connect ()
+			{
 				if (bluetoothAdapter == null)
 		    	{
 					Toast.makeText(getApplicationContext(),"No soporta Bluetooth", Toast.LENGTH_SHORT).show();
@@ -82,26 +105,18 @@ public class MainActivity extends Activity {
 		        	{
 		        		Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);  //Muestra una actividad del sistema que permite al usuario activar Bluetooth.
 		        	    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT); //Iniciar una actividad para la que desea un resultado cuando se terminó. Cuando sale de esta actividad, su método onActivityResult () será llamada con el requestCode dado
-		        	    
-		        	    //if (bluetoothAdapter.isEnabled())
-			        	//{
-		        			Toast.makeText(getApplicationContext(),"Acaba de activar el bluetooth ", Toast.LENGTH_SHORT).show();
-
-		        	    	//if(!bluetoothAdapter.isDiscovering()) 
-		        	    	//{	
-		        	    		bluetoothAdapter.startDiscovery();
-			        			Toast.makeText(getApplicationContext(),"Bluetooth en proceso", Toast.LENGTH_SHORT).show();
-		        	    	//}
-		        	    //}
-		        	    /*else
-		        	    {
-		        	    	// El usuario no ha querido activar el bluetooth.
-		        	    }*/
 		        	}
 		        }
-				btArrayAdapter.clear(); // Borra todos los elementos de la lista
-				//bluetoothAdapter.startDiscovery();
-			}};
+				//btArrayAdapter.clear(); // Borra todos los elementos de la lista
+			}
+			
+			protected void onActivityResult(int requestCode, int resultCode, Intent data)
+			{
+				  if(requestCode == REQUEST_ENABLE_BT)
+				  {
+					 connect();
+				  }
+			}
 			
 	private final BroadcastReceiver ActionFoundReceiver = new BroadcastReceiver(){
 
