@@ -7,11 +7,13 @@ import java.util.Set;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.view.LayoutInflater;
@@ -49,8 +51,8 @@ public class MainActivity extends Activity {
 	        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
 	        btArrayAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1);
-	        listDevicesFound.setAdapter(btArrayAdapter);
-	        listDevicesFound.setOnItemClickListener(btn);
+	        //listDevicesFound.setAdapter(btArrayAdapter);
+	        //listDevicesFound.setOnItemClickListener(btn);
 
 	        image.setOnClickListener(btnScanDeviceOnClickListener);
 
@@ -99,6 +101,17 @@ public class MainActivity extends Activity {
 		        		{
 		        			bluetoothAdapter.startDiscovery();
 		        			Toast.makeText(getApplicationContext(),"Bluetooth ya activado", Toast.LENGTH_SHORT).show();
+		        			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		        			builder.setTitle("Lista de dispositivos");
+		        			builder.setAdapter(btArrayAdapter, new DialogInterface.OnClickListener() {
+		        			public void onClick(DialogInterface dialog, int item) {
+		        				    	Toast.makeText(getApplicationContext(),"entra", Toast.LENGTH_SHORT).show();
+		        					      
+		        				}
+		        				});
+		        				       
+		        				AlertDialog alert = builder.create();
+		        				alert.show();
 		        		}
 		        	}
 		        	else
