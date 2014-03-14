@@ -21,12 +21,12 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int f=0x7f020000;
-        public static final int fondop=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
-        public static final int icono=0x7f020003;
-        public static final int logo=0x7f020004;
-        public static final int ruedaacelerometro=0x7f020005;
+        public static final int acelerometro=0x7f020000;
+        public static final int f=0x7f020001;
+        public static final int fondop=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
+        public static final int icono=0x7f020004;
+        public static final int logo=0x7f020005;
         public static final int ruedabombillaapagada=0x7f020006;
         public static final int ruedabombillaapagadai=0x7f020007;
         public static final int ruedabombillaencendida=0x7f020008;
