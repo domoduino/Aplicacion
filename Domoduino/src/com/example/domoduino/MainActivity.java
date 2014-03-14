@@ -105,8 +105,8 @@ public class MainActivity extends Activity {
 		        			builder.setTitle("Lista de dispositivos");
 		        			builder.setAdapter(btArrayAdapter, new DialogInterface.OnClickListener() {
 		        			public void onClick(DialogInterface dialog, int item) {
-		        				    	Toast.makeText(getApplicationContext(),"entra", Toast.LENGTH_SHORT).show();
 		        					     //paso a la siguiente pantalla
+		        				    	 Toast.makeText(getApplicationContext(), btArrayAdapter.getItem(item).toString(), Toast.LENGTH_SHORT).show();	
 		        				    	Intent i = new Intent(getApplicationContext(), pantallaPrincipal.class);
 		        				    	startActivity(i);
 		        				}
@@ -114,6 +114,8 @@ public class MainActivity extends Activity {
 		        				       
 		        				AlertDialog alert = builder.create();
 		        				alert.show();
+		        			
+		        		
 		        		}
 		        	}
 		        	else
