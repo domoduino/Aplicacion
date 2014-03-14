@@ -106,7 +106,9 @@ public class MainActivity extends Activity {
 		        			builder.setAdapter(btArrayAdapter, new DialogInterface.OnClickListener() {
 		        			public void onClick(DialogInterface dialog, int item) {
 		        				    	Toast.makeText(getApplicationContext(),"entra", Toast.LENGTH_SHORT).show();
-		        					      
+		        					     //paso a la siguiente pantalla
+		        				    	Intent i = new Intent(getApplicationContext(), pantallaPrincipal.class);
+		        				    	startActivity(i);
 		        				}
 		        				});
 		        				       
