@@ -2,19 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondop"
-    android:gravity="left"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:background="@drawable/fondop">
 
     <ImageButton
         android:id="@+id/imageButton1"
         android:layout_width="100dp"
         android:layout_height="70dp"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:background="@null"
         android:scaleType="fitCenter"
-        android:src="@drawable/ruedastart" />
+        android:src="@drawable/ruedasstart" />
 
     <ImageButton
         android:id="@+id/imageButton2"
@@ -24,7 +23,7 @@
         android:layout_marginTop="15dp"
         android:background="@null"
         android:scaleType="fitCenter"
-        android:src="@drawable/ruedastop" />
+        android:src="@drawable/ruedasstop" />
 
     <ImageView
         android:id="@+id/imageView1"
@@ -34,7 +33,7 @@
         android:layout_marginTop="15dp"
         android:background="@null"
         android:scaleType="fitCenter"
-        android:src="@drawable/ruedabombillaencendida" />
+        android:src="@drawable/ruedasbombillaencendida" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -44,7 +43,7 @@
         android:layout_marginTop="15dp"
         android:background="@null"
         android:scaleType="fitCenter"
-        android:src="@drawable/ruedareloj" />
+        android:src="@drawable/ruedasreloj" />
 
     <ImageButton
         android:id="@+id/imageButton3"
@@ -54,6 +53,6 @@
         android:layout_marginTop="15dp"
         android:background="@null"
         android:scaleType="fitCenter"
-        android:src="@drawable/acelerometro" />
+        android:src="@drawable/ruedasacelerometro" />
 
 </LinearLayout>
