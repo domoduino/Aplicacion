@@ -25,8 +25,8 @@
         android:scaleType="fitCenter"
         android:src="@drawable/ruedasstop" />
 
-    <ImageView
-        android:id="@+id/imageView1"
+    <ImageButton
+        android:id="@+id/imageButton3"
         android:layout_width="100dp"
         android:layout_height="70dp"
         android:layout_marginLeft="40dp"
@@ -35,8 +35,8 @@
         android:scaleType="fitCenter"
         android:src="@drawable/ruedasbombillaencendida" />
 
-    <ImageView
-        android:id="@+id/imageView2"
+    <ImageButton
+        android:id="@+id/imageButton4"
         android:layout_width="100dp"
         android:layout_height="70dp"
         android:layout_marginLeft="40dp"
@@ -46,7 +46,7 @@
         android:src="@drawable/ruedasreloj" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/imageButton5"
         android:layout_width="100dp"
         android:layout_height="70dp"
         android:layout_marginLeft="40dp"
@@ -54,5 +54,12 @@
         android:background="@null"
         android:scaleType="fitCenter"
         android:src="@drawable/ruedasacelerometro" />
+    
+ <!--   <selector>
+     <item android:state_pressed="true"
+           android:drawable="@drawable/ruedabombillaapagada" /> 
+     <item android:state_pressed="false"/>
+     <item android:drawable="@drawable/ruedabombillaencendida" /> 
+ </selector> -->
 
 </LinearLayout>
