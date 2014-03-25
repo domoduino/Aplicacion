@@ -16,6 +16,7 @@ public class pantallaPrincipal extends Activity implements OnClickListener{
 	
 	ImageButton bt;
 	ImageButton bt1;
+	boolean b=false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
@@ -28,17 +29,18 @@ public class pantallaPrincipal extends Activity implements OnClickListener{
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		if(v.getId() == findViewById(R.id.imageButton3).getId())
+		if(b==false)
 		{
 			Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ruedabombillaapagada);
 			bt.setImageBitmap(bmp);
+			b=true;
 		}
-//		else if( )// no se como comprobar que ahora es otro id, porque no lo puedo poner
-//		{
-//			Toast.makeText(getApplicationContext(),"entra", Toast.LENGTH_SHORT).show();
-//			Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ruedabombillaencendida);
-//			bt.setImageBitmap(bmp);
-//		}
+		else if(b==true)// no se como comprobar que ahora es otro id, porque no lo puedo poner
+		{
+			Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ruedabombillaencendida);
+			bt.setImageBitmap(bmp);
+			b=false;
+		}
 		
 	}
 

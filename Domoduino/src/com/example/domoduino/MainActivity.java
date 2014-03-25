@@ -114,12 +114,12 @@ public class MainActivity extends Activity {
 			Toast.makeText(getApplicationContext(),"No es la MAC del módulo", Toast.LENGTH_SHORT).show();
 		 
 			 //Lo he puesto para poder comprobar, ya que si no no puedo pasar a la siguiente pantalla
-//			 vibrador = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-//             vibrador.vibrate(1000);	                     
-//             BluetoothDevice device = AdaptadorBT.getRemoteDevice(address);
-//             Servicio_BT.connect(device);
-//         	 Intent i = new Intent(getApplicationContext(), pantallaPrincipal.class);
-//         	 startActivity(i);
+			 vibrador = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+             vibrador.vibrate(1000);	                     
+             BluetoothDevice device = AdaptadorBT.getRemoteDevice(address);
+             Servicio_BT.connect(device);
+         	 Intent i = new Intent(getApplicationContext(), pantallaPrincipal.class);
+         	 startActivity(i);
 		 }
 		 
 	    } 

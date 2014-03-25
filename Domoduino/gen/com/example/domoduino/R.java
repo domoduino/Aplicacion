@@ -31,13 +31,10 @@ public final class R {
         public static final int ruedabombillaapagada=0x7f020007;
         public static final int ruedabombillaencendida=0x7f020008;
         public static final int ruedareloj=0x7f020009;
-        public static final int ruedasacelerometro=0x7f02000a;
-        public static final int ruedasbombillaencendida=0x7f02000b;
-        public static final int ruedasreloj=0x7f02000c;
-        public static final int ruedasstart=0x7f02000d;
-        public static final int ruedasstop=0x7f02000e;
-        public static final int ruedastart=0x7f02000f;
-        public static final int ruedastop=0x7f020010;
+        public static final int ruedasreloj=0x7f02000a;
+        public static final int ruedasstop=0x7f02000b;
+        public static final int ruedastart=0x7f02000c;
+        public static final int ruedastop=0x7f02000d;
     }
     public static final class id {
         public static final int action_settings=0x7f080007;

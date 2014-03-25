@@ -13,7 +13,7 @@
         android:layout_marginTop="20dp"
         android:background="@null"
         android:scaleType="fitCenter"
-        android:src="@drawable/ruedasstart" />
+        android:src="@drawable/ruedastart" />
 
     <ImageButton
         android:id="@+id/imageButton2"
@@ -23,7 +23,7 @@
         android:layout_marginTop="15dp"
         android:background="@null"
         android:scaleType="fitCenter"
-        android:src="@drawable/ruedasstop" />
+        android:src="@drawable/ruedastop" />
 
     <ImageButton
         android:id="@+id/imageButton3"
@@ -33,7 +33,7 @@
         android:layout_marginTop="15dp"
         android:background="@null"
         android:scaleType="fitCenter"
-        android:src="@drawable/ruedasbombillaencendida" />
+        android:src="@drawable/ruedabombillaencendida" />
 
     <ImageButton
         android:id="@+id/imageButton4"
@@ -43,7 +43,7 @@
         android:layout_marginTop="15dp"
         android:background="@null"
         android:scaleType="fitCenter"
-        android:src="@drawable/ruedasreloj" />
+        android:src="@drawable/ruedareloj" />
 
     <ImageButton
         android:id="@+id/imageButton5"
@@ -53,7 +53,7 @@
         android:layout_marginTop="15dp"
         android:background="@null"
         android:scaleType="fitCenter"
-        android:src="@drawable/ruedasacelerometro" />
+        android:src="@drawable/acelerometro" />
     
  <!--   <selector>
      <item android:state_pressed="true"
