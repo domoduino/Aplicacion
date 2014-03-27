@@ -106,7 +106,7 @@ public class MainActivity extends Activity {
              vibrador.vibrate(1000);	                     
              BluetoothDevice device = AdaptadorBT.getRemoteDevice(address);
              Servicio_BT.connect(device);
-         	 Intent i = new Intent(getApplicationContext(), pantallaPrincipal.class);
+         	 Intent i = new Intent(getApplicationContext(), PantallaPrincipal.class);
          	 startActivity(i);
 		 }
 		 else
@@ -118,7 +118,7 @@ public class MainActivity extends Activity {
              vibrador.vibrate(1000);	                     
              BluetoothDevice device = AdaptadorBT.getRemoteDevice(address);
              Servicio_BT.connect(device);
-         	 Intent i = new Intent(getApplicationContext(), pantallaPrincipal.class);
+         	 Intent i = new Intent(getApplicationContext(), PantallaPrincipal.class);
          	 startActivity(i);
 		 }
 		 

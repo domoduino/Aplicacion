@@ -4,6 +4,7 @@ package com.example.domoduino;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
@@ -13,7 +14,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 
-public class pantallaPrincipal extends Activity {
+public class PantallaPrincipal extends Activity {
 	
 	private ImageButton bt1;
 	private ImageButton bt2;
@@ -26,7 +27,7 @@ public class pantallaPrincipal extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.pantallaprincipal);
+		setContentView(R.layout.activity_pantallaprincipal);
 		bt1=(ImageButton) findViewById(R.id.imageButton1);
 		bt1.setOnClickListener(btn1);
 		bt2=(ImageButton) findViewById(R.id.imageButton2);
@@ -83,14 +84,16 @@ public class pantallaPrincipal extends Activity {
 	 {
 		public void onClick(View v)
 		{
-			//sendMessage("5\r");
+			Intent i = new Intent(getApplicationContext(), PantallaAcelerometro.class);
+        	startActivity(i);
 		}
 	 };
 	 private ImageButton.OnClickListener btn5 = new ImageButton.OnClickListener()
 	 {
 		public void onClick(View v)
 		{
-			//sendMessage("6\r");
+			Intent i = new Intent(getApplicationContext(), PantallaReloj.class);
+        	startActivity(i);
 			Toast.makeText(getApplicationContext(),"Acelerómetro encendido", Toast.LENGTH_SHORT).show();
 							
 		}
