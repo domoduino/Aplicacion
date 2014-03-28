@@ -21,13 +21,29 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+		<activity
+            android:name="com.example.domoduino.PantallaPrincipal">
+            <intent-filter>
+            	<action android:name="android.intent.action.activity_pantallaprincipal"/>
+            	<category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
-            android:name="pantallaPrincipal"
-            android:label="@string/titulo" >
+            android:name="com.example.domoduino.PantallaAcelerometro">
+            <intent-filter>
+            	<action android:name="android.intent.action.activity_acelerometro"/>
+            	<category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.domoduino.PantallaReloj">
+            <intent-filter>
+            	<action android:name="android.intent.action.activity_reloj"/>
+            	<category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
     </application>
 

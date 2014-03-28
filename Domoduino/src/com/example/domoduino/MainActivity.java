@@ -96,7 +96,7 @@ public class MainActivity extends Activity {
 		 {
 			 vibrador = (Vibrator) getSystemService(VIBRATOR_SERVICE);
              vibrador.vibrate(1000);
-         	 Intent i = new Intent(getApplicationContext(), pantallaPrincipal.class);
+         	 Intent i = new Intent(getApplicationContext(), PantallaPrincipal.class);
          	 startActivity(i);
 		 }
 		 else
@@ -132,7 +132,7 @@ public class MainActivity extends Activity {
     				 {
     					 vibrador = (Vibrator) getSystemService(VIBRATOR_SERVICE);
     		             vibrador.vibrate(1000);
-    		         	 Intent i = new Intent(getApplicationContext(), pantallaPrincipal.class);
+    		         	 Intent i = new Intent(getApplicationContext(), PantallaPrincipal.class);
     		         	 startActivity(i);
     				 }
     				 else
