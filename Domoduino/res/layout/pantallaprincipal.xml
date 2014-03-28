@@ -7,7 +7,6 @@
 
     <ImageButton
         android:id="@+id/imageButton1"
-        android:onClick="clickStar"
         android:layout_width="100dp"
         android:layout_height="70dp"
         android:layout_marginLeft="40dp"
@@ -18,7 +17,6 @@
 
     <ImageButton
         android:id="@+id/imageButton2"
-        android:onClick="clickStop"
         android:layout_width="100dp"
         android:layout_height="70dp"
         android:layout_marginLeft="40dp"
@@ -29,7 +27,6 @@
 
     <ImageButton
         android:id="@+id/imageButton3"
-        android:onClick="clickBombilla"
         android:layout_width="100dp"
         android:layout_height="70dp"
         android:layout_marginLeft="40dp"
@@ -40,7 +37,6 @@
 
     <ImageButton
         android:id="@+id/imageButton4"
-        android:onClick="clickReloj"
         android:layout_width="100dp"
         android:layout_height="70dp"
         android:layout_marginLeft="40dp"
@@ -51,7 +47,6 @@
 
     <ImageButton
         android:id="@+id/imageButton5"
-        android:onClick="clickAcelerometro"
         android:layout_width="100dp"
         android:layout_height="70dp"
         android:layout_marginLeft="40dp"
@@ -60,11 +55,5 @@
         android:scaleType="fitCenter"
         android:src="@drawable/acelerometro" />
     
- <!--   <selector>
-     <item android:state_pressed="true"
-           android:drawable="@drawable/ruedabombillaapagada" /> 
-     <item android:state_pressed="false"/>
-     <item android:drawable="@drawable/ruedabombillaencendida" /> 
- </selector> -->
 
 </LinearLayout>

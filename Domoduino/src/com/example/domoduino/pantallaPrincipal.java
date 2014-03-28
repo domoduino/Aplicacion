@@ -105,14 +105,14 @@ public class pantallaPrincipal extends Activity {
 			{
 				Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ruedabombillaapagada);
 				bt3.setImageBitmap(bmp);
-				//sendMessage("1\r"); //funciona
+				sendMessage("1\r"); //funciona
 				b=true;
 			}
 			else if(b==true)// no se como comprobar que ahora es otro id, porque no lo puedo poner
 			{
 				Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ruedabombillaencendida);
 				bt3.setImageBitmap(bmp);
-				//sendMessage("2\r"); //funciona
+				sendMessage("2\r"); //funciona
 				b=false;
 			}
 							
