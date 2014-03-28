@@ -197,4 +197,9 @@ public class PantallaPrincipal extends Activity {
 		        };//Fin de Handler
 
 
+		        @Override
+		        public void onDestroy(){
+		        	 super.onDestroy();
+		        	 if (Servicio_BT != null) Servicio_BT.stop();//Detenemos servicio
+		        }
 }
