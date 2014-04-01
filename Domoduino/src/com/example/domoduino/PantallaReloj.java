@@ -6,8 +6,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,6 +49,7 @@ public class PantallaReloj extends Activity
 				
 			}
 		});
+        lista.setOnItemClickListener(lista1);
 
 	 }  
         /*lista.setOnItemClickListener(new OnItemClickListener() { 
@@ -59,6 +63,20 @@ public class PantallaReloj extends Activity
             }
          });*/
 
+	private OnItemClickListener lista1 = new ListView.OnItemClickListener(){
+
+		@Override
+		public void onItemClick(AdapterView<?> arg0, View arg1, int position,
+				long arg3) {
+			// TODO Auto-generated method stub
+			 Entrada_lista la = (Entrada_lista) arg0.getItemAtPosition(position);
+			 CharSequence texto = "Seleccionado: " + la.get_horaAlarma();
+             Toast toast = Toast.makeText(getApplicationContext(), texto, Toast.LENGTH_LONG);
+             toast.show();
+		}
+		
+	 };
+	
 	
 	private ImageButton.OnClickListener imagenPlus = new ImageButton.OnClickListener()
 	{

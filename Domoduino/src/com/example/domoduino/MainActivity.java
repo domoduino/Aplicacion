@@ -86,7 +86,7 @@ public class MainActivity extends Activity {
 
     }
     
-   private OnItemClickListener btn1 = new ListView.OnItemClickListener(){
+  /* private OnItemClickListener btn1 = new ListView.OnItemClickListener(){
 	 public void onItemClick(AdapterView<?> a, View v, int position,long id) {
 		 
 		 ListAdapter la = (ListAdapter) a.getAdapter();
@@ -105,7 +105,7 @@ public class MainActivity extends Activity {
 		 }
 		 
 	    } 
- };
+ };*/
     
     private ImageButton.OnClickListener btnScanDeviceOnClickListener
     = new ImageButton.OnClickListener()
