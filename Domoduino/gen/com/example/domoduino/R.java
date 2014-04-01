@@ -23,29 +23,32 @@ public final class R {
     public static final class drawable {
         public static final int a=0x7f020000;
         public static final int acelerometro=0x7f020001;
-        public static final int b=0x7f020002;
-        public static final int f=0x7f020003;
-        public static final int fondo=0x7f020004;
-        public static final int fondoo=0x7f020005;
-        public static final int fondop=0x7f020006;
-        public static final int ic_launcher=0x7f020007;
-        public static final int icono=0x7f020008;
-        public static final int iconoacelerometro=0x7f020009;
-        public static final int jj=0x7f02000a;
-        public static final int logo=0x7f02000b;
-        public static final int mueco=0x7f02000c;
-        public static final int muneco1=0x7f02000d;
-        public static final int ruedabombillaapagada=0x7f02000e;
-        public static final int ruedabombillaencendida=0x7f02000f;
-        public static final int ruedarelo=0x7f020010;
-        public static final int ruedareloj=0x7f020011;
-        public static final int ruedasreloj=0x7f020012;
-        public static final int ruedastart=0x7f020013;
-        public static final int ruedastop=0x7f020014;
+        public static final int alarma=0x7f020002;
+        public static final int b=0x7f020003;
+        public static final int f=0x7f020004;
+        public static final int fondo=0x7f020005;
+        public static final int fondoo=0x7f020006;
+        public static final int fondop=0x7f020007;
+        public static final int ic_launcher=0x7f020008;
+        public static final int icono=0x7f020009;
+        public static final int iconoacelerometro=0x7f02000a;
+        public static final int jj=0x7f02000b;
+        public static final int logo=0x7f02000c;
+        public static final int mueco=0x7f02000d;
+        public static final int muneco1=0x7f02000e;
+        public static final int plus=0x7f02000f;
+        public static final int ruedabombillaapagada=0x7f020010;
+        public static final int ruedabombillaencendida=0x7f020011;
+        public static final int ruedarelo=0x7f020012;
+        public static final int ruedareloj=0x7f020013;
+        public static final int ruedasreloj=0x7f020014;
+        public static final int ruedastart=0x7f020015;
+        public static final int ruedastop=0x7f020016;
     }
     public static final class id {
+        public static final int ListView_listado=0x7f08000b;
         public static final int RelativeLayout1=0x7f080000;
-        public static final int action_settings=0x7f080009;
+        public static final int action_settings=0x7f08000d;
         public static final int btnConectar=0x7f080003;
         public static final int devicesfound=0x7f080002;
         public static final int imageButton1=0x7f080004;
@@ -54,17 +57,22 @@ public final class R {
         public static final int imageButton4=0x7f080007;
         public static final int imageButton5=0x7f080008;
         public static final int imageView1=0x7f080001;
+        public static final int imageView_imagen=0x7f08000a;
+        public static final int textView_inferior=0x7f08000c;
+        public static final int textView_superior=0x7f080009;
     }
     public static final class layout {
         public static final int activity_acelerometro=0x7f030000;
         public static final int activity_main=0x7f030001;
         public static final int activity_pantallaprincipal=0x7f030002;
         public static final int activity_reloj=0x7f030003;
+        public static final int entrada_lista=0x7f030004;
     }
     public static final class menu {
         public static final int main=0x7f070000;
     }
     public static final class string {
+        public static final int Alarma=0x7f050005;
         public static final int Conectar=0x7f050003;
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;

@@ -6,4 +6,5 @@
     <string name="hello_world">Hello world!</string>
     <string name="Conectar">Conectar</string>
 	<string name="titulo">Pantalla principal</string>
+	<string name="Alarma">Añadir Alarma</string>
 </resources>
