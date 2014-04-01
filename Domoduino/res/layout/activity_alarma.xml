@@ -18,6 +18,7 @@
               android:adjustViewBounds="true"
               android:scaleType="fitXY"
               android:layout_marginRight="10dp"
+              android:background="@null"
               android:src="@drawable/ruedastart" 
               />
 
@@ -28,6 +29,7 @@
               android:adjustViewBounds="true"
               android:layout_marginRight="10dp"
               android:scaleType="fitXY"
+              android:background="@null"
               android:src="@drawable/ruedastop" 
               />
         <ImageButton
@@ -37,6 +39,7 @@
               android:adjustViewBounds="true"
               android:layout_marginRight="10dp"
               android:scaleType="fitXY"
+              android:background="@null"
               android:src="@drawable/ruedabombillaencendida" 
               />
         <ImageButton
@@ -46,6 +49,7 @@
               android:adjustViewBounds="true"
               android:layout_marginRight="10dp"
               android:scaleType="fitXY"
+              android:background="@null"
               android:src="@drawable/ruedabombillaapagada" 
               />
 
