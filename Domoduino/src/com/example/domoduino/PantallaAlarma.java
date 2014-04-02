@@ -36,6 +36,12 @@ public class PantallaAlarma extends Activity
 			bt3.setOnClickListener(btn3);
 			bt4=(ImageButton) findViewById(R.id.imagen4);
 			bt4.setOnClickListener(btn4);
+			
+		    Bundle bundle = getIntent().getExtras();
+		    String horaEntera = bundle.getString("horaEntera");
+		    String[] retval = horaEntera.split("-", 2);
+		    
+		    
 	        
 	    	setCurrentTimeOnView();
 	 }
@@ -44,6 +50,7 @@ public class PantallaAlarma extends Activity
 		 
 			timePicker1 = (TimePicker) findViewById(R.id.timePicker1);
 	 
+	        timePicker1.setIs24HourView(true);
 			final Calendar c = Calendar.getInstance();
 			hour = c.get(Calendar.HOUR_OF_DAY);
 			minute = c.get(Calendar.MINUTE);

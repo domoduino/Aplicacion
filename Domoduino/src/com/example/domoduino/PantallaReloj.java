@@ -76,9 +76,12 @@ public class PantallaReloj extends Activity
 				long arg3) {
 			// TODO Auto-generated method stub
 			 Entrada_lista la = (Entrada_lista) arg0.getItemAtPosition(position);
-			 CharSequence texto = "Seleccionado: " + la.get_horaAlarma();
-             Toast toast = Toast.makeText(getApplicationContext(), texto, Toast.LENGTH_LONG);
-             toast.show();
+			 //CharSequence texto = "Seleccionado: " + la.get_horaAlarma();
+             //Toast toast = Toast.makeText(getApplicationContext(), texto, Toast.LENGTH_LONG);
+             //toast.show();
+             Intent i = new Intent(getApplicationContext(), PantallaAlarma.class);
+         	 i.putExtra("horaEntera", la.get_horaAlarma());
+        	 startActivity(i);	
 		}
 		
 	 };
