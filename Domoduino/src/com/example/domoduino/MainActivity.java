@@ -113,9 +113,7 @@ public class MainActivity extends Activity {
 	
 			public void onClick(View v)
 			{
-						Toast.makeText(getApplicationContext(),"paso 1", Toast.LENGTH_SHORT).show();
 	        			listarConAlert();
-
 		    }
 		};
 			
@@ -139,10 +137,10 @@ public class MainActivity extends Activity {
     				 {
     					Toast.makeText(getApplicationContext(),"No es la MAC del módulo", Toast.LENGTH_SHORT).show();
 
-//    					vibrador = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-//   		             vibrador.vibrate(1000);
-//   		         	 Intent i = new Intent(getApplicationContext(), PantallaPrincipal.class);
-//   		         	 startActivity(i);
+    					vibrador = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+	   		            vibrador.vibrate(1000);
+	   		         	Intent i = new Intent(getApplicationContext(), PantallaPrincipal.class);
+	   		         	startActivity(i);
     				 }
     			}
     			});

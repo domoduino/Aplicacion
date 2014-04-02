@@ -57,14 +57,12 @@ public class PantallaPrincipal extends Activity {
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pantallaprincipal);
-		
-		Toast.makeText(getApplicationContext(),"entra", Toast.LENGTH_SHORT).show();
+	
 		//Crear conexión
 		 AdaptadorBT = BluetoothAdapter.getDefaultAdapter();
 		 Servicio_BT = new ConexionBT(this, mHandler);
 		 BluetoothDevice device = AdaptadorBT.getRemoteDevice("00:13:12:16:63:31");
          Servicio_BT.connect(device);
-         Toast.makeText(getApplicationContext(),"entra2", Toast.LENGTH_SHORT).show();
 		
 		bt1=(ImageButton) findViewById(R.id.imageButton1);
 		bt1.setOnClickListener(btn1);
@@ -82,7 +80,7 @@ public class PantallaPrincipal extends Activity {
 	{
 		public void onClick(View v)
 		{
-			//sendMessage("3\r");
+			sendMessage("3\r");
 			Toast.makeText(getApplicationContext(),"Encendido", Toast.LENGTH_SHORT).show();
 		}
 	};
@@ -92,7 +90,7 @@ public class PantallaPrincipal extends Activity {
 	 {
 		public void onClick(View v)
 		{
-			//sendMessage("4\r");
+			sendMessage("4\r");
 			Toast.makeText(getApplicationContext(),"Stop", Toast.LENGTH_SHORT).show();
 							
 		}

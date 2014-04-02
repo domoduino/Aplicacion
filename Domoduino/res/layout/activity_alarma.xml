@@ -9,6 +9,7 @@
         android:id="@+id/timePicker1"
         android:layout_width="300dp"
         android:layout_height="300dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"/>
     
       <LinearLayout
@@ -18,46 +19,44 @@
         android:orientation="horizontal" >
 
          <ImageButton
-              android:id="@+id/imageView_imagen1"
-              android:layout_width="60dp"
-              android:layout_height="60dp"
-              android:adjustViewBounds="true"
-              android:scaleType="fitXY"
-              android:layout_marginRight="10dp"
-              android:background="@null"
-              android:src="@drawable/ruedastart" 
-              />
+             android:id="@+id/imagen1"
+             android:layout_width="60dp"
+             android:layout_height="60dp"
+             android:layout_marginRight="10dp"
+             android:adjustViewBounds="true"
+             android:background="@null"
+             android:scaleType="fitXY"
+             android:src="@drawable/ruedastart" />
 
         <ImageButton
-              android:id="@+id/imageView_imagen2"
-              android:layout_width="60dp"
-              android:layout_height="60dp"
-              android:adjustViewBounds="true"
-              android:layout_marginRight="10dp"
-              android:scaleType="fitXY"
-              android:background="@null"
-              android:src="@drawable/ruedastop" 
-              />
+            android:id="@+id/imagen2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="10dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:scaleType="fitXY"
+            android:src="@drawable/ruedastop" />
+
         <ImageButton
-              android:id="@+id/imageView_imagen3"
-              android:layout_width="60dp"
-              android:layout_height="60dp"
-              android:adjustViewBounds="true"
-              android:layout_marginRight="10dp"
-              android:scaleType="fitXY"
-              android:background="@null"
-              android:src="@drawable/ruedabombillaencendida" 
-              />
+            android:id="@+id/imagen3"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="10dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:scaleType="fitXY"
+            android:src="@drawable/ruedabombillaencendida" />
+
         <ImageButton
-              android:id="@+id/imageView_imagen4"
-              android:layout_width="60dp"
-              android:layout_height="60dp"
-              android:adjustViewBounds="true"
-              android:layout_marginRight="10dp"
-              android:scaleType="fitXY"
-              android:background="@null"
-              android:src="@drawable/ruedabombillaapagada" 
-              />
+            android:id="@+id/imagen4"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="10dp"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:scaleType="fitXY"
+            android:src="@drawable/ruedabombillaapagada" />
 
     </LinearLayout>
     

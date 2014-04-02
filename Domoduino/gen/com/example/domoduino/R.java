@@ -58,10 +58,10 @@ public final class R {
         public static final int imageButton5=0x7f08000d;
         public static final int imageView1=0x7f080001;
         public static final int imageView_imagen=0x7f08000f;
-        public static final int imageView_imagen1=0x7f080003;
-        public static final int imageView_imagen2=0x7f080004;
-        public static final int imageView_imagen3=0x7f080005;
-        public static final int imageView_imagen4=0x7f080006;
+        public static final int imagen1=0x7f080003;
+        public static final int imagen2=0x7f080004;
+        public static final int imagen3=0x7f080005;
+        public static final int imagen4=0x7f080006;
         public static final int textView_inferior=0x7f080011;
         public static final int textView_superior=0x7f08000e;
         public static final int timePicker1=0x7f080002;

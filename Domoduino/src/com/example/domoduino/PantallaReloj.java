@@ -18,6 +18,7 @@ import android.widget.Toast;
 public class PantallaReloj extends Activity
 {
 	private ImageButton imagen_plus;
+	ArrayList<Entrada_lista> datos = new ArrayList<Entrada_lista>();  
 	
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,11 +27,16 @@ public class PantallaReloj extends Activity
         imagen_plus =(ImageButton) findViewById(R.id.imageView_imagen);
         imagen_plus.setOnClickListener(imagenPlus);
 
-        ArrayList<Entrada_lista> datos = new ArrayList<Entrada_lista>();  
-
         datos.add(new Entrada_lista(R.drawable.alarma, "8:45", "Alarma 1"));
         datos.add(new Entrada_lista(R.drawable.alarma, "10:30", "Alarma 2"));
         datos.add(new Entrada_lista(R.drawable.alarma, "11:50", "Alarma 3"));
+        
+        //Nuevas alarmas creadas
+        Bundle bundle = getIntent().getExtras();
+        if(bundle!=null)
+        {
+        	 datos.add(new Entrada_lista(R.drawable.alarma, bundle.getString("hora")+":"+ bundle.getString("minutos"), "Alarma 4"));
+        }
         
         
         ListView lista = (ListView) findViewById(R.id.ListView_listado);
