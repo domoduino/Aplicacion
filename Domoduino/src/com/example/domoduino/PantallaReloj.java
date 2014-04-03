@@ -58,16 +58,6 @@ public class PantallaReloj extends Activity
         lista.setOnItemClickListener(lista1);
 
 	 }  
-        /*lista.setOnItemClickListener(new OnItemClickListener() { 
-            @Override
-            public void onItemClick(AdapterView<?> pariente, View view, int posicion, long id) {
-                Lista_entrada elegido = (Lista_entrada) pariente.getItemAtPosition(posicion); 
-
-                CharSequence texto = "Seleccionado: " + elegido.get_textoDebajo();
-                Toast toast = Toast.makeText(MainActivity.this, texto, Toast.LENGTH_LONG);
-                toast.show();
-            }
-         });*/
 
 	private OnItemClickListener lista1 = new ListView.OnItemClickListener(){
 

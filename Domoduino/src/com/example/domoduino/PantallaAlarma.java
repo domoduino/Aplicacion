@@ -48,16 +48,37 @@ public class PantallaAlarma extends Activity
 	 
 	 public void setCurrentTimeOnView() {
 		 
-			timePicker1 = (TimePicker) findViewById(R.id.timePicker1);
-	 
+		 timePicker1 = (TimePicker) findViewById(R.id.timePicker1);
+		 
 	        timePicker1.setIs24HourView(true);
-			final Calendar c = Calendar.getInstance();
-			hour = c.get(Calendar.HOUR_OF_DAY);
-			minute = c.get(Calendar.MINUTE);
-
-			// set current time into timepicker
-			timePicker1.setCurrentHour(hour);
-			timePicker1.setCurrentMinute(minute);
+	        
+	        
+		    Bundle bundle = getIntent().getExtras();
+		    if(bundle!=null)
+		    {
+		    	String horaEntera = bundle.getString("horaEntera");
+		    	
+//		    	String[] retval = horaEntera.split("-", 2);
+//
+//				int hora1 = Integer.parseInt(retval[0]);
+//				int hora2 = Integer.parseInt(retval[1]);
+//				
+//		    	final Calendar c = Calendar.getInstance();
+//				hour = c.get(Calendar.HOUR_OF_DAY);
+//				minute = c.get(Calendar.MINUTE);
+//				//set current time into timepicker
+//				timePicker1.setCurrentHour(hora1);
+//				timePicker1.setCurrentMinute(hora2);
+		    }
+		    else
+		    {
+				final Calendar c = Calendar.getInstance();
+				hour = c.get(Calendar.HOUR_OF_DAY);
+				minute = c.get(Calendar.MINUTE);
+				// set current time into timepicker
+				timePicker1.setCurrentHour(hour);
+				timePicker1.setCurrentMinute(minute);
+		    }
 	 
 		}
 	 
@@ -87,7 +108,12 @@ public class PantallaAlarma extends Activity
 		{
 			public void onClick(View v)
 			{
-				
+				String hora1 = pad(timePicker1.getCurrentHour());
+				String minuto1 = pad(timePicker1.getCurrentMinute());
+				Intent i = new Intent(getApplicationContext(), PantallaReloj.class);
+				i.putExtra("hora", hora1);
+				i.putExtra("minutos", minuto1);
+	       	    startActivity(i);	
 			}
 		};
 		
@@ -95,7 +121,12 @@ public class PantallaAlarma extends Activity
 		{
 			public void onClick(View v)
 			{
-				
+				String hora1 = pad(timePicker1.getCurrentHour());
+				String minuto1 = pad(timePicker1.getCurrentMinute());
+				Intent i = new Intent(getApplicationContext(), PantallaReloj.class);
+				i.putExtra("hora", hora1);
+				i.putExtra("minutos", minuto1);
+	       	    startActivity(i);	
 			}
 		};
 		
@@ -103,7 +134,12 @@ public class PantallaAlarma extends Activity
 		{
 			public void onClick(View v)
 			{
-				
+				String hora1 = pad(timePicker1.getCurrentHour());
+				String minuto1 = pad(timePicker1.getCurrentMinute());
+				Intent i = new Intent(getApplicationContext(), PantallaReloj.class);
+				i.putExtra("hora", hora1);
+				i.putExtra("minutos", minuto1);
+	       	    startActivity(i);	
 			}
 		};
 }
