@@ -24,16 +24,16 @@ public class Entrada_lista
 	    return idImagen;
 	} 
 	
-	public void set_idImagen() { 
+	public void set_idImagen(int idImagen) { 
 	    this.idImagen=idImagen;
 	}
 
-	public void set_nombreAlarma() { 
+	public void set_nombreAlarma(String nombreAlarma) { 
 	    this.nombreAlarma=nombreAlarma;
 	}
 
-	public void set_horaAlarma() {
-	    this.idImagen=idImagen;
+	public void set_horaAlarma(String horaAlarma) {
+	    this.horaAlarma=horaAlarma;
 	} 
 
 

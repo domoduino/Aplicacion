@@ -35,7 +35,25 @@ public class PantallaReloj extends Activity
         Bundle bundle = getIntent().getExtras();
         if(bundle!=null)
         {
-        	 datos.add(new Entrada_lista(R.drawable.alarma, bundle.getString("hora")+":"+ bundle.getString("minutos"), "Alarma 4"));
+        	String nomAlarma = bundle.getString("nombreAlarma");
+	    	
+	    	//String tamaño = Integer.toString(datos.size());
+	    	
+	    	for(int i=0; i<datos.size();i++)
+	    	{
+	    		if(datos.get(i).get_nombreAlarma().equals(nomAlarma))
+	        	{
+	        		datos.get(i).set_horaAlarma(bundle.getString("hora")+":"+ bundle.getString("minutos"));
+	        		Toast toast1 = Toast.makeText(getApplicationContext(), datos.get(i).get_nombreAlarma(), Toast.LENGTH_LONG);
+	    	    	toast1.show();
+	        	}
+//     MIRAR BUCLE
+//	        	else
+//	        	{
+//	        		datos.add(new Entrada_lista(R.drawable.alarma, bundle.getString("hora")+":"+ bundle.getString("minutos"), "Alarma 4"));
+//	        	}
+	    	}
+
         }
         
         
@@ -70,6 +88,7 @@ public class PantallaReloj extends Activity
              //Toast toast = Toast.makeText(getApplicationContext(), texto, Toast.LENGTH_LONG);
              //toast.show();
              Intent i = new Intent(getApplicationContext(), PantallaAlarma.class);
+             i.putExtra("nombreAlarma", la.get_nombreAlarma());
          	 i.putExtra("horaEntera", la.get_horaAlarma());
         	 startActivity(i);	
 		}
