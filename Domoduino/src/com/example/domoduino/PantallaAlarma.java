@@ -62,11 +62,6 @@ public class PantallaAlarma extends Activity
 		    	int hora1 = Integer.parseInt(retval[0]);
 				int hora2 = Integer.parseInt(retval[1]);
 				
-				
-//		    	final Calendar c = Calendar.getInstance();
-//				hour = c.get(Calendar.HOUR_OF_DAY);
-//				minute = c.get(Calendar.MINUTE);
-//				//set current time into timepicker
 				timePicker1.setCurrentHour(hora1);
 				timePicker1.setCurrentMinute(hora2);
 		    }

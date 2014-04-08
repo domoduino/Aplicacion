@@ -1,6 +1,7 @@
 package com.example.domoduino;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 public class PantallaReloj extends Activity
 {
 	private ImageButton imagen_plus;
+	private static LogicaAlarma logica;
 	ArrayList<Entrada_lista> datos = new ArrayList<Entrada_lista>();  
 	
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,34 +29,48 @@ public class PantallaReloj extends Activity
         imagen_plus =(ImageButton) findViewById(R.id.imageView_imagen);
         imagen_plus.setOnClickListener(imagenPlus);
 
-        datos.add(new Entrada_lista(R.drawable.alarma, "8:45", "Alarma 1"));
-        datos.add(new Entrada_lista(R.drawable.alarma, "10:30", "Alarma 2"));
-        datos.add(new Entrada_lista(R.drawable.alarma, "11:50", "Alarma 3"));
+        logica = new LogicaAlarma(getApplicationContext());
+        logica.guardarAlarmar(new Alarma(1,"prueba","8","45",1));
+        Vector<Alarma> alarmas = logica.alarmas();
         
-        //Nuevas alarmas creadas
-        Bundle bundle = getIntent().getExtras();
-        if(bundle!=null)
+        if(alarmas!=null)
         {
-        	String nomAlarma = bundle.getString("nombreAlarma");
-	    	
-	    	//String tamaño = Integer.toString(datos.size());
-	    	
-	    	for(int i=0; i<datos.size();i++)
-	    	{
-	    		if(datos.get(i).get_nombreAlarma().equals(nomAlarma))
-	        	{
-	        		datos.get(i).set_horaAlarma(bundle.getString("hora")+":"+ bundle.getString("minutos"));
-	        		Toast toast1 = Toast.makeText(getApplicationContext(), datos.get(i).get_nombreAlarma(), Toast.LENGTH_LONG);
-	    	    	toast1.show();
-	        	}
-//     MIRAR BUCLE
-//	        	else
-//	        	{
-//	        		datos.add(new Entrada_lista(R.drawable.alarma, bundle.getString("hora")+":"+ bundle.getString("minutos"), "Alarma 4"));
-//	        	}
-	    	}
-
+        	Toast.makeText(getApplicationContext(),"PASO 1", Toast.LENGTH_LONG).show();
+        	
+        	for(int i=0; i< alarmas.size();i++)
+	        {
+        		Toast.makeText(getApplicationContext(),"PASO 2", Toast.LENGTH_LONG).show();
+	        	 datos.add(new Entrada_lista(R.drawable.alarma, alarmas.get(i).getHoraAlarma()+":"+ alarmas.get(i).getMinAlarma(), alarmas.get(i).getNombreAlarma()));
+	        	 Toast.makeText(getApplicationContext(),alarmas.get(i).getHoraAlarma()+":"+ alarmas.get(i).getMinAlarma(), Toast.LENGTH_LONG).show();
+	        }
         }
+        else
+        {
+        	Toast.makeText(getApplicationContext(), "holaaaaa", Toast.LENGTH_LONG).show();
+        }
+        
+//        //Nuevas alarmas creadas
+//        Bundle bundle = getIntent().getExtras();
+//        if(bundle!=null)
+//        {
+//        	String nomAlarma = bundle.getString("nombreAlarma");
+//	    	
+//	    	//String tamaño = Integer.toString(datos.size());
+//	    	
+//	    	for(int i=0; i<datos.size();i++)
+//	    	{
+//	    		if(datos.get(i).get_nombreAlarma().equals(nomAlarma))
+//	        	{
+//	        		datos.get(i).set_horaAlarma(bundle.getString("hora")+":"+ bundle.getString("minutos"));
+//	        	}
+////     MIRAR BUCLE
+////	        	else
+////	        	{
+////	        		datos.add(new Entrada_lista(R.drawable.alarma, bundle.getString("hora")+":"+ bundle.getString("minutos"), "Alarma 4"));
+////	        	}
+//	    	}
+//
+//        }
         
         
         ListView lista = (ListView) findViewById(R.id.ListView_listado);
@@ -84,9 +100,6 @@ public class PantallaReloj extends Activity
 				long arg3) {
 			// TODO Auto-generated method stub
 			 Entrada_lista la = (Entrada_lista) arg0.getItemAtPosition(position);
-			 //CharSequence texto = "Seleccionado: " + la.get_horaAlarma();
-             //Toast toast = Toast.makeText(getApplicationContext(), texto, Toast.LENGTH_LONG);
-             //toast.show();
              Intent i = new Intent(getApplicationContext(), PantallaAlarma.class);
              i.putExtra("nombreAlarma", la.get_nombreAlarma());
          	 i.putExtra("horaEntera", la.get_horaAlarma());
