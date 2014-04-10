@@ -12,6 +12,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
@@ -74,6 +76,13 @@ public class PantallaPrincipal extends Activity {
 		bt4.setOnClickListener(btn4);
 		bt5=(ImageButton) findViewById(R.id.imageButton5);
 		bt5.setOnClickListener(btn5);
+		
+	}
+	public  boolean onCreateOptionsMenu (Menu menu)
+	{ 
+	    MenuInflater inflater = getMenuInflater () ; 
+	    inflater.inflate (R.menu.main, menu ); 
+	    return  true ; 
 	}
 	
 	private ImageButton.OnClickListener btn1 = new ImageButton.OnClickListener()
