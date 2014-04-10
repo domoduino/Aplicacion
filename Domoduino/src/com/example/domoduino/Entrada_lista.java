@@ -2,14 +2,21 @@ package com.example.domoduino;
 
 public class Entrada_lista
 {
+	private int idAlarma;
 	private int idImagen; 
 	private String horaAlarma; 
 	private String nombreAlarma; 
 
-	public Entrada_lista (int idImagen, String horaAlarma, String nombreAlarma) { 
+	public Entrada_lista (int idAlarma,int idImagen, String horaAlarma, String nombreAlarma) { 
 	    this.idImagen = idImagen; 
 	    this.horaAlarma = horaAlarma; 
 	    this.nombreAlarma = nombreAlarma; 
+	    this.idAlarma = idAlarma;
+	}
+	
+	public int get_idAlarma()
+	{
+		return idAlarma;
 	}
 	
 	public String get_horaAlarma() { 

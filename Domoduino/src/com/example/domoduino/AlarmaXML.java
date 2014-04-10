@@ -57,7 +57,7 @@ public class AlarmaXML
 			Log.e("AlarmaXML", e.getMessage(), e);
 		}
 		
-		nuevo(a);
+		nuevaAlarma(a);
 		
 		Log.i("Domoduino","Nueva alarma");
 	
@@ -133,7 +133,7 @@ public class AlarmaXML
 
 		}
 		
-		public void nuevo(Alarma a ) {
+		public void nuevaAlarma(Alarma a ) {
 
 		       Element alarma = documento.createElement("alarma");
 
@@ -181,6 +181,52 @@ public class AlarmaXML
 		       raiz.appendChild(alarma);
 
 		}
+		
+		
+		public boolean eliminarAlarma (int idAlarma)
+		{
+			String id = null;
+			boolean borrada = false;
+			int i=0;
+			
+			if(!cargadoDocumento)
+			{
+				try 
+				{
+					leerXML(contexto.openFileInput(FICHERO));
+				}
+				catch (FileNotFoundException e) 
+				{
+					return borrada;
+				} 
+				catch (Exception e) 
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+	
+			Element raiz = documento.getDocumentElement();
+		
+			NodeList alarmas = raiz.getElementsByTagName("alarma");
+		
+			while(!borrada || i < alarmas.getLength())
+			{
+				Node alarma = alarmas.item(i);
+				
+				 Element alarma2 = (Element) alarmas.item(i);
+	             id= alarma2.getAttribute("id");
+	             
+	             if (Integer.valueOf(id) == idAlarma)
+	             {
+	            	 raiz.removeChild(alarma);
+	            	 borrada=true;
+	             }
+	             
+	             i++;      
+			}
+	return borrada;
+	}
 		
 		public int numAlarmas ()
 		{

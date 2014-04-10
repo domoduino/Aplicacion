@@ -30,47 +30,48 @@ public class PantallaReloj extends Activity
         imagen_plus.setOnClickListener(imagenPlus);
 
         logica = new LogicaAlarma(getApplicationContext());
-        logica.guardarAlarmar(new Alarma(1,"prueba","8","45",1));
+        //logica.guardarAlarma(new Alarma(1,"Alarma 1","8","45",1));
         Vector<Alarma> alarmas = logica.alarmas();
+ 
+        //Nuevas alarmas creadas
+//        Bundle bundle = getIntent().getExtras();
+//        if(bundle!=null)
+//        {
+////        	String nomAlarma = bundle.getString("nombreAlarma");
+////	    	
+////	    	for(int i=0; i<datos.size();i++)
+////	    	{
+////	    		if(datos.get(i).get_nombreAlarma().equals(nomAlarma))
+////	        	{
+////	        		datos.get(i).set_horaAlarma(bundle.getString("hora")+":"+ bundle.getString("minutos"));
+////	        	}
+//////     MIRAR BUCLE
+//////	        	else
+//////	        	{
+//////	        		datos.add(new Entrada_lista(R.drawable.alarma, bundle.getString("hora")+":"+ bundle.getString("minutos"), "Alarma 4"));
+//////	        	}
+////	    	}
+//        	String hora = bundle.getString("hora");
+//        	String minutos = bundle.getString("minutos");
+//        	logica.guardarAlarma(new Alarma(1,"Alarma 4",hora,minutos,1));       
+//        }
         
         if(alarmas!=null)
         {
         	Toast.makeText(getApplicationContext(),"PASO 1", Toast.LENGTH_LONG).show();
         	
-        	for(int i=0; i< alarmas.size();i++)
-	        {
-        		Toast.makeText(getApplicationContext(),"PASO 2", Toast.LENGTH_LONG).show();
-	        	 datos.add(new Entrada_lista(R.drawable.alarma, alarmas.get(i).getHoraAlarma()+":"+ alarmas.get(i).getMinAlarma(), alarmas.get(i).getNombreAlarma()));
-	        	 Toast.makeText(getApplicationContext(),alarmas.get(i).getHoraAlarma()+":"+ alarmas.get(i).getMinAlarma(), Toast.LENGTH_LONG).show();
-	        }
+	        	for(int i=0; i< alarmas.size();i++)
+		        {
+	        		//Toast.makeText(getApplicationContext(),"PASO 2", Toast.LENGTH_LONG).show();
+		        	datos.add(new Entrada_lista(alarmas.get(i).getIdAlarma(),R.drawable.alarma, alarmas.get(i).getHoraAlarma()+":"+ alarmas.get(i).getMinAlarma(), alarmas.get(i).getNombreAlarma()));
+		        	//Toast.makeText(getApplicationContext(),alarmas.get(i).getHoraAlarma()+":"+ alarmas.get(i).getMinAlarma(), Toast.LENGTH_LONG).show();
+		        }
         }
         else
         {
         	Toast.makeText(getApplicationContext(), "holaaaaa", Toast.LENGTH_LONG).show();
         }
-        
-//        //Nuevas alarmas creadas
-//        Bundle bundle = getIntent().getExtras();
-//        if(bundle!=null)
-//        {
-//        	String nomAlarma = bundle.getString("nombreAlarma");
-//	    	
-//	    	//String tamaño = Integer.toString(datos.size());
-//	    	
-//	    	for(int i=0; i<datos.size();i++)
-//	    	{
-//	    		if(datos.get(i).get_nombreAlarma().equals(nomAlarma))
-//	        	{
-//	        		datos.get(i).set_horaAlarma(bundle.getString("hora")+":"+ bundle.getString("minutos"));
-//	        	}
-////     MIRAR BUCLE
-////	        	else
-////	        	{
-////	        		datos.add(new Entrada_lista(R.drawable.alarma, bundle.getString("hora")+":"+ bundle.getString("minutos"), "Alarma 4"));
-////	        	}
-//	    	}
-//
-//        }
+
         
         
         ListView lista = (ListView) findViewById(R.id.ListView_listado);
@@ -101,6 +102,7 @@ public class PantallaReloj extends Activity
 			// TODO Auto-generated method stub
 			 Entrada_lista la = (Entrada_lista) arg0.getItemAtPosition(position);
              Intent i = new Intent(getApplicationContext(), PantallaAlarma.class);
+             i.putExtra("idAlarma", la.get_idAlarma());
              i.putExtra("nombreAlarma", la.get_nombreAlarma());
          	 i.putExtra("horaEntera", la.get_horaAlarma());
         	 startActivity(i);	

@@ -13,9 +13,20 @@ public class LogicaAlarma
 		alarmaXML = new AlarmaXML(c);
 	}
 	
-	public void guardarAlarmar (Alarma a)
+	public void guardarAlarma (Alarma a)
 	{
 		alarmaXML.guardarAlarma(a);
+	}
+	
+	public boolean eliminarAlarma(int id)
+	{
+		return alarmaXML.eliminarAlarma(id);
+	}
+	
+	public void modificarAlarma (int idAlarmaAnt, Alarma aNueva)
+	{
+		alarmaXML.eliminarAlarma(idAlarmaAnt);
+		alarmaXML.guardarAlarma(aNueva);
 	}
 	
 	public Vector<Alarma> alarmas()
@@ -27,5 +38,8 @@ public class LogicaAlarma
 	{
 		return (alarmaXML.numAlarmas()+1);
 	}
+	
+	
+	
 
 }
