@@ -6,6 +6,7 @@ import java.util.Calendar;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -97,8 +98,6 @@ public class PantallaAlarma extends Activity
 				String minuto1 = pad(timePicker1.getCurrentMinute());
 				//logica.guardarAlarma(new Alarma(1,"prueba",hora1,minuto1,1));
 				
-				Toast.makeText(getApplicationContext(), hora1,10).show();
-				
 				Intent i = new Intent(getApplicationContext(), PantallaReloj.class);
 				if(nombreAlarma != null)
 				{
@@ -107,7 +106,21 @@ public class PantallaAlarma extends Activity
 				}
 				else
 				{
-					logica.guardarAlarma(new Alarma(1,"Nueva",hora1,minuto1,1));
+					SharedPreferences preferencias = getPreferences(MODE_PRIVATE);
+					int id = preferencias.getInt("id", -1);
+					int idNuevo = -1;
+					if(id!=-1)
+					{
+						idNuevo = id + 1;					}
+					else
+					{
+						idNuevo = 1;
+					}
+					
+					SharedPreferences.Editor editor = preferencias.edit();
+					editor.putInt("id", idNuevo);
+					editor.commit();
+					logica.guardarAlarma(new Alarma(idNuevo,"Alarma" + idNuevo,hora1,minuto1,1));
 				}
 	       	    startActivity(i);	
 			}

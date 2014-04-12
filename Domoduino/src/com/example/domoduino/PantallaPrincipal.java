@@ -209,4 +209,9 @@ public class PantallaPrincipal extends Activity {
 		        	 super.onDestroy();
 		        	 if (Servicio_BT != null) Servicio_BT.stop();//Detenemos servicio
 		        }
+		        
+//		        public void onBackPressed()
+//		    	{
+//		    		this.startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//		    	}
 }

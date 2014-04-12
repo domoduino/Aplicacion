@@ -36,7 +36,8 @@ public class LogicaAlarma
 	
 	public int obtenerId()
 	{
-		return (alarmaXML.numAlarmas()+1);
+		//return (alarmaXML.numAlarmas()+1);
+		return alarmas().size()+1;
 	}
 	
 	
