@@ -48,11 +48,10 @@ public final class R {
         public static final int ruedastop=0x7f020018;
     }
     public static final class id {
-        public static final int Ajustes=0x7f080013;
-        public static final int Ayuda=0x7f080014;
+        public static final int Ajustes=0x7f080012;
+        public static final int Ayuda=0x7f080013;
         public static final int ListView_listado=0x7f080010;
         public static final int RelativeLayout1=0x7f080000;
-        public static final int action_settings=0x7f080012;
         public static final int btnConectar=0x7f080008;
         public static final int devicesfound=0x7f080007;
         public static final int imageButton1=0x7f080009;
