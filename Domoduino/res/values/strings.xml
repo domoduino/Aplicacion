@@ -7,4 +7,6 @@
     <string name="Conectar">Conectar</string>
 	<string name="titulo">Pantalla principal</string>
 	<string name="Alarma">Añadir Alarma</string>
+	<string name="Ajustes">Ajustes</string>
+	<string name="Ayuda">Ayuda</string>
 </resources>
