@@ -5,18 +5,24 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -52,6 +58,8 @@ public class PantallaPrincipal extends Activity {
 	private ImageButton bt3;
 	private ImageButton bt4;
 	private ImageButton bt5;
+	
+	private TextView textAyuda;
 
 	boolean b=false;
 
@@ -77,12 +85,54 @@ public class PantallaPrincipal extends Activity {
 		bt5=(ImageButton) findViewById(R.id.imageButton5);
 		bt5.setOnClickListener(btn5);
 		
+		textAyuda =  (TextView) findViewById(R.id.textAyuda);
+		
 	}
+	
+	//Elementos del menú
 	public  boolean onCreateOptionsMenu (Menu menu)
 	{ 
 	    MenuInflater inflater = getMenuInflater () ; 
 	    inflater.inflate (R.menu.main, menu ); 
 	    return  true ; 
+	}
+	
+	public  boolean onOptionsItemSelected (MenuItem item )
+	{ 
+	    switch  (item . getItemId ()) 
+	    { 
+	        case R.id.Ajustes1: 
+	        	Toast.makeText(getApplicationContext(),"Item 1 pulsado", Toast.LENGTH_SHORT).show();
+	            return  true ;
+	        case R.id.Ajustes2:
+	        	Toast.makeText(getApplicationContext(),"Item 2 pulsado", Toast.LENGTH_SHORT).show();
+	        	return  true ;
+	        case R.id.Ayuda: 
+	        	
+	        	//Toast.makeText(getApplicationContext(),"Item 3 pulsado", Toast.LENGTH_SHORT).show();
+	        	LayoutInflater li = LayoutInflater.from(this);
+    			View prompt = li.inflate(R.layout.activity_ayuda, null);
+    			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+    			alertDialogBuilder.setView(prompt);
+    			alertDialogBuilder.setTitle("Ayuda");
+    			
+    			// Mostramos el mensaje del cuadro de dialogo
+    			alertDialogBuilder.setCancelable(false).setPositiveButton("Aceptar", new DialogInterface.OnClickListener()
+    			{
+	    			public void onClick(DialogInterface dialog,int id)
+	    			{
+	    				dialog.cancel();
+	    			}
+    			});
+    			 
+    			// Creamos un AlertDialog y lo mostramos
+    			AlertDialog alertDialog = alertDialogBuilder.create();
+    			alertDialog.show();
+    			
+	            return  true ; 
+	        default : 
+	            return  super . onOptionsItemSelected (item); 
+	    } 
 	}
 	
 	private ImageButton.OnClickListener btn1 = new ImageButton.OnClickListener()

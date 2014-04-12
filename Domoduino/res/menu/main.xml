@@ -1,15 +1,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
 			<item android:id="@+id/Ajustes"
-				        android:title="@string/Ajustes"
-				        android:icon="@drawable/iconmenu"
-				        android:showAsAction="ifRoom">
-			             </item>
-			    
-				     <item android:id="@+id/Ayuda"
-				         android:title="@string/Ayuda"
-				         android:icon="@drawable/iconhelp"
-				         android:showAsAction="ifRoom"/>
+				  android:title="@string/Ajustes"
+				  android:icon="@drawable/iconmenu"
+				  android:showAsAction="ifRoom" >
+				<menu>
+					<item android:id="@+id/Ajustes1"
+					    android:title="@string/Ajustes1"/>
+					<item android:id="@+id/Ajustes2"
+					    android:title="@string/Ajustes2"/>
+				</menu>
+			</item>
+			
+			<item android:id="@+id/Ayuda"
+				  android:title="@string/Ayuda"
+				  android:icon="@drawable/iconhelp"
+				  android:showAsAction="ifRoom"/>
 
 </menu>
 

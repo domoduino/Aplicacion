@@ -8,7 +8,7 @@
      <TimePicker
          android:id="@+id/timePicker1"
         android:layout_width="fill_parent"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="80dp"
         android:layout_marginTop="70dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"/>
@@ -60,6 +60,34 @@
             android:src="@drawable/ruedabombillaapagada" />
 
     </LinearLayout>
-    
+
+      <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal" 
+          android:layout_marginTop="40dp">
+
+          <ImageButton
+              android:id="@+id/imagen21"
+              android:layout_width="141dp"
+              android:layout_height="match_parent"
+              android:layout_marginLeft="10dp"
+              android:layout_marginRight="2dp"
+              android:adjustViewBounds="true"
+              android:background="@null"
+              android:scaleType="fitXY"
+              android:src="@drawable/boton4" />
+
+          <ImageButton
+              android:id="@+id/imagen22"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginRight="10dp"
+              android:layout_marginLeft="2dp"
+              android:adjustViewBounds="true"
+              android:background="@null"
+              android:scaleType="fitXY"
+              android:src="@drawable/boton3" />
+      </LinearLayout>
 
 </LinearLayout>
