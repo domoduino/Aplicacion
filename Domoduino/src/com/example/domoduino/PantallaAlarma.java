@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TimePicker;
@@ -23,9 +24,12 @@ public class PantallaAlarma extends Activity
 	private ImageButton bt2;
 	private ImageButton bt3;
 	private ImageButton bt4;
+	private ImageButton btListo;
+	private ImageButton btCancelar;
 	private String nombreAlarma;
 	private int idAlarma;
 	private static LogicaAlarma logica;
+	private int accion = 0;
 	
 	 public void onCreate(Bundle savedInstanceState) 
 	 {
@@ -41,11 +45,62 @@ public class PantallaAlarma extends Activity
 			bt4=(ImageButton) findViewById(R.id.imagen4);
 			bt4.setOnClickListener(btn4);
  
+			btListo = (ImageButton) findViewById(R.id.imagen21);
+			btListo.setOnClickListener(botonlisto);
+			btCancelar = (ImageButton) findViewById(R.id.imagen22);
+			btCancelar.setOnClickListener(botoncancelar);
+			
 	    	logica = new LogicaAlarma(getApplicationContext());
 			
 	    	setCurrentTimeOnView();
 	 }
+
+	  
 	 
+	 private ImageButton.OnClickListener botonlisto = new ImageButton.OnClickListener()
+		{
+			public void onClick(View v)
+			{
+				String hora1 = pad(timePicker1.getCurrentHour());
+				String minuto1 = pad(timePicker1.getCurrentMinute());
+				
+				Intent i = new Intent(getApplicationContext(), PantallaReloj.class);
+				if(nombreAlarma != null)
+				{
+					logica.modificarAlarma(idAlarma, new Alarma(idAlarma,nombreAlarma,hora1,minuto1,accion));
+					i.putExtra("nombreAlarma", nombreAlarma);
+				}
+				else
+				{
+					SharedPreferences preferencias = getPreferences(MODE_PRIVATE);
+					int id = preferencias.getInt("id", -1);
+					int idNuevo = -1;
+					if(id!=-1)
+					{
+						idNuevo = id + 1;					}
+					else
+					{
+						idNuevo = 1;
+					}
+					
+					SharedPreferences.Editor editor = preferencias.edit();
+					editor.putInt("id", idNuevo);
+					editor.commit();
+					logica.guardarAlarma(new Alarma(idNuevo,"Alarma " + idNuevo,hora1,minuto1,accion));
+				}
+	       	    startActivity(i);		
+			}
+		};
+	 
+	private ImageButton.OnClickListener botoncancelar = new ImageButton.OnClickListener()
+		{
+				public void onClick(View v)
+				{
+					Intent i = new Intent(getApplicationContext(), PantallaReloj.class);
+		       	    startActivity(i);			
+				}
+		};	
+		
 	 public void setCurrentTimeOnView() {
 		 
 		 	timePicker1 = (TimePicker) findViewById(R.id.timePicker1);
@@ -94,35 +149,7 @@ public class PantallaAlarma extends Activity
 		{
 			public void onClick(View v)
 			{
-				String hora1 = pad(timePicker1.getCurrentHour());
-				String minuto1 = pad(timePicker1.getCurrentMinute());
-				//logica.guardarAlarma(new Alarma(1,"prueba",hora1,minuto1,1));
-				
-				Intent i = new Intent(getApplicationContext(), PantallaReloj.class);
-				if(nombreAlarma != null)
-				{
-					logica.modificarAlarma(idAlarma, new Alarma(idAlarma,"Prueba",hora1,minuto1,1));
-					i.putExtra("nombreAlarma", nombreAlarma);
-				}
-				else
-				{
-					SharedPreferences preferencias = getPreferences(MODE_PRIVATE);
-					int id = preferencias.getInt("id", -1);
-					int idNuevo = -1;
-					if(id!=-1)
-					{
-						idNuevo = id + 1;					}
-					else
-					{
-						idNuevo = 1;
-					}
-					
-					SharedPreferences.Editor editor = preferencias.edit();
-					editor.putInt("id", idNuevo);
-					editor.commit();
-					logica.guardarAlarma(new Alarma(idNuevo,"Alarma" + idNuevo,hora1,minuto1,1));
-				}
-	       	    startActivity(i);	
+				accion = 1;
 			}
 		};
 		
@@ -131,12 +158,7 @@ public class PantallaAlarma extends Activity
 		{
 			public void onClick(View v)
 			{
-				String hora1 = pad(timePicker1.getCurrentHour());
-				String minuto1 = pad(timePicker1.getCurrentMinute());
-				Intent i = new Intent(getApplicationContext(), PantallaReloj.class);
-				i.putExtra("hora", hora1);
-				i.putExtra("minutos", minuto1);
-	       	    startActivity(i);	
+				accion = 2;
 			}
 		};
 		
@@ -144,12 +166,7 @@ public class PantallaAlarma extends Activity
 		{
 			public void onClick(View v)
 			{
-				String hora1 = pad(timePicker1.getCurrentHour());
-				String minuto1 = pad(timePicker1.getCurrentMinute());
-				Intent i = new Intent(getApplicationContext(), PantallaReloj.class);
-				i.putExtra("hora", hora1);
-				i.putExtra("minutos", minuto1);
-	       	    startActivity(i);	
+				accion = 3;
 			}
 		};
 		
@@ -157,12 +174,7 @@ public class PantallaAlarma extends Activity
 		{
 			public void onClick(View v)
 			{
-				String hora1 = pad(timePicker1.getCurrentHour());
-				String minuto1 = pad(timePicker1.getCurrentMinute());
-				Intent i = new Intent(getApplicationContext(), PantallaReloj.class);
-				i.putExtra("hora", hora1);
-				i.putExtra("minutos", minuto1);
-	       	    startActivity(i);	
+				accion = 4;
 			}
 		};
 }

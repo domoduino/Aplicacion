@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -259,6 +260,8 @@ public class PantallaPrincipal extends Activity {
 		        	 super.onDestroy();
 		        	 if (Servicio_BT != null) Servicio_BT.stop();//Detenemos servicio
 		        }
+		        
+		       
 		        
 //		        public void onBackPressed()
 //		    	{
