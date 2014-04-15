@@ -31,10 +31,9 @@ public class PantallaReloj extends Activity
         imagen_plus.setOnClickListener(imagenPlus);
 
         logica = new LogicaAlarma(getApplicationContext());
-        logica.guardarAlarma(new Alarma(20,"Alarma 1","8","45",1));
+        //logica.guardarAlarma(new Alarma(20,"Alarma 1","8","45",1));
         Vector<Alarma> alarmas = logica.alarmas();
- 
-        
+  
         if(alarmas!=null)
         {
 	        	for(int i=0; i< alarmas.size();i++)
@@ -47,8 +46,6 @@ public class PantallaReloj extends Activity
         	Toast.makeText(getApplicationContext(), "no hay alarmas", Toast.LENGTH_LONG).show();
         }
 
-        
-        
         ListView lista = (ListView) findViewById(R.id.ListView_listado);
         lista.setAdapter(new Adaptador_listado(this, R.layout.entrada_lista, datos){
 			@Override

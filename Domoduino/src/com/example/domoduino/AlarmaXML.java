@@ -1,5 +1,6 @@
 package com.example.domoduino;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -305,6 +306,18 @@ public class AlarmaXML
 		       return result;
 
 		}
+		
+	public boolean existeFichero ()
+	{
+		if (contexto.getFileStreamPath(FICHERO).exists())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 
 	public Vector<Alarma> listadoAlarmas()
 	{
@@ -312,7 +325,15 @@ public class AlarmaXML
 		{
 			try 
 			{
-				leerXML(contexto.openFileInput(FICHERO));
+				if(contexto.getFileStreamPath(FICHERO).exists())
+				{
+					leerXML(contexto.openFileInput(FICHERO));
+				}
+				else
+				{
+					return null;
+				}
+				
 			}
 			catch (FileNotFoundException e) 
 			{

@@ -7,6 +7,8 @@ import java.util.Calendar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -30,6 +32,7 @@ public class PantallaAlarma extends Activity
 	private int idAlarma;
 	private static LogicaAlarma logica;
 	private int accion = 0;
+	private boolean b = false;
 	
 	 public void onCreate(Bundle savedInstanceState) 
 	 {
@@ -149,7 +152,20 @@ public class PantallaAlarma extends Activity
 		{
 			public void onClick(View v)
 			{
-				accion = 1;
+				//accion = 1;
+				if(b==false)
+				{
+					Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.start);
+					bt1.setImageBitmap(bmp);
+					accion = 1;
+					b=true;
+				}
+				else if(b==true)// no se como comprobar que ahora es otro id, porque no lo puedo poner
+				{
+					Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ruedastart);
+					bt1.setImageBitmap(bmp);
+					b=false;
+				}
 			}
 		};
 		
@@ -158,7 +174,19 @@ public class PantallaAlarma extends Activity
 		{
 			public void onClick(View v)
 			{
-				accion = 2;
+				if(b==false)
+				{
+					Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.stop);
+					bt2.setImageBitmap(bmp);
+					accion = 2;
+					b=true;
+				}
+				else if(b==true)// no se como comprobar que ahora es otro id, porque no lo puedo poner
+				{
+					Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ruedastop);
+					bt2.setImageBitmap(bmp);
+					b=false;
+				}
 			}
 		};
 		
@@ -166,7 +194,19 @@ public class PantallaAlarma extends Activity
 		{
 			public void onClick(View v)
 			{
-				accion = 3;
+				if(b==false)
+				{
+					Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.bombilla);
+					bt3.setImageBitmap(bmp);
+					accion = 3;
+					b=true;
+				}
+				else if(b==true)// no se como comprobar que ahora es otro id, porque no lo puedo poner
+				{
+					Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ruedabombillaencendida);
+					bt3.setImageBitmap(bmp);
+					b=false;
+				}
 			}
 		};
 		
@@ -174,7 +214,19 @@ public class PantallaAlarma extends Activity
 		{
 			public void onClick(View v)
 			{
-				accion = 4;
+				if(b==false)
+				{
+					Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.bombillaeapagada);
+					bt4.setImageBitmap(bmp);
+					accion = 4;
+					b=true;
+				}
+				else if(b==true)// no se como comprobar que ahora es otro id, porque no lo puedo poner
+				{
+					Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ruedabombillaapagada);
+					bt4.setImageBitmap(bmp);
+					b=false;
+				}
 			}
 		};
 }
