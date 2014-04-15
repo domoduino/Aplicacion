@@ -45,6 +45,11 @@ public abstract class Adaptador_listado extends BaseAdapter
     public long getItemId(int posicion) {
         return posicion;
     }
+    
+    public void clear()
+    {
+    	entradas.clear();
+    }
 
     /** Devuelve cada una de las entradas con cada una de las vistas a la que debe de ser asociada
      * @param entrada La entrada que será la asociada a la view. La entrada es del tipo del paquete/handler

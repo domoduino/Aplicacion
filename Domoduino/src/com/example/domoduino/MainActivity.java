@@ -148,6 +148,7 @@ public class MainActivity extends Activity {
 
     			AlertDialog alert = builder.create();
     			alert.show();
+				btArrayAdapter.clear();
 			}
 		
         

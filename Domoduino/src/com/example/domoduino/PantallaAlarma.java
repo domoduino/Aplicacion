@@ -64,34 +64,35 @@ public class PantallaAlarma extends Activity
 		{
 			public void onClick(View v)
 			{
-				String hora1 = pad(timePicker1.getCurrentHour());
-				String minuto1 = pad(timePicker1.getCurrentMinute());
-				
-				Intent i = new Intent(getApplicationContext(), PantallaReloj.class);
-				if(nombreAlarma != null)
-				{
-					logica.modificarAlarma(idAlarma, new Alarma(idAlarma,nombreAlarma,hora1,minuto1,accion));
-					i.putExtra("nombreAlarma", nombreAlarma);
-				}
-				else
-				{
-					SharedPreferences preferencias = getPreferences(MODE_PRIVATE);
-					int id = preferencias.getInt("id", -1);
-					int idNuevo = -1;
-					if(id!=-1)
+					String hora1 = pad(timePicker1.getCurrentHour());
+					String minuto1 = pad(timePicker1.getCurrentMinute());
+					
+					Intent i = new Intent(getApplicationContext(), PantallaReloj.class);
+					if(nombreAlarma != null)
 					{
-						idNuevo = id + 1;					}
+						logica.modificarAlarma(idAlarma, new Alarma(idAlarma,nombreAlarma,hora1,minuto1,accion));
+						i.putExtra("nombreAlarma", nombreAlarma);
+					}
 					else
 					{
-						idNuevo = 1;
+						SharedPreferences preferencias = getPreferences(MODE_PRIVATE);
+						int id = preferencias.getInt("id", -1);
+						int idNuevo = -1;
+						if(id!=-1)
+						{
+							idNuevo = id + 1;					
+						}
+						else
+						{
+							idNuevo = 1;
+						}
+						
+						SharedPreferences.Editor editor = preferencias.edit();
+						editor.putInt("id", idNuevo);
+						editor.commit();
+						logica.guardarAlarma(new Alarma(idNuevo,"Alarma " + idNuevo,hora1,minuto1,accion));
 					}
-					
-					SharedPreferences.Editor editor = preferencias.edit();
-					editor.putInt("id", idNuevo);
-					editor.commit();
-					logica.guardarAlarma(new Alarma(idNuevo,"Alarma " + idNuevo,hora1,minuto1,accion));
-				}
-	       	    startActivity(i);		
+		       	    startActivity(i);
 			}
 		};
 	 
@@ -152,7 +153,6 @@ public class PantallaAlarma extends Activity
 		{
 			public void onClick(View v)
 			{
-				//accion = 1;
 				if(b==false)
 				{
 					Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.start);
@@ -160,7 +160,7 @@ public class PantallaAlarma extends Activity
 					accion = 1;
 					b=true;
 				}
-				else if(b==true)// no se como comprobar que ahora es otro id, porque no lo puedo poner
+				else if(b==true)
 				{
 					Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ruedastart);
 					bt1.setImageBitmap(bmp);
@@ -181,7 +181,7 @@ public class PantallaAlarma extends Activity
 					accion = 2;
 					b=true;
 				}
-				else if(b==true)// no se como comprobar que ahora es otro id, porque no lo puedo poner
+				else if(b==true)
 				{
 					Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ruedastop);
 					bt2.setImageBitmap(bmp);
@@ -201,7 +201,7 @@ public class PantallaAlarma extends Activity
 					accion = 3;
 					b=true;
 				}
-				else if(b==true)// no se como comprobar que ahora es otro id, porque no lo puedo poner
+				else if(b==true)
 				{
 					Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ruedabombillaencendida);
 					bt3.setImageBitmap(bmp);
@@ -221,7 +221,7 @@ public class PantallaAlarma extends Activity
 					accion = 4;
 					b=true;
 				}
-				else if(b==true)// no se como comprobar que ahora es otro id, porque no lo puedo poner
+				else if(b==true)
 				{
 					Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ruedabombillaapagada);
 					bt4.setImageBitmap(bmp);
