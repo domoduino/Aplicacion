@@ -27,7 +27,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class PantallaReloj extends Activity
+public class ListadoAlarmas extends Activity
 {
 	private ImageButton imagen_plus;
 	private static LogicaAlarma logica;
@@ -160,7 +160,7 @@ public class PantallaReloj extends Activity
 	         adapListado.clear();
 	         adapListado.notifyDataSetChanged();
 
-	         Intent i = new Intent(getApplicationContext(), PantallaReloj.class);
+	         Intent i = new Intent(getApplicationContext(), ListadoAlarmas.class);
 	       	 startActivity(i);
 	         
 	    	 break;

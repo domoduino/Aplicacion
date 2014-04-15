@@ -41,7 +41,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.domoduino.PantallaReloj"
+            android:name="com.example.domoduino.ListadoAlarmas"
             android:screenOrientation="portrait">
             <intent-filter>
             	<action android:name="android.intent.action.activity_reloj"/>

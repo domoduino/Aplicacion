@@ -183,7 +183,7 @@ public class PantallaPrincipal extends Activity {
 	 {
 		public void onClick(View v)
 		{
-			Intent i = new Intent(getApplicationContext(), PantallaReloj.class);
+			Intent i = new Intent(getApplicationContext(), ListadoAlarmas.class);
         	 startActivity(i);
 		}
 	 };

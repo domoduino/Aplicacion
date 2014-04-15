@@ -67,7 +67,7 @@ public class PantallaAlarma extends Activity
 					String hora1 = pad(timePicker1.getCurrentHour());
 					String minuto1 = pad(timePicker1.getCurrentMinute());
 					
-					Intent i = new Intent(getApplicationContext(), PantallaReloj.class);
+					Intent i = new Intent(getApplicationContext(), ListadoAlarmas.class);
 					if(nombreAlarma != null)
 					{
 						logica.modificarAlarma(idAlarma, new Alarma(idAlarma,nombreAlarma,hora1,minuto1,accion));
@@ -100,7 +100,7 @@ public class PantallaAlarma extends Activity
 		{
 				public void onClick(View v)
 				{
-					Intent i = new Intent(getApplicationContext(), PantallaReloj.class);
+					Intent i = new Intent(getApplicationContext(), ListadoAlarmas.class);
 		       	    startActivity(i);			
 				}
 		};	
