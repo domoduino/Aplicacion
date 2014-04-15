@@ -32,6 +32,9 @@ public class ListadoAlarmas extends Activity
 	private ImageButton imagen_plus;
 	private static LogicaAlarma logica;
 	private int idAlarmaABorrar = -1;
+	private String horaEntera = "";
+	private String nombreAlarma = "";
+	private int accion = 0;
 	ArrayList<Entrada_lista> datos = new ArrayList<Entrada_lista>();  
 	
 	protected static final int CONTEXTMENU_OPTION1 = 1;
@@ -58,7 +61,7 @@ public class ListadoAlarmas extends Activity
         {
 	        	for(int i=0; i< alarmas.size();i++)
 		        {
-		        	datos.add(new Entrada_lista(alarmas.get(i).getIdAlarma(),R.drawable.alarma, alarmas.get(i).getHoraAlarma()+":"+ alarmas.get(i).getMinAlarma(), alarmas.get(i).getNombreAlarma()));
+		        	datos.add(new Entrada_lista(alarmas.get(i).getIdAlarma(),R.drawable.alarma, alarmas.get(i).getHoraAlarma()+":"+ alarmas.get(i).getMinAlarma(), alarmas.get(i).getNombreAlarma(),alarmas.get(i).getAccionAlarma()));
 		        }
         }
         else
@@ -103,6 +106,7 @@ public class ListadoAlarmas extends Activity
              i.putExtra("idAlarma", la.get_idAlarma());
              i.putExtra("nombreAlarma", la.get_nombreAlarma());
          	 i.putExtra("horaEntera", la.get_horaAlarma());
+         	 i.putExtra("accion", la.get_accion());
         	 startActivity(i);	
 		}
 	 };
@@ -121,6 +125,10 @@ public class ListadoAlarmas extends Activity
 	    Entrada_lista item = (Entrada_lista) listView.getItemAtPosition(position);
 	    
 	    idAlarmaABorrar = item.get_idAlarma();
+	    nombreAlarma = item.get_nombreAlarma();
+	    horaEntera = item.get_horaAlarma();
+	    accion = item.get_accion();
+	    
 	    
 	    // Set title for the context menu
 	   menu.setHeaderTitle(item.get_nombreAlarma()); 
@@ -133,9 +141,7 @@ public class ListadoAlarmas extends Activity
 	 
 	 @Override 
 	 public boolean onContextItemSelected(MenuItem item) { 
-	  
-		 
-		 
+ 
 		 // Get extra info about list item that was long-pressed
 	     AdapterContextMenuInfo menuInfo = (AdapterContextMenuInfo)item.getMenuInfo();
 	  
@@ -144,24 +150,28 @@ public class ListadoAlarmas extends Activity
 	  
 	     case CONTEXTMENU_OPTION1:
 	         // Show message
-	         //Toast.makeText(getApplicationContext(), "Option 1: ID "+menuInfo.id+", position "+menuInfo.position, Toast.LENGTH_SHORT).show();
-	         Toast.makeText(getApplicationContext(), "id alarma a borrar: " + idAlarmaABorrar, Toast.LENGTH_LONG).show();
-	         //logica.eliminarAlarma(idAlarmaABorrar);
+	    	 Intent i = new Intent(getApplicationContext(), PantallaAlarma.class);
+             i.putExtra("idAlarma", idAlarmaABorrar);
+             i.putExtra("nombreAlarma", nombreAlarma);
+         	 i.putExtra("horaEntera", horaEntera);
+         	 i.putExtra("accion", accion);
+        	 startActivity(i);
+	    	 
 	         break;
 	         
 	  
 	     case CONTEXTMENU_OPTION2:
 	         // Show message
 	         //Toast.makeText(getApplicationContext(), "Option 2: ID "+menuInfo.id+", position "+menuInfo.position, Toast.LENGTH_SHORT).show();
-	    	 Toast.makeText(getApplicationContext(), "id alarma a borrar: " + idAlarmaABorrar, Toast.LENGTH_LONG).show();
+	    	 //Toast.makeText(getApplicationContext(), "id alarma a borrar: " + idAlarmaABorrar, Toast.LENGTH_LONG).show();
 	         boolean b = logica.eliminarAlarma(idAlarmaABorrar); 
-	         Toast.makeText(getApplicationContext(),Boolean.toString(b), Toast.LENGTH_LONG).show();
+	         //Toast.makeText(getApplicationContext(),Boolean.toString(b), Toast.LENGTH_LONG).show();
 	         
 	         adapListado.clear();
 	         adapListado.notifyDataSetChanged();
 
-	         Intent i = new Intent(getApplicationContext(), ListadoAlarmas.class);
-	       	 startActivity(i);
+	         Intent i1 = new Intent(getApplicationContext(), ListadoAlarmas.class);
+	       	 startActivity(i1);
 	         
 	    	 break;
 	     }

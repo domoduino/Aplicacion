@@ -34,6 +34,8 @@ public class PantallaAlarma extends Activity
 	private int accion = 0;
 	private boolean b = false;
 	
+	Bundle bundle = null;
+	
 	 public void onCreate(Bundle savedInstanceState) 
 	 {
 	        super.onCreate(savedInstanceState);
@@ -54,6 +56,33 @@ public class PantallaAlarma extends Activity
 			btCancelar.setOnClickListener(botoncancelar);
 			
 	    	logica = new LogicaAlarma(getApplicationContext());
+
+		    bundle = getIntent().getExtras();
+		     
+		    if(bundle!=null)
+		    {
+		    	accion = bundle.getInt("accion");
+		    	if(accion == 1)
+		    	{
+			    	Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.start);
+					bt1.setImageBitmap(bmp);
+		    	}
+		    	else if(accion == 2)
+		    	{
+		    		Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.stop);
+					bt2.setImageBitmap(bmp);
+		    	}
+		    	else if(accion == 3)
+		    	{
+		    		Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.bombilla);
+					bt3.setImageBitmap(bmp);
+		    	}
+		    	else if(accion == 4)
+		    	{
+		    		Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.bombillaeapagada);
+					bt4.setImageBitmap(bmp);
+		    	}
+		    }
 			
 	    	setCurrentTimeOnView();
 	 }
@@ -110,17 +139,13 @@ public class PantallaAlarma extends Activity
 		 	timePicker1 = (TimePicker) findViewById(R.id.timePicker1);
 		 
 	        timePicker1.setIs24HourView(true);
-	        
-	        
-		    Bundle bundle = getIntent().getExtras();
+  
 		    if(bundle!=null)
 		    {
 		        idAlarma = bundle.getInt("idAlarma");
 		    	String horaEntera = bundle.getString("horaEntera");
 		    	nombreAlarma = bundle.getString("nombreAlarma");
 		    	
-		    	Toast toast = Toast.makeText(getApplicationContext(), horaEntera, Toast.LENGTH_LONG);
-		    	toast.show();
 		    	String[] retval = horaEntera.split(":", 2);
 		    	
 		    	int hora1 = Integer.parseInt(retval[0]);

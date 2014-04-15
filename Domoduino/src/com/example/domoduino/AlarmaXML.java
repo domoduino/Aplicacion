@@ -40,6 +40,55 @@ public class AlarmaXML
 		cargadoDocumento = false;
 	}
 	
+	public void nuevaAlarma(Alarma a ) {
+
+	       Element alarma = documento.createElement("alarma");
+
+	      // alarma.setAttribute("id", a.id);
+	       alarma.setAttribute("id", String.valueOf(a.getIdAlarma()));
+
+	       Element e_nombre = documento.createElement("nombre");
+
+	       Text texto = documento.createTextNode(a.getNombreAlarma());
+
+	       e_nombre.appendChild(texto);
+
+	       alarma.appendChild(e_nombre);
+	     
+	       
+	       Element e_hora = documento.createElement("hora");
+
+	       texto = documento.createTextNode(a.getHoraAlarma());
+
+	       e_hora.appendChild(texto);
+
+	       alarma.appendChild(e_hora);
+	       
+	       
+	       Element e_min = documento.createElement("min");
+
+	       texto = documento.createTextNode(a.getMinAlarma());
+
+	       e_min.appendChild(texto);
+
+	       alarma.appendChild(e_min);
+	       
+	       
+	       Element e_accion = documento.createElement("accion");
+
+	       texto = documento.createTextNode(String.valueOf(a.getAccionAlarma()));
+
+	       e_accion.appendChild(texto);
+
+	       alarma.appendChild(e_accion);
+	       
+
+	       Element raiz = documento.getDocumentElement();
+
+	       raiz.appendChild(alarma);
+
+	}
+	
 	public void guardarAlarma (Alarma a) 
 	{
 		try
@@ -72,119 +121,12 @@ public class AlarmaXML
 			Log.e("AlarmaXML", e.getMessage(),e);
 		}
 	}
-	
-    public Vector<String> listaAlarmas()  //(int cantidad) 
-    {
-        try 
-        {
-            if (!cargadoDocumento) 
-            {
-                leerXML(contexto.openFileInput (FICHERO));
-            }
-        } 
-        catch (FileNotFoundException e) 
-        {
-            crearXML();
-
-        } 
-        catch (Exception e) 
-        {
-            Log.e("Domoduino", e.getMessage(), e);
-        }
-        
-        return aVectorString();
-
-  }
 		
-		public boolean cancelarAlarma (Alarma a) {
+	public boolean cancelarAlarma (Alarma a) {
 			return false;
 		}
-		
-		public void crearXML()
-		{
-			
-			try
-			{
-				DocumentBuilderFactory fabrica = DocumentBuilderFactory.newInstance();
-				DocumentBuilder constructor = fabrica.newDocumentBuilder();
-				documento = constructor.newDocument();
-				Element raiz = documento.createElement("lista_alarmas");
-				documento.appendChild(raiz);
-				cargadoDocumento = true;
-			}
-			catch(Exception e)
-			{
-				Log.e("AlarmaXML", e.getMessage(), e);
-
-			}
-		}
-		
-		public void leerXML(InputStream entrada) throws Exception 
-		{
-
-		       DocumentBuilderFactory fabrica =
-
-		DocumentBuilderFactory.newInstance();
-
-		       DocumentBuilder constructor = fabrica.newDocumentBuilder();
-
-		       documento = constructor.parse(entrada);
-
-		       cargadoDocumento = true;
-
-		}
-		
-		public void nuevaAlarma(Alarma a ) {
-
-		       Element alarma = documento.createElement("alarma");
-
-		      // alarma.setAttribute("id", a.id);
-		       alarma.setAttribute("id", String.valueOf(a.getIdAlarma()));
-
-		       Element e_nombre = documento.createElement("nombre");
-
-		       Text texto = documento.createTextNode(a.getNombreAlarma());
-
-		       e_nombre.appendChild(texto);
-
-		       alarma.appendChild(e_nombre);
-		     
-		       
-		       Element e_hora = documento.createElement("hora");
-
-		       texto = documento.createTextNode(a.getHoraAlarma());
-
-		       e_hora.appendChild(texto);
-
-		       alarma.appendChild(e_hora);
-		       
-		       
-		       Element e_min = documento.createElement("min");
-
-		       texto = documento.createTextNode(a.getMinAlarma());
-
-		       e_min.appendChild(texto);
-
-		       alarma.appendChild(e_min);
-		       
-		       
-		       Element e_accion = documento.createElement("accion");
-
-		       texto = documento.createTextNode(String.valueOf(a.getAccionAlarma()));
-
-		       e_accion.appendChild(texto);
-
-		       alarma.appendChild(e_accion);
-		       
-
-		       Element raiz = documento.getDocumentElement();
-
-		       raiz.appendChild(alarma);
-
-		}
-		
-		
-		public boolean eliminarAlarma (int idAlarma)
+	
+	public boolean eliminarAlarma (int idAlarma)
 		{
 			String id = null;
 			boolean borrada = false;
@@ -220,8 +162,21 @@ public class AlarmaXML
 	             
 	             if (Integer.valueOf(id) == idAlarma)
 	             {
-	            	 raiz.removeChild(alarma);
-	            	 borrada=true;
+	            	 try 
+	            	 {
+	            		raiz.removeChild(alarma);
+						escribirXML(contexto.openFileOutput(FICHERO, Context.MODE_PRIVATE));
+						borrada=true;
+						
+					 }
+	            	 catch (FileNotFoundException e)
+	            	 {
+						e.printStackTrace();
+					 }
+	            	 catch (Exception e)
+	            	 {
+						e.printStackTrace();
+	            	 }
 	             }
 	             
 	             i++;      
@@ -229,96 +184,6 @@ public class AlarmaXML
 	return borrada;
 	}
 		
-		public int numAlarmas ()
-		{
-			if(!cargadoDocumento)
-			{
-				try {
-					leerXML(contexto.openFileInput(FICHERO));
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			
-			   Element raiz = documento.getDocumentElement();
-
-		       NodeList alarmas = raiz.getElementsByTagName("alarma");
-		       
-		       return alarmas.getLength();
-		}
-		
-		public Vector<String> aVectorString() {
-
-		       Vector<String> result = new Vector<String>();
-
-		       String nombre = "", hora = "", accion= "", min="", id="";
-
-		       Element raiz = documento.getDocumentElement();
-
-		       NodeList alarmas = raiz.getElementsByTagName("alarma");
-//		       Element alarmaEle = (Element) raiz.getElementsByTagName("alarma");
-//		        id = alarmaEle.getAttribute("id");
-//		        alarmaEle.
-		       
-
-		       for(int i = 0; i < alarmas.getLength(); i++) {
-
-		             Node alarma = alarmas.item(i);
-		             
-		             Element alarma2 = (Element) alarmas.item(i);
-		             id= alarma2.getAttribute("id");
-		             
-		             NodeList propiedades = alarma.getChildNodes();
-
-		             for(int j = 0; j < propiedades.getLength(); j++) 
-		             {
-		                    Node propiedad = propiedades.item(j);
-
-		                    String etiqueta = propiedad.getNodeName();
-
-		                    if(etiqueta.equals("nombre")) 
-		                    {
-		                       nombre = propiedad.getFirstChild().getNodeValue();
-
-		                    }
-		                    else if(etiqueta.equals("min"))
-		                    {
-		                        min= propiedad.getFirstChild().getNodeValue();
-		                    }
-		                    else if(etiqueta.equals("hora"))
-		                    {
-		                        hora= propiedad.getFirstChild().getNodeValue();
-		                    }
-		                    else if(etiqueta.equals("accion"))
-		                    {
-		                    	accion = propiedad.getFirstChild().getNodeValue();
-		                    }
-		             }
-
-		             result.add(id + " " + nombre + " " + hora + " " + min + " " + accion);
-
-		       }
-
-		       return result;
-
-		}
-		
-	public boolean existeFichero ()
-	{
-		if (contexto.getFileStreamPath(FICHERO).exists())
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-
 	public Vector<Alarma> listadoAlarmas()
 	{
 		if(!cargadoDocumento)
@@ -391,6 +256,40 @@ public class AlarmaXML
 		
 	return result;
 	}
+	
+	public void crearXML()
+	{
+		
+		try
+		{
+			DocumentBuilderFactory fabrica = DocumentBuilderFactory.newInstance();
+			DocumentBuilder constructor = fabrica.newDocumentBuilder();
+			documento = constructor.newDocument();
+			Element raiz = documento.createElement("lista_alarmas");
+			documento.appendChild(raiz);
+			cargadoDocumento = true;
+		}
+		catch(Exception e)
+		{
+			Log.e("AlarmaXML", e.getMessage(), e);
+
+		}
+	}
+	
+	public void leerXML(InputStream entrada) throws Exception 
+	{
+
+	       DocumentBuilderFactory fabrica =
+
+	DocumentBuilderFactory.newInstance();
+
+	       DocumentBuilder constructor = fabrica.newDocumentBuilder();
+
+	       documento = constructor.parse(entrada);
+
+	       cargadoDocumento = true;
+
+	}
 		
 	public void escribirXML(OutputStream salida) throws Exception 
 	{
@@ -408,6 +307,85 @@ public class AlarmaXML
 
 	       transformador.transform(fuente, resultado);
 	}
+	
+	public Vector<String> aVectorString() {
+
+	       Vector<String> result = new Vector<String>();
+
+	       String nombre = "", hora = "", accion= "", min="", id="";
+
+	       Element raiz = documento.getDocumentElement();
+
+	       NodeList alarmas = raiz.getElementsByTagName("alarma");
+//	       Element alarmaEle = (Element) raiz.getElementsByTagName("alarma");
+//	        id = alarmaEle.getAttribute("id");
+//	        alarmaEle.
+	       
+
+	       for(int i = 0; i < alarmas.getLength(); i++) {
+
+	             Node alarma = alarmas.item(i);
+	             
+	             Element alarma2 = (Element) alarmas.item(i);
+	             id= alarma2.getAttribute("id");
+	             
+	             NodeList propiedades = alarma.getChildNodes();
+
+	             for(int j = 0; j < propiedades.getLength(); j++) 
+	             {
+	                    Node propiedad = propiedades.item(j);
+
+	                    String etiqueta = propiedad.getNodeName();
+
+	                    if(etiqueta.equals("nombre")) 
+	                    {
+	                       nombre = propiedad.getFirstChild().getNodeValue();
+
+	                    }
+	                    else if(etiqueta.equals("min"))
+	                    {
+	                        min= propiedad.getFirstChild().getNodeValue();
+	                    }
+	                    else if(etiqueta.equals("hora"))
+	                    {
+	                        hora= propiedad.getFirstChild().getNodeValue();
+	                    }
+	                    else if(etiqueta.equals("accion"))
+	                    {
+	                    	accion = propiedad.getFirstChild().getNodeValue();
+	                    }
+	             }
+
+	             result.add(id + " " + nombre + " " + hora + " " + min + " " + accion);
+
+	       }
+
+	       return result;
+
+	}
+	
+	public Vector<String> listaAlarmas()  
+    {
+        try 
+        {
+            if (!cargadoDocumento) 
+            {
+                leerXML(contexto.openFileInput (FICHERO));
+            }
+        } 
+        catch (FileNotFoundException e) 
+        {
+            crearXML();
+
+        } 
+        catch (Exception e) 
+        {
+            Log.e("Domoduino", e.getMessage(), e);
+        }
+        
+        return aVectorString();
+
+  }
 	
 //	private String DeHoraAString (Date date) 
 //	{
@@ -452,7 +430,18 @@ public class AlarmaXML
 //            return fechaDate;
 //        }
 //    }
+	
+//	public boolean existeFichero ()
+//	{
+//		if (contexto.getFileStreamPath(FICHERO).exists())
+//		{
+//			return true;
+//		}
+//		else
+//		{
+//			return false;
+//		}
+//	}
 }
 
 
-//http://www.androidcurso.com/index.php/tutoriales-android-fundamentos/42-unidad-9-almacenamiento-de-datos/335-procesando-xml-con-dom
