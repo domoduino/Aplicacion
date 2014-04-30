@@ -9,6 +9,6 @@
 	<string name="Alarma">Añadir Alarma</string>
 	<string name="Ajustes">Ajustes</string>
 	<string name="Ayuda">Ayuda</string>
-	<string name="Ajustes1">Ajustes1</string>
-	<string name="Ajustes2">Ajustes2</string>
+	<string name="Ajustes1">Acelerómetro</string>
+	<string name="Ajustes2">Listado de Alarmas</string>
 </resources>

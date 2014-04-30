@@ -103,10 +103,14 @@ public class PantallaPrincipal extends Activity {
 	    switch  (item . getItemId ()) 
 	    { 
 	        case R.id.Ajustes1: 
-	        	Toast.makeText(getApplicationContext(),"Item 1 pulsado", Toast.LENGTH_SHORT).show();
+	        	//Toast.makeText(getApplicationContext(),"Item 1 pulsado", Toast.LENGTH_SHORT).show();
+	        	Intent i = new Intent(getApplicationContext(), PantallaAcelerometro.class);
+	       	 	startActivity(i);
 	            return  true ;
 	        case R.id.Ajustes2:
-	        	Toast.makeText(getApplicationContext(),"Item 2 pulsado", Toast.LENGTH_SHORT).show();
+	        	//Toast.makeText(getApplicationContext(),"Item 2 pulsado", Toast.LENGTH_SHORT).show();
+	        	Intent i1 = new Intent(getApplicationContext(), ListadoAlarmas.class);
+	       	 	startActivity(i1);
 	        	return  true ;
 	        case R.id.Ayuda: 
 	        	
