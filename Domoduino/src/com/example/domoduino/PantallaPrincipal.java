@@ -171,7 +171,7 @@ public class PantallaPrincipal extends Activity {
 				sendMessage("1\r"); //funciona
 				b=true;
 			}
-			else if(b==true)// no se como comprobar que ahora es otro id, porque no lo puedo poner
+			else if(b==true)
 			{
 				Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ruedabombillaencendida);
 				bt3.setImageBitmap(bmp);
@@ -197,6 +197,7 @@ public class PantallaPrincipal extends Activity {
 	 {
 		public void onClick(View v)
 		{
+			onDestroy();
 			Toast.makeText(getApplicationContext(),"Acelerómetro encendido", Toast.LENGTH_SHORT).show();
 			Intent i = new Intent(getApplicationContext(), PantallaAcelerometro.class);
        	 	startActivity(i);
