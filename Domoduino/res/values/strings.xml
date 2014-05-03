@@ -11,4 +11,9 @@
 	<string name="Ayuda">Ayuda</string>
 	<string name="Ajustes1">Acelerómetro</string>
 	<string name="Ajustes2">Listado de Alarmas</string>
+	<string name="textoAyuda">"Ayuda de Domoduino."\n"
+	    Domoduino es una aplicación que funciona con una placa de Arduino colocada a un coche de juguete."\n"
+	    A través de la aplicación el usuario puede poner en funcionamiento el coche (start), parar el coche (stop) y encender y apagar los led del coche."\n"
+	    Además de todo esto la aplicación incluye la posibilidad de crear alarmas, en las que el usuario puede poner una hora y una acción entre las anteriores y el coche realizará la acción en la hora especificada."\n"
+	    Por último se incluye un apartado (Acelerómetro), en la que el usuario podrá mover el coche a la vez que mueve el movil, con movimientos hacia delante, para y hacia atrás."\n""\n"</string>
 </resources>
