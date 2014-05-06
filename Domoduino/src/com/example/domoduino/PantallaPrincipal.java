@@ -52,6 +52,8 @@ public class PantallaPrincipal extends Activity {
 	    private String mConnectedDeviceName = null;   
 	    //Objeto miembro para el servicio de ConexionBT 
 	    private ConexionBT Servicio_BT = null;	 
+	    
+	    private LogicaAlarma la=null;
 
 	
 	private ImageButton bt1;
@@ -61,6 +63,7 @@ public class PantallaPrincipal extends Activity {
 	private ImageButton bt5;
 	
 	private TextView textAyuda;
+	private TextView textAlarma;
 
 	boolean b=false;
 
@@ -87,6 +90,12 @@ public class PantallaPrincipal extends Activity {
 		bt5.setOnClickListener(btn5);
 		
 		textAyuda =  (TextView) findViewById(R.id.textAyuda);
+		
+		
+		//insertamos ela última alarma en el text view de pantalla alarma
+		textAlarma =  (TextView) findViewById(R.id.textAlarma);
+		textAlarma.setText(la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
+		
 		
 	}
 	
