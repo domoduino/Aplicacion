@@ -11,13 +11,6 @@
         android:gravity="right"
         android:layout_marginTop="3dp" >
         
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="29dp"
-            android:layout_height="29dp"
-            android:src="@drawable/alarma"
-            android:layout_toLeftOf="@id/textAlarma" />
-
         <TextView
             android:id="@+id/textAlarma"
             android:layout_width="wrap_content"
@@ -26,6 +19,15 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp" />
+        
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:src="@drawable/alarma"
+            android:layout_toLeftOf="@id/textAlarma" />
+
+        
 
     </RelativeLayout>
 

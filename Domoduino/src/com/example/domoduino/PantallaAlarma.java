@@ -182,6 +182,12 @@ public class PantallaAlarma extends Activity
 				{
 					Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.start);
 					bt1.setImageBitmap(bmp);
+					Bitmap bmp1 = BitmapFactory.decodeResource(getResources(), R.drawable.ruedastop);
+					bt2.setImageBitmap(bmp1);
+					Bitmap bmp2 = BitmapFactory.decodeResource(getResources(), R.drawable.ruedabombillaencendida);
+					bt3.setImageBitmap(bmp2);
+					Bitmap bmp3 = BitmapFactory.decodeResource(getResources(), R.drawable.ruedabombillaapagada);
+					bt4.setImageBitmap(bmp3);
 					accion = 1;
 					b=true;
 				}
@@ -203,6 +209,12 @@ public class PantallaAlarma extends Activity
 				{
 					Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.stop);
 					bt2.setImageBitmap(bmp);
+					Bitmap bmp1 = BitmapFactory.decodeResource(getResources(), R.drawable.ruedastart);
+					bt1.setImageBitmap(bmp1);
+					Bitmap bmp2 = BitmapFactory.decodeResource(getResources(), R.drawable.ruedabombillaencendida);
+					bt3.setImageBitmap(bmp2);
+					Bitmap bmp3 = BitmapFactory.decodeResource(getResources(), R.drawable.ruedabombillaapagada);
+					bt4.setImageBitmap(bmp3);
 					accion = 2;
 					b=true;
 				}
@@ -223,6 +235,12 @@ public class PantallaAlarma extends Activity
 				{
 					Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.bombilla);
 					bt3.setImageBitmap(bmp);
+					Bitmap bmp1 = BitmapFactory.decodeResource(getResources(), R.drawable.ruedastop);
+					bt2.setImageBitmap(bmp1);
+					Bitmap bmp2 = BitmapFactory.decodeResource(getResources(), R.drawable.ruedastart);
+					bt1.setImageBitmap(bmp2);
+					Bitmap bmp3 = BitmapFactory.decodeResource(getResources(), R.drawable.ruedabombillaapagada);
+					bt4.setImageBitmap(bmp3);
 					accion = 3;
 					b=true;
 				}
@@ -243,6 +261,12 @@ public class PantallaAlarma extends Activity
 				{
 					Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.bombillaeapagada);
 					bt4.setImageBitmap(bmp);
+					Bitmap bmp1 = BitmapFactory.decodeResource(getResources(), R.drawable.ruedastop);
+					bt2.setImageBitmap(bmp1);
+					Bitmap bmp2 = BitmapFactory.decodeResource(getResources(), R.drawable.ruedastart);
+					bt1.setImageBitmap(bmp2);
+					Bitmap bmp3 = BitmapFactory.decodeResource(getResources(), R.drawable.ruedabombillaencendida);
+					bt3.setImageBitmap(bmp3);
 					accion = 4;
 					b=true;
 				}
