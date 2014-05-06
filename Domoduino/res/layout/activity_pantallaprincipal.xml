@@ -5,12 +5,35 @@
     android:orientation="vertical" 
     android:background="@drawable/fondop">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_marginTop="3dp" >
+        
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="29dp"
+            android:layout_height="29dp"
+            android:src="@drawable/alarma"
+            android:layout_toLeftOf="@id/textAlarma" />
+
+        <TextView
+            android:id="@+id/textAlarma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp" />
+
+    </RelativeLayout>
+
     <ImageButton
         android:id="@+id/imageButton1"
         android:layout_width="100dp"
         android:layout_height="70dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="70dp"
         android:background="@null"
         android:scaleType="fitCenter"
         android:src="@drawable/ruedastart" />
@@ -19,7 +42,7 @@
         android:id="@+id/imageButton2"
         android:layout_width="100dp"
         android:layout_height="70dp"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="70dp"
         android:layout_marginTop="15dp"
         android:background="@null"
         android:scaleType="fitCenter"
@@ -29,7 +52,7 @@
         android:id="@+id/imageButton3"
         android:layout_width="100dp"
         android:layout_height="70dp"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="70dp"
         android:layout_marginTop="15dp"
         android:background="@null"
         android:scaleType="fitCenter"
@@ -39,7 +62,7 @@
         android:id="@+id/imageButton4"
         android:layout_width="100dp"
         android:layout_height="70dp"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="70dp"
         android:layout_marginTop="15dp"
         android:background="@null"
         android:scaleType="fitCenter"
@@ -49,7 +72,7 @@
         android:id="@+id/imageButton5"
         android:layout_width="100dp"
         android:layout_height="70dp"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="70dp"
         android:layout_marginTop="15dp"
         android:background="@null"
         android:scaleType="fitCenter"
