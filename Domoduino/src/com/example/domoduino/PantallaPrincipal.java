@@ -94,7 +94,9 @@ public class PantallaPrincipal extends Activity {
 		
 		//insertamos ela última alarma en el text view de pantalla alarma
 		textAlarma =  (TextView) findViewById(R.id.textAlarma);
-		textAlarma.setText(la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
+		log.i(la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
+		textAlarma.setText("8:45");
+		//textAlarma.setText(la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
 		
 		
 	}
