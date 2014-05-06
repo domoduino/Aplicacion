@@ -23,6 +23,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -78,6 +80,24 @@ public class PantallaPrincipal extends Activity {
 		 BluetoothDevice device = AdaptadorBT.getRemoteDevice("00:13:12:16:63:31");
          Servicio_BT.connect(device);
 		
+ 		//insertamos ela última alarma en el text view de pantalla alarma
+ 		
+ 		RelativeLayout horaProximaAlarma = (RelativeLayout) findViewById(R.id.layout_alarma);
+ 		textAlarma =  (TextView) horaProximaAlarma.findViewById(R.id.textAlarma);
+ 		
+ 		la= new LogicaAlarma(getApplicationContext());
+ 		
+ 		if (la.getProximaAlarma()!=null)
+ 		{
+ 			Log.i("pantaprincipal","hora " + la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
+ 			textAlarma.setText(la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
+ 		}
+ 		else
+ 		{
+ 			textAlarma.setText(" ");
+ 		}
+         
+         
 		bt1=(ImageButton) findViewById(R.id.imageButton1);
 		bt1.setOnClickListener(btn1);
 		bt2=(ImageButton) findViewById(R.id.imageButton2);
@@ -92,10 +112,12 @@ public class PantallaPrincipal extends Activity {
 		textAyuda =  (TextView) findViewById(R.id.textAyuda);
 		
 		
-		//insertamos ela última alarma en el text view de pantalla alarma
-		textAlarma =  (TextView) findViewById(R.id.textAlarma);
-		log.i(la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
-		textAlarma.setText("8:45");
+
+		
+		
+		
+		
+		
 		//textAlarma.setText(la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
 		
 		

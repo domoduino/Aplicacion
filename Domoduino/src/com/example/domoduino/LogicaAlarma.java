@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Vector;
 
 import android.content.Context;
+import android.util.Log;
 
 public class LogicaAlarma 
 {
@@ -42,7 +43,13 @@ public class LogicaAlarma
 	}
 	public Alarma getProximaAlarma()
 	{
+		Alarma a = null;
+		
 		Vector<Alarma> listadoAlarma= alarmaXML.listadoAlarmas();
+		
+		if(listadoAlarma != null)
+		{
+		
 		Calendar now = Calendar.getInstance();
 		
 		int hora=now.get(Calendar.HOUR_OF_DAY);
@@ -62,11 +69,11 @@ public class LogicaAlarma
 				j=i;
 			}
 		}
+	
+		a= listadoAlarma.get(j);	
 		
-		return listadoAlarma.get(j);
-		
-		
-		
+		}
+		return a;
 	}
 	
 	

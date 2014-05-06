@@ -188,7 +188,7 @@ public class ListadoAlarmas extends Activity
        	    startActivity(i);	
 		}
 	};
-	
+
 
 	
 //	public void onBackPressed()

@@ -119,7 +119,7 @@ public class PantallaAcelerometro extends Activity implements SensorListener
      }
 	
 	 public  void sendMessage(String message) {
-	        if (Servicio_BT.getState() == ConexionBT.STATE_CONNECTED) {//checa si estamos conectados a BT   
+	        if (Servicio_BT.getState() == ConexionBT.STATE_CONNECTED) {
 		        if (message.length() > 0) 
 		        {   // checa si hay algo que enviar
 		            byte[] send = message.getBytes();//Obtenemos bytes del mensaje
@@ -127,8 +127,11 @@ public class PantallaAcelerometro extends Activity implements SensorListener
 		                 Servicio_BT.write(send);     //Mandamos a escribir el mensaje     
 		        }
 		     }
-	        else Toast.makeText(this, "No conectado", Toast.LENGTH_SHORT).show();
-	    		}//fin de sendMessage
+	        else
+	        {
+	        	//Toast.makeText(this, "No conectado", Toast.LENGTH_SHORT).show();
+	        }
+	    }//fin de sendMessage
 	    
 	 
 	    final Handler mHandler = new Handler() {
@@ -153,7 +156,7 @@ public class PantallaAcelerometro extends Activity implements SensorListener
 		     //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>	           
 		                case Mensaje_Nombre_Dispositivo:
 		                    mConnectedDeviceName = msg.getData().getString(DEVICE_NAME); //Guardamos nombre del dispositivo
-		     Toast.makeText(getApplicationContext(), "Conectado con "+ mConnectedDeviceName, Toast.LENGTH_SHORT).show();
+		     //Toast.makeText(getApplicationContext(), "Conectado con "+ mConnectedDeviceName, Toast.LENGTH_SHORT).show();
 		     seleccionador=true;
 		                    break;
 		    //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>                  
