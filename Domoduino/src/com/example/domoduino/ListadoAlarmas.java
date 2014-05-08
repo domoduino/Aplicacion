@@ -107,7 +107,8 @@ public class ListadoAlarmas extends Activity
              i.putExtra("nombreAlarma", la.get_nombreAlarma());
          	 i.putExtra("horaEntera", la.get_horaAlarma());
          	 i.putExtra("accion", la.get_accion());
-        	 startActivity(i);	
+        	 startActivity(i);
+        	 finish();
 		}
 	 };
 	 
@@ -156,6 +157,7 @@ public class ListadoAlarmas extends Activity
          	 i.putExtra("horaEntera", horaEntera);
          	 i.putExtra("accion", accion);
         	 startActivity(i);
+        	 finish();
 	    	 
 	         break;
 	         
@@ -172,6 +174,7 @@ public class ListadoAlarmas extends Activity
 
 	         Intent i1 = new Intent(getApplicationContext(), ListadoAlarmas.class);
 	       	 startActivity(i1);
+	       	finish();
 	         
 	    	 break;
 	     }
@@ -186,6 +189,7 @@ public class ListadoAlarmas extends Activity
 		{
 			Intent i = new Intent(getApplicationContext(), PantallaAlarma.class);
        	    startActivity(i);	
+       	 finish();
 		}
 	};
 
