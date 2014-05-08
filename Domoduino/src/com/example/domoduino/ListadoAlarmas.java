@@ -174,7 +174,7 @@ public class ListadoAlarmas extends Activity
 
 	         Intent i1 = new Intent(getApplicationContext(), ListadoAlarmas.class);
 	       	 startActivity(i1);
-	       	finish();
+	       	 finish();
 	         
 	    	 break;
 	     }
@@ -189,7 +189,7 @@ public class ListadoAlarmas extends Activity
 		{
 			Intent i = new Intent(getApplicationContext(), PantallaAlarma.class);
        	    startActivity(i);	
-       	 finish();
+       	    finish();
 		}
 	};
 
