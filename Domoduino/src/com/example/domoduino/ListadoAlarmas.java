@@ -210,7 +210,9 @@ public class ListadoAlarmas extends Activity
 			bt1.setImageBitmap(bmp);
 			
 			//activar la arlarmaaaa, se la mandamos al arduinooooo
-			
+			Calendar now = Calendar.getInstance();
+			int hora=now.get(Calendar.HOUR_OF_DAY);
+			int minutos=now.get(Calendar.MINUTE);
 		}
 	};
 
