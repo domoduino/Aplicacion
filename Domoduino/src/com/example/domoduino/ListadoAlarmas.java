@@ -1,12 +1,15 @@
 package com.example.domoduino;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Vector;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -41,6 +44,8 @@ public class ListadoAlarmas extends Activity
 	protected static final int CONTEXTMENU_OPTION2 = 2;
 	private Adaptador_listado adapListado =null;
 	ListView lista=null;
+	
+	private ImageButton bt1;
 	
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +98,11 @@ public class ListadoAlarmas extends Activity
         registerForContextMenu(lista);
         
        // logica.eliminarAlarma(1); No borra
+        
+        
+        //cambio de imagen
+        bt1=(ImageButton) findViewById(R.id.imageView_imagen);
+		bt1.setOnClickListener(btn1);
 	 }  
 
 	private OnItemClickListener lista1 = new ListView.OnItemClickListener(){
@@ -190,6 +200,17 @@ public class ListadoAlarmas extends Activity
 			Intent i = new Intent(getApplicationContext(), PantallaAlarma.class);
        	    startActivity(i);	
        	    finish();
+		}
+	};
+	private ImageButton.OnClickListener btn1 = new ImageButton.OnClickListener()
+	{
+		public void onClick(View v)
+		{
+			Bitmap bmp =  BitmapFactory.decodeResource(getResources(), R.drawable.alarmaverde);
+			bt1.setImageBitmap(bmp);
+			
+			//activar la arlarmaaaa, se la mandamos al arduinooooo
+			
 		}
 	};
 

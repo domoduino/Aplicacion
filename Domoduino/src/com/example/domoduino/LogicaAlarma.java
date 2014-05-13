@@ -76,6 +76,5 @@ public class LogicaAlarma
 		return a;
 	}
 	
-	
 
 }

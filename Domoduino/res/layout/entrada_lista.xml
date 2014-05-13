@@ -4,9 +4,10 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal" >
     
-    <ImageView
+    <ImageButton
         android:id="@+id/imageView_imagen"
         android:layout_width="40dp"
+        android:background="@null"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_gravity="center_vertical"
@@ -15,10 +16,11 @@
         android:scaleType="fitXY"
         android:src="@drawable/alarma" />
 
-    <LinearLayout
+   <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_marginLeft="15dp"
         android:orientation="vertical" >
 
         <TextView
@@ -36,6 +38,8 @@
             android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textSize="20dp" />
+
+
 
     </LinearLayout>
 
