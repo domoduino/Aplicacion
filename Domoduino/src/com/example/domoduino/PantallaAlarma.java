@@ -98,7 +98,7 @@ public class PantallaAlarma extends Activity
 					Intent i = new Intent(getApplicationContext(), ListadoAlarmas.class);
 					if(nombreAlarma != null)
 					{
-						logica.modificarAlarma(idAlarma, new Alarma(idAlarma,nombreAlarma,hora1,minuto1,accion));
+						logica.modificarAlarma(idAlarma, new Alarma(idAlarma,nombreAlarma,hora1,minuto1,accion,false));
 						i.putExtra("nombreAlarma", nombreAlarma);
 					}
 					else
@@ -118,7 +118,7 @@ public class PantallaAlarma extends Activity
 						SharedPreferences.Editor editor = preferencias.edit();
 						editor.putInt("id", idNuevo);
 						editor.commit();
-						logica.guardarAlarma(new Alarma(idNuevo,"Alarma " + idNuevo,hora1,minuto1,accion));
+						logica.guardarAlarma(new Alarma(idNuevo,"Alarma " + idNuevo,hora1,minuto1,accion,false));
 					}
 		       	    startActivity(i);
 		       	    finish();

@@ -86,16 +86,18 @@ public class PantallaPrincipal extends Activity {
  		textAlarma =  (TextView) horaProximaAlarma.findViewById(R.id.textAlarma);
  		
  		la= new LogicaAlarma(getApplicationContext());
+
+ 		//Lo incluimos en onResume()
  		
- 		if (la.getProximaAlarma()!=null)
- 		{
- 			Log.i("pantaprincipal","hora " + la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
- 			textAlarma.setText(la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
- 		}
- 		else
- 		{
- 			textAlarma.setText(" ");
- 		}
+// 		if (la.getProximaAlarma()!=null)
+// 		{
+// 			Log.i("pantaprincipal","hora " + la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
+// 			textAlarma.setText(la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
+// 		}
+// 		else
+// 		{
+// 			textAlarma.setText(" ");
+// 		}
          
          
 		bt1=(ImageButton) findViewById(R.id.imageButton1);
@@ -126,12 +128,6 @@ public class PantallaPrincipal extends Activity {
 	protected void  onResume()
 	{
 		super.onResume();
-		//insertamos ela última alarma en el text view de pantalla alarma
- 		
- 		RelativeLayout horaProximaAlarma = (RelativeLayout) findViewById(R.id.layout_alarma);
- 		textAlarma =  (TextView) horaProximaAlarma.findViewById(R.id.textAlarma);
- 		
- 		la= new LogicaAlarma(getApplicationContext());
  		
  		if (la.getProximaAlarma()!=null)
  		{
