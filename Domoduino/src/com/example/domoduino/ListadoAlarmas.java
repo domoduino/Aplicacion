@@ -1,7 +1,6 @@
 package com.example.domoduino;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Vector;
 
 import android.app.Activity;
@@ -45,7 +44,7 @@ public class ListadoAlarmas extends Activity
 	private Adaptador_listado adapListado =null;
 	ListView lista=null;
 	
-	private ImageButton bt1;
+	private ImageButton im;
 	
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,9 +99,9 @@ public class ListadoAlarmas extends Activity
        // logica.eliminarAlarma(1); No borra
         
         
-        //cambio de imagen
-        bt1=(ImageButton) findViewById(R.id.imageViewA);
-		bt1.setOnClickListener(btn1);
+        //cambio imagen
+        im=(ImageButton) findViewById(R.id.imageViewA);
+        im.setOnClickListener(im1);
 	 }  
 
 	private OnItemClickListener lista1 = new ListView.OnItemClickListener(){
@@ -202,17 +201,14 @@ public class ListadoAlarmas extends Activity
        	    finish();
 		}
 	};
-	private ImageButton.OnClickListener btn1 = new ImageButton.OnClickListener()
+	private ImageButton.OnClickListener im1 = new ImageButton.OnClickListener()
 	{
 		public void onClick(View v)
 		{
-			Bitmap bmp =  BitmapFactory.decodeResource(getResources(), R.drawable.alarmaverde);
-			bt1.setImageBitmap(bmp);
+			Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.alarmaverde);
+			im.setImageBitmap(bmp);
 			
-			//activar la arlarmaaaa, se la mandamos al arduinooooo
-			Calendar now = Calendar.getInstance();
-			int hora=now.get(Calendar.HOUR_OF_DAY);
-			int minutos=now.get(Calendar.MINUTE);
+			//activar
 		}
 	};
 

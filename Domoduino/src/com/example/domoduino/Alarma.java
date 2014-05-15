@@ -12,20 +12,18 @@ public class Alarma
 	private String hora;
 	private String min;
 	private int accion;
-	private boolean activada;
 	private final static int START = 1;
 	private final static int STOP = 2;
 	private final static int LUZ = 3;
 	private final static int LUZ_APAGADA = 4;
 	
-	public Alarma (int id, String nombre,String hora, String min, int accion, boolean activada)
+	public Alarma (int id, String nombre,String hora, String min, int accion)
 	{
 		this.id=id;
 		this.nombre = nombre;
 		this.hora = hora;
 		this.min = min;
 		this.accion = accion;
-		this.activada = activada;
 	}
 	public int getIdAlarma()
 	{
@@ -51,12 +49,6 @@ public class Alarma
 	{
 		return (this.accion);
 	}
-	
-	public boolean getActivada()
-	{
-		return (this.activada);
-	}
-	
 	public void setIdAlarma (int id)
 	{
 		this.id = id;
@@ -80,10 +72,5 @@ public class Alarma
 	public void setAccionAlarma (int accion)
 	{
 		this.accion = accion;
-	}
-	
-	public void setActivada(boolean estado) //estado es true o false
-	{
-		this.activada = estado;
 	}
 }

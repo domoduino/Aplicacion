@@ -86,18 +86,16 @@ public class PantallaPrincipal extends Activity {
  		textAlarma =  (TextView) horaProximaAlarma.findViewById(R.id.textAlarma);
  		
  		la= new LogicaAlarma(getApplicationContext());
-
- 		//Lo incluimos en onResume()
  		
-// 		if (la.getProximaAlarma()!=null)
-// 		{
-// 			Log.i("pantaprincipal","hora " + la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
-// 			textAlarma.setText(la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
-// 		}
-// 		else
-// 		{
-// 			textAlarma.setText(" ");
-// 		}
+ 		if (la.getProximaAlarma()!=null)
+ 		{
+ 			Log.i("pantaprincipal","hora " + la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
+ 			textAlarma.setText(la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
+ 		}
+ 		else
+ 		{
+ 			textAlarma.setText(" ");
+ 		}
          
          
 		bt1=(ImageButton) findViewById(R.id.imageButton1);
@@ -124,22 +122,6 @@ public class PantallaPrincipal extends Activity {
 		
 		
 	}
-	//recargar la aplicación para que se regeneran las alarmas
-//	protected void  onResume()
-//	{
-//		super.onResume();
-// 		
-// 		if (la.getProximaAlarma()!=null)
-// 		{
-// 			Log.i("pantaprincipal","hora " + la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
-// 			textAlarma.setText(la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
-// 		}
-// 		else
-// 		{
-// 			textAlarma.setText(" ");
-// 		}
-//		
-//	}
 	
 	//Elementos del menú
 	public  boolean onCreateOptionsMenu (Menu menu)
