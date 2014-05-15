@@ -125,6 +125,7 @@ public class PantallaPrincipal extends Activity {
 	//recargar la aplicación para que se regeneran las alarmas
 	protected void  onResume()
 	{
+		super.onResume();
 		//insertamos ela última alarma en el text view de pantalla alarma
  		
  		RelativeLayout horaProximaAlarma = (RelativeLayout) findViewById(R.id.layout_alarma);

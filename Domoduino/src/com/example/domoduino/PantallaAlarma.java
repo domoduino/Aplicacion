@@ -87,7 +87,6 @@ public class PantallaAlarma extends Activity
 	    	setCurrentTimeOnView();
 	 }
 
-	  
 	 
 	 private ImageButton.OnClickListener botonlisto = new ImageButton.OnClickListener()
 		{
