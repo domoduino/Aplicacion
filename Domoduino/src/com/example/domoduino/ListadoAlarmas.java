@@ -101,7 +101,7 @@ public class ListadoAlarmas extends Activity
         
         
         //cambio de imagen
-        bt1=(ImageButton) findViewById(R.id.imageView_imagen);
+        bt1=(ImageButton) findViewById(R.id.imageViewA);
 		bt1.setOnClickListener(btn1);
 	 }  
 

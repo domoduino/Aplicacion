@@ -5,7 +5,7 @@
     android:orientation="horizontal" >
     
     <ImageButton
-        android:id="@+id/imageView_imagen"
+        android:id="@+id/imageViewA"
         android:layout_width="40dp"
         android:background="@null"
         android:layout_height="wrap_content"
