@@ -125,21 +125,21 @@ public class PantallaPrincipal extends Activity {
 		
 	}
 	//recargar la aplicación para que se regeneran las alarmas
-	protected void  onResume()
-	{
-		super.onResume();
- 		
- 		if (la.getProximaAlarma()!=null)
- 		{
- 			Log.i("pantaprincipal","hora " + la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
- 			textAlarma.setText(la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
- 		}
- 		else
- 		{
- 			textAlarma.setText(" ");
- 		}
-		
-	}
+//	protected void  onResume()
+//	{
+//		super.onResume();
+// 		
+// 		if (la.getProximaAlarma()!=null)
+// 		{
+// 			Log.i("pantaprincipal","hora " + la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
+// 			textAlarma.setText(la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
+// 		}
+// 		else
+// 		{
+// 			textAlarma.setText(" ");
+// 		}
+//		
+//	}
 	
 	//Elementos del menú
 	public  boolean onCreateOptionsMenu (Menu menu)
