@@ -5,11 +5,12 @@
     android:orientation="horizontal" >
     
     <ImageView
-        android:id="@+id/imageView_imagen"
+        android:id="@+id/im_reloj"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
         android:layout_gravity="center_vertical"
+        android:layout_marginLeft="20dp"
+        android:background="@null"
         android:adjustViewBounds="true"
         android:contentDescription="Descripción del contenido de la imagen"
         android:scaleType="fitXY"

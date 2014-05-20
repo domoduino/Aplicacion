@@ -46,7 +46,7 @@ public class ListadoAlarmas extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reloj);
         
-        imagen_plus =(ImageButton) findViewById(R.id.imageView_imagen);
+        imagen_plus =(ImageButton) findViewById(R.id.im_reloj);
         imagen_plus.setOnClickListener(imagenPlus);
 
         logica = new LogicaAlarma(getApplicationContext());
@@ -82,7 +82,7 @@ public class ListadoAlarmas extends Activity
 	            TextView texto_inferior_entrada = (TextView) view.findViewById(R.id.textView_inferior); 
 	            texto_inferior_entrada.setText(((Entrada_lista) entrada).get_nombreAlarma()); 
 
-	            ImageView imagen_entrada = (ImageView) view.findViewById(R.id.imageView_imagen); 
+	            ImageView imagen_entrada = (ImageView) view.findViewById(R.id.im_reloj); 
 	            imagen_entrada.setImageResource(((Entrada_lista) entrada).get_idImagen());
 				
 			}};
