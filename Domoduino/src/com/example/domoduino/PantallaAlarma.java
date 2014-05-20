@@ -93,36 +93,45 @@ public class PantallaAlarma extends Activity
 		{
 			public void onClick(View v)
 			{
-					String hora1 = pad(timePicker1.getCurrentHour());
-					String minuto1 = pad(timePicker1.getCurrentMinute());
-					
-					Intent i = new Intent(getApplicationContext(), ListadoAlarmas.class);
-					if(nombreAlarma != null)
+					if(accion!=0)
 					{
-						logica.modificarAlarma(idAlarma, new Alarma(idAlarma,nombreAlarma,hora1,minuto1,accion));
-						i.putExtra("nombreAlarma", nombreAlarma);
-					}
-					else
-					{
-						SharedPreferences preferencias = getPreferences(MODE_PRIVATE);
-						int id = preferencias.getInt("id", -1);
-						int idNuevo = -1;
-						if(id!=-1)
+						String hora1 = pad(timePicker1.getCurrentHour());
+						String minuto1 = pad(timePicker1.getCurrentMinute());
+						
+						Intent i = new Intent(getApplicationContext(), ListadoAlarmas.class);
+						if(nombreAlarma != null)
 						{
-							idNuevo = id + 1;					
+							logica.modificarAlarma(idAlarma, new Alarma(idAlarma,nombreAlarma,hora1,minuto1,accion));
+							i.putExtra("nombreAlarma", nombreAlarma);
 						}
 						else
 						{
-							idNuevo = 1;
+							SharedPreferences preferencias = getPreferences(MODE_PRIVATE);
+							int id = preferencias.getInt("id", -1);
+							int idNuevo = -1;
+							if(id!=-1)
+							{
+								idNuevo = id + 1;					
+							}
+							else
+							{
+								idNuevo = 1;
+							}
+							
+							SharedPreferences.Editor editor = preferencias.edit();
+							editor.putInt("id", idNuevo);
+							editor.commit();
+							logica.guardarAlarma(new Alarma(idNuevo,"Alarma " + idNuevo,hora1,minuto1,accion));
 						}
-						
-						SharedPreferences.Editor editor = preferencias.edit();
-						editor.putInt("id", idNuevo);
-						editor.commit();
-						logica.guardarAlarma(new Alarma(idNuevo,"Alarma " + idNuevo,hora1,minuto1,accion));
-					}
-					startActivity(i);
-					finish();
+						startActivity(i);
+						finish();
+				}
+				else
+				{
+					bt1.setClickable(false);
+					bt1.setEnabled(false);
+					Toast.makeText(getApplicationContext(), "Debes elegir una acción", Toast.LENGTH_LONG).show();
+				}
 			}
 		};
 	 

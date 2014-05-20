@@ -75,7 +75,7 @@ public class PantallaAcelerometro extends Activity implements SensorListener
 			//Log.d(tag, "onSensorChanged: " + sensor + ", x: " + values[0] + ", y: " + values[1] + ", z: " + values[2]);
 			if (sensor == SensorManager.SENSOR_ORIENTATION) 
 			{
-				orientacion.setText("Orientacion Y: " + values[1]);
+				//orientacion.setText("Orientacion Y: " + values[1]);
 				if((values[1]< (-60))&& (values[1]> (-95))){
 					//Toast.makeText(getApplicationContext(), "vertical", Toast.LENGTH_LONG).show();				
 					sendMessage("4\r");//stop
