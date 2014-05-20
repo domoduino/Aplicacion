@@ -121,7 +121,8 @@ public class PantallaAlarma extends Activity
 						editor.commit();
 						logica.guardarAlarma(new Alarma(idNuevo,"Alarma " + idNuevo,hora1,minuto1,accion));
 					}
-		       	    startActivity(i);
+					startActivity(i);
+					finish();
 			}
 		};
 	 
@@ -130,7 +131,8 @@ public class PantallaAlarma extends Activity
 				public void onClick(View v)
 				{
 					Intent i = new Intent(getApplicationContext(), ListadoAlarmas.class);
-		       	    startActivity(i);			
+					startActivity(i);
+					finish();
 				}
 		};	
 		
