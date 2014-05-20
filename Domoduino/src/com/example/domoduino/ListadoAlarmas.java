@@ -7,8 +7,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -44,8 +42,6 @@ public class ListadoAlarmas extends Activity
 	private Adaptador_listado adapListado =null;
 	ListView lista=null;
 	
-	private ImageButton im;
-	
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reloj);
@@ -54,8 +50,7 @@ public class ListadoAlarmas extends Activity
         imagen_plus.setOnClickListener(imagenPlus);
 
         logica = new LogicaAlarma(getApplicationContext());
-       // logica.guardarAlarma(new Alarma(20,"Alarma 1","8","45",1));
-        
+        //logica.guardarAlarma(new Alarma(20,"Alarma 1","8","45",1));
         //logica.eliminarAlarma(1); SI borra
         
         Vector<Alarma> alarmas = logica.alarmas();
@@ -97,11 +92,6 @@ public class ListadoAlarmas extends Activity
         registerForContextMenu(lista);
         
        // logica.eliminarAlarma(1); No borra
-        
-        
-        //cambio imagen
-        im=(ImageButton) findViewById(R.id.imageViewA);
-        im.setOnClickListener(im1);
 	 }  
 
 	private OnItemClickListener lista1 = new ListView.OnItemClickListener(){
@@ -116,8 +106,7 @@ public class ListadoAlarmas extends Activity
              i.putExtra("nombreAlarma", la.get_nombreAlarma());
          	 i.putExtra("horaEntera", la.get_horaAlarma());
          	 i.putExtra("accion", la.get_accion());
-        	 startActivity(i);
-        	 finish();
+        	 startActivity(i);	
 		}
 	 };
 	 
@@ -166,7 +155,6 @@ public class ListadoAlarmas extends Activity
          	 i.putExtra("horaEntera", horaEntera);
          	 i.putExtra("accion", accion);
         	 startActivity(i);
-        	 finish();
 	    	 
 	         break;
 	         
@@ -183,7 +171,6 @@ public class ListadoAlarmas extends Activity
 
 	         Intent i1 = new Intent(getApplicationContext(), ListadoAlarmas.class);
 	       	 startActivity(i1);
-	       	 finish();
 	         
 	    	 break;
 	     }
@@ -198,17 +185,6 @@ public class ListadoAlarmas extends Activity
 		{
 			Intent i = new Intent(getApplicationContext(), PantallaAlarma.class);
        	    startActivity(i);	
-       	    finish();
-		}
-	};
-	private ImageButton.OnClickListener im1 = new ImageButton.OnClickListener()
-	{
-		public void onClick(View v)
-		{
-			Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.alarmaverde);
-			im.setImageBitmap(bmp);
-			
-			//activar
 		}
 	};
 
