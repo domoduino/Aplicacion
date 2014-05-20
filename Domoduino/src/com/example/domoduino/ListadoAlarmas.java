@@ -156,6 +156,7 @@ public class ListadoAlarmas extends Activity
          	 i.putExtra("horaEntera", horaEntera);
          	 i.putExtra("accion", accion);
         	 startActivity(i);
+        	 finish();
 	    	 
 	         break;
 	         
@@ -187,7 +188,6 @@ public class ListadoAlarmas extends Activity
 		{
 			Intent i = new Intent(getApplicationContext(), PantallaAlarma.class);
        	    startActivity(i);
-       	    finish();
 		}
 	};
 
