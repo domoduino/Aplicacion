@@ -1,12 +1,16 @@
 package com.example.domoduino;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Vector;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -39,14 +43,16 @@ public class ListadoAlarmas extends Activity
 	
 	protected static final int CONTEXTMENU_OPTION1 = 1;
 	protected static final int CONTEXTMENU_OPTION2 = 2;
+	protected static final int CONTEXTMENU_OPTION3 = 3;
 	private Adaptador_listado adapListado =null;
 	ListView lista=null;
 	
+	private ImageView bt1;
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reloj);
         
-        imagen_plus =(ImageButton) findViewById(R.id.im_reloj);
+        imagen_plus =(ImageButton) findViewById(R.id.img_plus);
         imagen_plus.setOnClickListener(imagenPlus);
 
         logica = new LogicaAlarma(getApplicationContext());
@@ -92,6 +98,8 @@ public class ListadoAlarmas extends Activity
         registerForContextMenu(lista);
         
        // logica.eliminarAlarma(1); No borra
+        
+        
 	 }  
 
 	private OnItemClickListener lista1 = new ListView.OnItemClickListener(){
@@ -136,6 +144,7 @@ public class ListadoAlarmas extends Activity
 	     // Add all the menu options
 	     menu.add(Menu.NONE, CONTEXTMENU_OPTION1, 0, "Editar"); 
 	     menu.add(Menu.NONE, CONTEXTMENU_OPTION2, 1, "Eliminar"); 
+	     menu.add(Menu.NONE, CONTEXTMENU_OPTION3, 2, "Activar"); 
 	 } 
 	 
 	 
@@ -176,6 +185,60 @@ public class ListadoAlarmas extends Activity
 	       	finish();
 	         
 	    	 break;
+	    	 
+	    	 
+	     case CONTEXTMENU_OPTION3:
+	    	 
+	    	//Cambiar el XML
+	    	 //Enviar la hora al arduino (horas y minitos que faltan)
+	    	
+	    	
+			Calendar now = Calendar.getInstance();
+	 		
+			
+			int horaActual = now.get(Calendar.HOUR_OF_DAY);
+			int minutosActual = now.get(Calendar.MINUTE);
+			
+			
+	    	String[] retval = horaEntera.split(":", 2);
+	    	
+	    	int horaAlarma = Integer.parseInt(retval[0]);
+			int minutosAlarma = Integer.parseInt(retval[1]);
+	    	 
+			
+			int horaArd = - 1;
+			
+			if(horaAlarma > horaActual)
+			{
+				 horaArd = horaAlarma - horaActual;
+			}
+			else if(horaAlarma>12)
+			{
+				horaArd = 24 - (horaActual - horaAlarma);
+			}
+			else
+			{
+				horaArd = (24 - horaActual) + horaAlarma;
+			}
+			
+			int minsArduino = Math.abs (minutosAlarma - minutosActual);
+			
+			int segundos = horaArd*3600 + minsArduino*60;
+			
+			Log.i("ListadoAlarmas", "Horas que quedan para la alarma: " + horaArd + " mins: " + minsArduino);
+			Log.i("ListadoAlarmas", "Segundos hasta la alarma: " + segundos);
+	    	 
+	    	 //Cambiar la imagen
+			
+			//cambio imagen
+	        bt1=(ImageView) findViewById(R.id.im_reloj);
+	        bt1.setImageResource(R.drawable.alarmaverde);
+			
+			
+//			Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.alarmaverde);
+//			bt1.setImageBitmap(bmp);
+			
+	    	 break;
 	     }
 	  
 	     return true; 
@@ -192,6 +255,18 @@ public class ListadoAlarmas extends Activity
 	};
 
 
+//	 public  void sendMessage(String message) 
+//	 {
+//	        if (Servicio_BT.getState() == ConexionBT.STATE_CONNECTED) {//checa si estamos conectados a BT   
+//		        if (message.length() > 0) 
+//		        {   // checa si hay algo que enviar
+//		            byte[] send = message.getBytes();//Obtenemos bytes del mensaje
+//		            if(D) Log.e(TAG, "Mensaje enviado:"+ message);            
+//		                 Servicio_BT.write(send);     //Mandamos a escribir el mensaje     
+//		        }
+//		     }
+//	        else Toast.makeText(this, "No conectado", Toast.LENGTH_SHORT).show();
+//	    		}
 	
 //	public void onBackPressed()
 //	{

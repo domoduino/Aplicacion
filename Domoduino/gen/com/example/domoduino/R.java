@@ -49,15 +49,15 @@ public final class R {
         public static final int stop=0x7f020019;
     }
     public static final class id {
-        public static final int Ajustes=0x7f080018;
-        public static final int Ajustes1=0x7f080019;
-        public static final int Ajustes2=0x7f08001a;
-        public static final int Ayuda=0x7f08001b;
+        public static final int Ajustes=0x7f080019;
+        public static final int Ajustes1=0x7f08001a;
+        public static final int Ajustes2=0x7f08001b;
+        public static final int Ayuda=0x7f08001c;
         public static final int ListView_listado=0x7f080016;
         public static final int RelativeLayout1=0x7f080000;
         public static final int btnConectar=0x7f08000c;
         public static final int devicesfound=0x7f08000b;
-        public static final int im_reloj=0x7f080015;
+        public static final int im_reloj=0x7f080017;
         public static final int imageButton1=0x7f08000f;
         public static final int imageButton2=0x7f080010;
         public static final int imageButton3=0x7f080011;
@@ -70,10 +70,11 @@ public final class R {
         public static final int imagen22=0x7f080009;
         public static final int imagen3=0x7f080006;
         public static final int imagen4=0x7f080007;
+        public static final int img_plus=0x7f080015;
         public static final int layout_alarma=0x7f08000d;
         public static final int textAlarma=0x7f08000e;
         public static final int textAyuda=0x7f08000a;
-        public static final int textView_inferior=0x7f080017;
+        public static final int textView_inferior=0x7f080018;
         public static final int textView_superior=0x7f080014;
         public static final int textview1=0x7f080002;
         public static final int timePicker1=0x7f080003;
