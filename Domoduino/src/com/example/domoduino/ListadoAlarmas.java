@@ -39,6 +39,8 @@ public class ListadoAlarmas extends Activity
 	private String horaEntera = "";
 	private String nombreAlarma = "";
 	private int accion = 0;
+	private View vistaSeleccionada= null;
+	public Entrada_lista item2 = null;
 	ArrayList<Entrada_lista> datos = new ArrayList<Entrada_lista>();  
 	
 	protected static final int CONTEXTMENU_OPTION1 = 1;
@@ -59,26 +61,69 @@ public class ListadoAlarmas extends Activity
         //logica.guardarAlarma(new Alarma(20,"Alarma 1","8","45",1));
         //logica.eliminarAlarma(1); SI borra
         
-        Vector<Alarma> alarmas = logica.alarmas();
- 
-        
-        if(alarmas!=null)
-        {
-	        	for(int i=0; i< alarmas.size();i++)
-		        {
-		        	datos.add(new Entrada_lista(alarmas.get(i).getIdAlarma(),R.drawable.alarma, alarmas.get(i).getHoraAlarma()+":"+ alarmas.get(i).getMinAlarma(), alarmas.get(i).getNombreAlarma(),alarmas.get(i).getAccionAlarma()));
-		        }
-        }
-        else
-        {
-        	Toast.makeText(getApplicationContext(), "no hay alarmas", Toast.LENGTH_LONG).show();
-        }
+//        Vector<Alarma> alarmas = logica.alarmas();
+// 
+//        
+//        if(alarmas!=null)
+//        {
+//	        	for(int i=0; i< alarmas.size();i++)
+//		        {
+//		        	datos.add(new Entrada_lista(alarmas.get(i).getIdAlarma(),R.drawable.alarma, alarmas.get(i).getHoraAlarma()+":"+ alarmas.get(i).getMinAlarma(), alarmas.get(i).getNombreAlarma(),alarmas.get(i).getAccionAlarma()));
+//		        }
+//        }
+//        else
+//        {
+//        	Toast.makeText(getApplicationContext(), "no hay alarmas", Toast.LENGTH_LONG).show();
+//        }
 
         
         
         lista = (ListView) findViewById(R.id.ListView_listado);
+        lista.setOnItemClickListener(lista1);
         
-         adapListado = new Adaptador_listado(this, R.layout.entrada_lista, datos){
+        listar();
+//         adapListado = new Adaptador_listado(this, R.layout.entrada_lista, datos){
+//			@Override
+//			public void onEntrada(Object entrada, View view) {
+//				// TODO Auto-generated method stub
+//				TextView texto_superior_entrada = (TextView) view.findViewById(R.id.textView_superior); 
+//	            texto_superior_entrada.setText(((Entrada_lista) entrada).get_horaAlarma()); 
+//
+//	            TextView texto_inferior_entrada = (TextView) view.findViewById(R.id.textView_inferior); 
+//	            texto_inferior_entrada.setText(((Entrada_lista) entrada).get_nombreAlarma()); 
+//
+//	            ImageView imagen_entrada = (ImageView) view.findViewById(R.id.im_reloj); 
+//	            imagen_entrada.setImageResource(((Entrada_lista) entrada).get_idImagen());
+//				
+//			}};
+//        lista.setAdapter(adapListado);
+		
+       
+        registerForContextMenu(lista);
+        
+       // logica.eliminarAlarma(1); No borra
+        
+        
+	 }  
+	
+	public void listar()
+	{
+		 Vector<Alarma> alarmas = logica.alarmas();
+		 
+	        
+	        if(alarmas!=null)
+	        {
+		        	for(int i=0; i< alarmas.size();i++)
+			        {
+			        	datos.add(new Entrada_lista(alarmas.get(i).getIdAlarma(),R.drawable.alarma, alarmas.get(i).getHoraAlarma()+":"+ alarmas.get(i).getMinAlarma(), alarmas.get(i).getNombreAlarma(),alarmas.get(i).getAccionAlarma()));
+			        }
+	        }
+	        else
+	        {
+	        	Toast.makeText(getApplicationContext(), "no hay alarmas", Toast.LENGTH_LONG).show();
+	        }
+		
+		adapListado = new Adaptador_listado(this, R.layout.entrada_lista, datos){
 			@Override
 			public void onEntrada(Object entrada, View view) {
 				// TODO Auto-generated method stub
@@ -92,15 +137,9 @@ public class ListadoAlarmas extends Activity
 	            imagen_entrada.setImageResource(((Entrada_lista) entrada).get_idImagen());
 				
 			}};
-        lista.setAdapter(adapListado);
-		
-        lista.setOnItemClickListener(lista1);
-        registerForContextMenu(lista);
-        
-       // logica.eliminarAlarma(1); No borra
-        
-        
-	 }  
+       lista.setAdapter(adapListado);
+	}
+	
 
 	private OnItemClickListener lista1 = new ListView.OnItemClickListener(){
 
@@ -121,30 +160,35 @@ public class ListadoAlarmas extends Activity
 	 
 	
 	 @Override 
-	 public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) { 
+	 public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) 
+	 { 
 	     super.onCreateContextMenu(menu, v, menuInfo); 
-	  
-	   ListView listView = (ListView) v;
+	     
+	     ListView listView = (ListView) v;
 	
 	   	// Get the list item position    
 	    AdapterContextMenuInfo info = (AdapterContextMenuInfo)menuInfo;
 	    int position = info.position;  
 	   
-	    Entrada_lista item = (Entrada_lista) listView.getItemAtPosition(position);
+	    Entrada_lista itemSeleccionado = (Entrada_lista) listView.getItemAtPosition(position);
 	    
-	    idAlarmaABorrar = item.get_idAlarma();
-	    nombreAlarma = item.get_nombreAlarma();
-	    horaEntera = item.get_horaAlarma();
-	    accion = item.get_accion();
+	    item2 = itemSeleccionado; 
+	    idAlarmaABorrar = itemSeleccionado.get_idAlarma();
+	    nombreAlarma = itemSeleccionado.get_nombreAlarma();
+	    horaEntera = itemSeleccionado.get_horaAlarma();
+	    accion = itemSeleccionado.get_accion();
 	    
+	
 	    
 	    // Set title for the context menu
-	   menu.setHeaderTitle(item.get_nombreAlarma()); 
+	   menu.setHeaderTitle(itemSeleccionado.get_nombreAlarma()); 
 	  
 	     // Add all the menu options
 	     menu.add(Menu.NONE, CONTEXTMENU_OPTION1, 0, "Editar"); 
 	     menu.add(Menu.NONE, CONTEXTMENU_OPTION2, 1, "Eliminar"); 
 	     menu.add(Menu.NONE, CONTEXTMENU_OPTION3, 2, "Activar"); 
+	  
+	     
 	 } 
 	 
 	 
@@ -153,7 +197,8 @@ public class ListadoAlarmas extends Activity
  
 		 // Get extra info about list item that was long-pressed
 	     AdapterContextMenuInfo menuInfo = (AdapterContextMenuInfo)item.getMenuInfo();
-	  
+	     
+	     
 	     // Perform action according to selected item from context menu
 	     switch (item.getItemId()) {
 	  
@@ -191,11 +236,9 @@ public class ListadoAlarmas extends Activity
 	    	 
 	    	//Cambiar el XML
 	    	 //Enviar la hora al arduino (horas y minitos que faltan)
-	    	
-	    	
-			Calendar now = Calendar.getInstance();
+	    	 
+	    	 Calendar now = Calendar.getInstance();
 	 		
-			
 			int horaActual = now.get(Calendar.HOUR_OF_DAY);
 			int minutosActual = now.get(Calendar.MINUTE);
 			
@@ -231,8 +274,33 @@ public class ListadoAlarmas extends Activity
 	    	 //Cambiar la imagen
 			
 			//cambio imagen
-	        bt1=(ImageView) findViewById(R.id.im_reloj);
-	        bt1.setImageResource(R.drawable.alarmaverde);
+	        
+			Log.i("ListadoAlarmas","item:" + item2.get_horaAlarma());
+			item2.set_idImagen(R.drawable.alarmaverde);
+			//adapListado.clear(); //Borrar listado
+			listar();
+			
+			//Entrada_lista item_lista = (Entrada_lista) item;
+				
+	    	 //item_lista.set_idImagen(R.drawable.alarmaverde);
+			
+			
+			
+//			Log.i("ListadoAlarma","Antes get");
+//	    	 bt1=(ImageView) findViewById(item_lista.get_idImagen());
+//	    	 Log.i("ListadoAlarma","Antes set");
+//	    	 bt1.setImageResource(R.drawable.alarmaverde);
+//	    	 Log.i("ListadoAlarma","Después set");
+	    	 
+//	    	 Log.i("ListadoAlarma","Antes ");
+//	    	 ImageView imagReloj = (ImageView) vistaSeleccionada.findViewById(R.id.im_reloj); 
+//	    	 Log.i("ListadoAlarma","Entre");
+//	    	 imagReloj.setImageResource(R.drawable.alarmaverde);
+//	    	 Log.i("ListadoAlarma","Después");
+	    	 
+	    	 
+//	    	 bt1=(ImageView) findViewById(R.id.im_reloj);
+//	        bt1.setImageResource(R.drawable.alarmaverde);
 			
 			
 //			Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.alarmaverde);

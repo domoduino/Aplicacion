@@ -82,6 +82,17 @@ public class AlarmaXML
 
 	       alarma.appendChild(e_accion);
 	       
+	       
+
+	       Element e_activada = documento.createElement("activada");
+ 
+ 	       texto = documento.createTextNode(String.valueOf(a.getActivada()));
+ 
+ 	       e_activada.appendChild(texto);
+ 
+ 	       alarma.appendChild(e_activada);
+ 
+	       
 
 	       Element raiz = documento.getDocumentElement();
 
@@ -214,7 +225,7 @@ public class AlarmaXML
 		
 		Vector<Alarma> result = new Vector<Alarma>();
 	
-		String nombre = null, hora = null, min= null, accion = null, id=null;
+		String nombre = null, hora = null, min= null, accion = null, activada=null, id=null;
 	
 		Element raiz = documento.getDocumentElement();
 	
@@ -248,9 +259,14 @@ public class AlarmaXML
 			    {
 			         accion = propiedad.getFirstChild().getNodeValue();
 			    }
+
+			    else if(etiqueta.equals("activada"))
+ 			    {
+ 			    	activada = propiedad.getFirstChild().getNodeValue();
+ 			    }
 			}
 	
-			 result.add(new Alarma (Integer.valueOf(id),nombre,hora,min,Integer.valueOf(accion))); //DeStringADate(hora),Integer.valueOf(accion)));
+			 result.add(new Alarma (Integer.valueOf(id),nombre,hora,min,Integer.valueOf(accion),Boolean.valueOf(activada))); //DeStringADate(hora),Integer.valueOf(accion)));
 		 }
 		
 		
@@ -312,7 +328,7 @@ public class AlarmaXML
 
 	       Vector<String> result = new Vector<String>();
 
-	       String nombre = "", hora = "", accion= "", min="", id="";
+	       String nombre = "", hora = "", accion= "", min="", id="", activada="";
 
 	       Element raiz = documento.getDocumentElement();
 
@@ -354,9 +370,13 @@ public class AlarmaXML
 	                    {
 	                    	accion = propiedad.getFirstChild().getNodeValue();
 	                    }
+	                    else if(etiqueta.equals("activada"))
+	                    {	                    
+	                    	activada = propiedad.getFirstChild().getNodeValue();
+	                   	}
 	             }
 
-	             result.add(id + " " + nombre + " " + hora + " " + min + " " + accion);
+	             result.add(id + " " + nombre + " " + hora + " " + min + " " + accion +  " " + activada);
 
 	       }
 
