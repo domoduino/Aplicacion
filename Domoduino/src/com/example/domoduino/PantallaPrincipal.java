@@ -177,7 +177,7 @@ public class PantallaPrincipal extends Activity {
 	{
 		public void onClick(View v)
 		{
-			sendMessage("3\r");
+			sendMessage("D\r");
 			Toast.makeText(getApplicationContext(),"Encendido", Toast.LENGTH_SHORT).show();
 		}
 	};
@@ -187,7 +187,7 @@ public class PantallaPrincipal extends Activity {
 	 {
 		public void onClick(View v)
 		{
-			sendMessage("4\r");
+			sendMessage("E\r");
 			Toast.makeText(getApplicationContext(),"Stop", Toast.LENGTH_SHORT).show();
 							
 		}
@@ -201,14 +201,14 @@ public class PantallaPrincipal extends Activity {
 			{
 				Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ruedabombillaapagada);
 				bt3.setImageBitmap(bmp);
-				sendMessage("1\r"); //funciona
+				sendMessage("B\r"); //funciona
 				b=true;
 			}
 			else if(b==true)
 			{
 				Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ruedabombillaencendida);
 				bt3.setImageBitmap(bmp);
-				sendMessage("2\r"); //funciona
+				sendMessage("C\r"); //funciona
 				b=false;
 			}
 							
