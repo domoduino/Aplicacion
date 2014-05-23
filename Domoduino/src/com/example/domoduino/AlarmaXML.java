@@ -407,6 +407,7 @@ public class AlarmaXML
 
   }
 	
+	
 //	private String DeHoraAString (Date date) 
 //	{
 //		 	 

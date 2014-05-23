@@ -41,6 +41,7 @@ public class LogicaAlarma
 		//return (alarmaXML.numAlarmas()+1);
 		return alarmas().size()+1;
 	}
+	
 	public Alarma getProximaAlarma()
 	{
 		Alarma a = null;
@@ -76,6 +77,25 @@ public class LogicaAlarma
 		return a;
 	}
 	
-	
-
+	public void setActivada (Alarma nuevaActivada)
+	{
+		//Cambia la propiedad de la anterior alarma activada a false
+		Vector<Alarma> alarmas = alarmaXML.listadoAlarmas();
+		
+		boolean encontrado = false;
+		int i = 0;
+		
+		while (!encontrado && i < alarmas.size())
+		{
+			if(alarmas.get(i).getActivada() == true)
+			{
+				encontrado = true;
+				modificarAlarma(alarmas.get(i).getIdAlarma(), new Alarma(alarmas.get(i).getIdAlarma(), alarmas.get(i).getNombreAlarma(), alarmas.get(i).getHoraAlarma() , alarmas.get(i).getMinAlarma(), alarmas.get(i).getAccionAlarma(), false));	
+			}
+			
+			i++;	
+		}
+		//Cambia la propiedad de la nueva alarma activada a true
+		modificarAlarma(nuevaActivada.getIdAlarma(), nuevaActivada);
+	}
 }

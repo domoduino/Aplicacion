@@ -40,7 +40,7 @@ public class ListadoAlarmas extends Activity
 	private String nombreAlarma = "";
 	private int accion = 0;
 	private View vistaSeleccionada= null;
-	public Entrada_lista item2 = null;
+	public  Entrada_lista itemSeleccionado = null;
 	ArrayList<Entrada_lista> datos = new ArrayList<Entrada_lista>();  
 	
 	protected static final int CONTEXTMENU_OPTION1 = 1;
@@ -113,9 +113,21 @@ public class ListadoAlarmas extends Activity
 	        
 	        if(alarmas!=null)
 	        {
-		        	for(int i=0; i< alarmas.size();i++)
+	        	int imagenAlarma = R.drawable.alarma;	
+	        	
+	        	for(int i=0; i< alarmas.size();i++)
 			        {
-			        	datos.add(new Entrada_lista(alarmas.get(i).getIdAlarma(),R.drawable.alarma, alarmas.get(i).getHoraAlarma()+":"+ alarmas.get(i).getMinAlarma(), alarmas.get(i).getNombreAlarma(),alarmas.get(i).getAccionAlarma()));
+			        	
+		        		if(alarmas.get(i).getActivada())
+		        		{
+		        			imagenAlarma = R.drawable.alarmaverde;
+		        		}
+		        		else
+		        		{
+		        			imagenAlarma = R.drawable.alarma;
+		        		}	
+		        		
+		        		datos.add(new Entrada_lista(alarmas.get(i).getIdAlarma(),imagenAlarma, alarmas.get(i).getHoraAlarma()+":"+ alarmas.get(i).getMinAlarma(), alarmas.get(i).getNombreAlarma(),alarmas.get(i).getAccionAlarma()));
 			        }
 	        }
 	        else
@@ -170,9 +182,9 @@ public class ListadoAlarmas extends Activity
 	    AdapterContextMenuInfo info = (AdapterContextMenuInfo)menuInfo;
 	    int position = info.position;  
 	   
-	    Entrada_lista itemSeleccionado = (Entrada_lista) listView.getItemAtPosition(position);
+	    itemSeleccionado = (Entrada_lista) listView.getItemAtPosition(position);
 	    
-	    item2 = itemSeleccionado; 
+	     
 	    idAlarmaABorrar = itemSeleccionado.get_idAlarma();
 	    nombreAlarma = itemSeleccionado.get_nombreAlarma();
 	    horaEntera = itemSeleccionado.get_horaAlarma();
@@ -235,20 +247,27 @@ public class ListadoAlarmas extends Activity
 	     case CONTEXTMENU_OPTION3:
 	    	 
 	    	//Cambiar el XML
+	    	 
+	    	 String[] values = itemSeleccionado.get_horaAlarma().split(":", 2);
+		     
+	    	 logica.setActivada(new Alarma(itemSeleccionado.get_idAlarma(),itemSeleccionado.get_nombreAlarma(), values[0], values[1], itemSeleccionado.get_accion(), true));
+	    	
 	    	 //Enviar la hora al arduino (horas y minitos que faltan)
+	    	
+	    	 //Hora y minutos actuales
 	    	 
 	    	 Calendar now = Calendar.getInstance();
 	 		
-			int horaActual = now.get(Calendar.HOUR_OF_DAY);
-			int minutosActual = now.get(Calendar.MINUTE);
+	    	 int horaActual = now.get(Calendar.HOUR_OF_DAY);
+	    	 int minutosActual = now.get(Calendar.MINUTE);
 			
-			
-	    	String[] retval = horaEntera.split(":", 2);
-	    	
-	    	int horaAlarma = Integer.parseInt(retval[0]);
-			int minutosAlarma = Integer.parseInt(retval[1]);
 	    	 
-			
+	    	 //Hora y minutos para los que está programada la alarma
+			 int horaAlarma = Integer.parseInt(values[0]);
+		     int minutosAlarma = Integer.parseInt(values[1]);
+	    	
+	    	 
+			//Calculo de las horas que faltan desde la hora actual hasta la hora a la que está programada la alarma
 			int horaArd = - 1;
 			
 			if(horaAlarma > horaActual)
@@ -270,14 +289,13 @@ public class ListadoAlarmas extends Activity
 			
 			Log.i("ListadoAlarmas", "Horas que quedan para la alarma: " + horaArd + " mins: " + minsArduino);
 			Log.i("ListadoAlarmas", "Segundos hasta la alarma: " + segundos);
-	    	 
-	    	 //Cambiar la imagen
 			
-			//cambio imagen
+			//Cambio la imagen asociada a la alarma por un reloj verde, que indica que la alarma está activada
 	        
-			Log.i("ListadoAlarmas","item:" + item2.get_horaAlarma());
-			item2.set_idImagen(R.drawable.alarmaverde);
+			Log.i("ListadoAlarmas","item:" + itemSeleccionado.get_horaAlarma());
+			itemSeleccionado.set_idImagen(R.drawable.alarmaverde);
 			//adapListado.clear(); //Borrar listado
+			datos.clear();
 			listar();
 			
 			//Entrada_lista item_lista = (Entrada_lista) item;
