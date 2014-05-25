@@ -337,6 +337,7 @@ public class ListadoAlarmas extends Activity
 		{
 			Intent i = new Intent(getApplicationContext(), PantallaAlarma.class);
        	    startActivity(i);
+       	    finish();
 		}
 	};
 

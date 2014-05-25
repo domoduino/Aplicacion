@@ -77,9 +77,10 @@ public class LogicaAlarma
 		return a;
 	}
 	
-	public void setActivada (Alarma nuevaActivada)
+	
+	public Alarma getActivada()
 	{
-		//Cambia la propiedad de la anterior alarma activada a false
+		Alarma a = null;
 		Vector<Alarma> alarmas = alarmaXML.listadoAlarmas();
 		
 		boolean encontrado = false;
@@ -89,12 +90,42 @@ public class LogicaAlarma
 		{
 			if(alarmas.get(i).getActivada() == true)
 			{
-				encontrado = true;
-				modificarAlarma(alarmas.get(i).getIdAlarma(), new Alarma(alarmas.get(i).getIdAlarma(), alarmas.get(i).getNombreAlarma(), alarmas.get(i).getHoraAlarma() , alarmas.get(i).getMinAlarma(), alarmas.get(i).getAccionAlarma(), false));	
+				encontrado = true;	
+				a = alarmas.get(i);
 			}
 			
 			i++;	
 		}
+		
+		return (a);
+	}
+	
+	public void setActivada (Alarma nuevaActivada)
+	{
+		//Cambia la propiedad de la anterior alarma activada a false
+		Vector<Alarma> alarmas = alarmaXML.listadoAlarmas();
+		
+		Alarma a = getActivada();
+		
+		if (a != null)
+		{
+			modificarAlarma(a.getIdAlarma(), new Alarma(a.getIdAlarma(), a.getNombreAlarma(), a.getHoraAlarma() , a.getMinAlarma(), a.getAccionAlarma(), false));
+		}
+		
+		
+//		boolean encontrado = false;
+//		int i = 0;
+//		
+//		while (!encontrado && i < alarmas.size())
+//		{
+//			if(alarmas.get(i).getActivada() == true)
+//			{
+//				encontrado = true;
+//				modificarAlarma(alarmas.get(i).getIdAlarma(), new Alarma(alarmas.get(i).getIdAlarma(), alarmas.get(i).getNombreAlarma(), alarmas.get(i).getHoraAlarma() , alarmas.get(i).getMinAlarma(), alarmas.get(i).getAccionAlarma(), false));	
+//			}
+//			
+//			i++;	
+//		}
 		//Cambia la propiedad de la nueva alarma activada a true
 		modificarAlarma(nuevaActivada.getIdAlarma(), nuevaActivada);
 	}
