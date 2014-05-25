@@ -86,7 +86,7 @@ public class PantallaPrincipal extends Activity
  		RelativeLayout horaProximaAlarma = (RelativeLayout) findViewById(R.id.layout_alarma);
  		textAlarma =  (TextView) horaProximaAlarma.findViewById(R.id.textAlarma);
  		
- 		//la= new LogicaAlarma(getApplicationContext());
+ 		la= new LogicaAlarma(getApplicationContext());
          
 		bt1=(ImageButton) findViewById(R.id.imageButton1);
 		bt1.setOnClickListener(btn1);

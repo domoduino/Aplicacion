@@ -46,6 +46,7 @@ public class ListadoAlarmas extends Activity
 	protected static final int CONTEXTMENU_OPTION1 = 1;
 	protected static final int CONTEXTMENU_OPTION2 = 2;
 	protected static final int CONTEXTMENU_OPTION3 = 3;
+	protected static final int CONTEXTMENU_OPTION4 = 4;
 	private Adaptador_listado adapListado =null;
 	ListView lista=null;
 	
@@ -198,7 +199,8 @@ public class ListadoAlarmas extends Activity
 	     // Add all the menu options
 	     menu.add(Menu.NONE, CONTEXTMENU_OPTION1, 0, "Editar"); 
 	     menu.add(Menu.NONE, CONTEXTMENU_OPTION2, 1, "Eliminar"); 
-	     menu.add(Menu.NONE, CONTEXTMENU_OPTION3, 2, "Activar"); 
+	     menu.add(Menu.NONE, CONTEXTMENU_OPTION3, 2, "Activar");
+	     menu.add(Menu.NONE, CONTEXTMENU_OPTION4, 3, "Desactivar");
 	  
 	     
 	 } 
@@ -324,6 +326,20 @@ public class ListadoAlarmas extends Activity
 //			Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.alarmaverde);
 //			bt1.setImageBitmap(bmp);
 			
+	    	 break;
+	    	 
+	    	 
+	     case CONTEXTMENU_OPTION4:
+	    	 
+	    	 if(itemSeleccionado.get_idAlarma() == logica.getActivada().getIdAlarma())
+	    	 {
+	    		 String[] valuesDesactivar = itemSeleccionado.get_horaAlarma().split(":", 2);
+	    		 logica.modificarAlarma(itemSeleccionado.get_idAlarma(), (new Alarma(itemSeleccionado.get_idAlarma(),itemSeleccionado.get_nombreAlarma(), valuesDesactivar[0], valuesDesactivar[1], itemSeleccionado.get_accion(), false)));
+	    		 itemSeleccionado.set_idImagen(R.drawable.alarma);
+	 			 datos.clear();
+	 			 listar();
+	    	 }
+	    	 
 	    	 break;
 	     }
 	  
