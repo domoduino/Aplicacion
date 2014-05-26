@@ -77,42 +77,45 @@ public class LogicaAlarma
 		return a;
 	}
 	
-	
 	public Alarma getActivada()
 	{
 		Alarma a = null;
 		Vector<Alarma> alarmas = alarmaXML.listadoAlarmas();
-		
+
 		boolean encontrado = false;
 		int i = 0;
-		
-		while (!encontrado && i < alarmas.size())
+
+		if(alarmas !=null)
 		{
-			if(alarmas.get(i).getActivada() == true)
-			{
-				encontrado = true;	
-				a = alarmas.get(i);
-			}
-			
-			i++;	
-		}
 		
+			while (!encontrado && i < alarmas.size())
+			{
+				if(alarmas.get(i).getActivada() == true)
+				{
+					encontrado = true;	
+					a = alarmas.get(i);
+				}
+	
+				i++;	
+			}
+		}
+
 		return (a);
 	}
-	
+
 	public void setActivada (Alarma nuevaActivada)
 	{
 		//Cambia la propiedad de la anterior alarma activada a false
 		Vector<Alarma> alarmas = alarmaXML.listadoAlarmas();
-		
+
 		Alarma a = getActivada();
-		
+
 		if (a != null)
 		{
 			modificarAlarma(a.getIdAlarma(), new Alarma(a.getIdAlarma(), a.getNombreAlarma(), a.getHoraAlarma() , a.getMinAlarma(), a.getAccionAlarma(), false));
 		}
-		
-		
+
+
 //		boolean encontrado = false;
 //		int i = 0;
 //		

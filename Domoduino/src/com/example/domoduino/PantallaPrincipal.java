@@ -29,8 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class PantallaPrincipal extends Activity 
-{
+public class PantallaPrincipal extends Activity {
 	
 	//\\//\\//\\//\\//\\//\\//\\//
 		// Debugging
@@ -86,7 +85,33 @@ public class PantallaPrincipal extends Activity
  		RelativeLayout horaProximaAlarma = (RelativeLayout) findViewById(R.id.layout_alarma);
  		textAlarma =  (TextView) horaProximaAlarma.findViewById(R.id.textAlarma);
  		
- 		la= new LogicaAlarma(getApplicationContext());
+// 		la= new LogicaAlarma(getApplicationContext());
+// 		
+// 		if (la.getProximaAlarma()!=null)
+// 		{
+// 			Log.i("pantaprincipal","hora " + la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
+// 			textAlarma.setText(la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
+// 		}
+// 		else
+// 		{
+// 			textAlarma.setText(" ");
+// 		}
+         
+ 		
+ 		
+// 		la= new LogicaAlarma(getApplicationContext());		
+// 		
+//		if (la.getActivada()!=null)
+// 		{
+// 			Log.i("pantaprincipal","onResume: hora " + la.getActivada().getHoraAlarma() + " : " + la.getActivada().getMinAlarma());
+// 			textAlarma.setText(la.getActivada().getHoraAlarma() + " : " + la.getActivada().getMinAlarma());
+// 		}
+// 		else
+// 		{
+// 			textAlarma.setText(" ");
+// 		}
+ 		
+ 		
          
 		bt1=(ImageButton) findViewById(R.id.imageButton1);
 		bt1.setOnClickListener(btn1);
@@ -101,25 +126,22 @@ public class PantallaPrincipal extends Activity
 		
 		textAyuda =  (TextView) findViewById(R.id.textAyuda);
 		
-	//textAlarma.setText(la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
-				
+		
+
+		
+		
+		
+		
+		
+		//textAlarma.setText(la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
+		
+		
 	}
+	
 	
 	public void onResume()
 	{
  		super.onResume();
- 		
- 		// getAlarmaActivada
- 		
-//		if (la.getProximaAlarma()!=null)
-// 		{
-// 			Log.i("pantaprincipal","hora " + la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
-// 			textAlarma.setText(la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
-// 		}
-// 		else
-// 		{
-// 			textAlarma.setText(" ");
-// 		}
  		
  		la= new LogicaAlarma(getApplicationContext());		
  		
@@ -131,8 +153,9 @@ public class PantallaPrincipal extends Activity
  		else
  		{
  			textAlarma.setText(" ");
- 		}		
+ 		}
 	}
+ 		
 	
 	//Elementos del menú
 	public  boolean onCreateOptionsMenu (Menu menu)
