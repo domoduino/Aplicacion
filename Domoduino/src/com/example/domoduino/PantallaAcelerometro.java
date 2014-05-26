@@ -22,9 +22,9 @@ public class PantallaAcelerometro extends Activity implements SensorListener
 	SensorManager sm = null;
 	
 	/********************CONEXIÓN******************************/
-	// Debugging
     public static final String TAG = "LEDv0";
     public static final boolean D = true;
+    
     // Tipos de mensaje enviados y recibidos desde el Handler de ConexionBT
     public static final int Mensaje_Estado_Cambiado = 1;
     public static final int Mensaje_Leido = 2;
@@ -36,22 +36,24 @@ public class PantallaAcelerometro extends Activity implements SensorListener
     
     public static final String DEVICE_NAME = "device_name";
     public static final String TOAST = "toast";
-  //variables para el Menu de conexión
-    private boolean seleccionador=false; 
- // Adaptador local Bluetooth 
+    
+    //variables para el Menu de conexión
+    private boolean seleccionado=false; 
+    
+    //Adaptador local Bluetooth 
     private BluetoothAdapter AdaptadorBT = null; 
-  //Nombre del dispositivo conectado
-    private String mConnectedDeviceName = null;   
+    
+    //Nombre del dispositivo conectado
+    private String mConnectedDeviceName = null;
+    
     //Objeto miembro para el servicio de ConexionBT 
     private ConexionBT Servicio_BT = null;	 
 	
    /*****************CONEXIÓN************************/
 	
-	
-
-	/** Called when the activity is first created. */
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) 
+	{
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.activity_acelerometro);
@@ -74,7 +76,6 @@ public class PantallaAcelerometro extends Activity implements SensorListener
 		{
 			if (sensor == SensorManager.SENSOR_ORIENTATION) 
 			{
-				//orientacion.setText("Orientacion Y: " + values[1]);
 				if((values[1]< (-60))&& (values[1]> (-95)))
 				{			
 					sendMessage("E\r");//stop
@@ -89,23 +90,24 @@ public class PantallaAcelerometro extends Activity implements SensorListener
 		
 	}
 
-	public void onAccuracyChanged(int sensor, int accuracy) {
+	public void onAccuracyChanged(int sensor, int accuracy) 
+	{
 		//Log.d(tag, "onAccuracyChanged: " + sensor + ", accuracy: " + accuracy);
 	}
 
 	
 	@Override
-	protected void onResume() {
+	protected void onResume() 
+	{
 		super.onResume();
-		// Registrando a classe para iniciar quando o aplicativo for aberto
 		sm.registerListener(this, SensorManager.SENSOR_ORIENTATION,
 				SensorManager.SENSOR_DELAY_NORMAL);
 	}
 
 	
 	@Override
-	protected void onStop() {
-		// e desregistrando na saida do aplicativo
+	protected void onStop() 
+	{
 		sm.unregisterListener(this);
 		super.onStop();
 	}
@@ -117,19 +119,20 @@ public class PantallaAcelerometro extends Activity implements SensorListener
      }
 	
 	 public  void sendMessage(String message) {
-	        if (Servicio_BT.getState() == ConexionBT.STATE_CONNECTED) {
+	        if (Servicio_BT.getState() == ConexionBT.STATE_CONNECTED)  //comprueba si está conectado a la tarjeta bluetooth
+	        {
 		        if (message.length() > 0) 
-		        {   // checa si hay algo que enviar
-		            byte[] send = message.getBytes();//Obtenemos bytes del mensaje
+		        {   // comprueba si ha enviado datos
+		            byte[] send = message.getBytes();//Obtiene bytes del mensaje
 		            if(D) Log.e(TAG, "Mensaje enviado:"+ message);            
-		                 Servicio_BT.write(send);     //Mandamos a escribir el mensaje     
+		                 Servicio_BT.write(send);     //Manda a escribir el mensaje     
 		        }
 		     }
 	        else
 	        {
-	        	//Toast.makeText(this, "No conectado", Toast.LENGTH_SHORT).show();
+	        	Toast.makeText(this, "No conectado", Toast.LENGTH_SHORT).show();
 	        }
-	    }//fin de sendMessage
+	    }
 	    
 	 
 	    final Handler mHandler = new Handler() {
@@ -137,40 +140,37 @@ public class PantallaAcelerometro extends Activity implements SensorListener
 	        public void handleMessage(Message msg) {
 		            	
 		                switch (msg.what) {
-		     //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   
+		     
 		                case Mensaje_Escrito:
-		                	  byte[] writeBuf = (byte[]) msg.obj;//buffer de escritura...
-		                      // Construye un String del Buffer
+		                	  byte[] writeBuf = (byte[]) msg.obj;
 		                      String writeMessage = new String(writeBuf);
 		                      if(D) Log.e(TAG, "Message_write  =w= "+ writeMessage);  
 		                    break;
-		      //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>                                
+		                                    
 		                case Mensaje_Leido:   	                 
-		                	byte[] readBuf = (byte[]) msg.obj;//buffer de lectura...
-		                    //Construye un String de los bytes validos en el buffer
+		                  byte[] readBuf = (byte[]) msg.obj;
 		                  String readMessage = new String(readBuf, 0, msg.arg1);
 		                  if(D) Log.e(TAG, "Message_read   =w= "+ readMessage);              	                 
 		                    break;
-		     //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>	           
+		     	           
 		                case Mensaje_Nombre_Dispositivo:
 		                    mConnectedDeviceName = msg.getData().getString(DEVICE_NAME); //Guardamos nombre del dispositivo
-		     //Toast.makeText(getApplicationContext(), "Conectado con "+ mConnectedDeviceName, Toast.LENGTH_SHORT).show();
-		     seleccionador=true;
+		                    seleccionado=true;
 		                    break;
-		    //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>                  
+		                    
 		                case Mensaje_TOAST:
 		                    Toast.makeText(getApplicationContext(), msg.getData().getString(TOAST),
 		                    Toast.LENGTH_SHORT).show();
 		                    break;
-		     //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
+		                    
 		                case MESSAGE_Desconectado:	
 		                  	 if(D) Log.e("Conexion","DESConectados");
-		                  	 seleccionador=false;             	
+		                  	 seleccionado=false;             	
 		          break;
-		    //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  
-		                }//FIN DE SWITCH CASE PRIMARIO DEL HANDLER
-		            }//FIN DE METODO INTERNO handleMessage
-		        };//Fin de Handler
+		          
+		                }
+		            }
+		        };
 	
 
 }

@@ -88,7 +88,7 @@ public class PantallaAlarma extends Activity
 	 }
 
 	  
-	 
+	 //En caso de que se haya elegido alguna acción se crea la alarma
 	 private ImageButton.OnClickListener botonlisto = new ImageButton.OnClickListener()
 		{
 			public void onClick(View v)
@@ -135,6 +135,7 @@ public class PantallaAlarma extends Activity
 			}
 		};
 	 
+	//Cancela la creación de la alarma y vuelve a la actividad de listado de alarmas.	
 	private ImageButton.OnClickListener botoncancelar = new ImageButton.OnClickListener()
 		{
 				public void onClick(View v)
@@ -170,7 +171,6 @@ public class PantallaAlarma extends Activity
 				final Calendar c = Calendar.getInstance();
 				hour = c.get(Calendar.HOUR_OF_DAY);
 				minute = c.get(Calendar.MINUTE);
-				// set current time into timepicker
 				timePicker1.setCurrentHour(hour);
 				timePicker1.setCurrentMinute(minute);
 		    }
@@ -185,6 +185,7 @@ public class PantallaAlarma extends Activity
 				   return "0" + String.valueOf(c);
 		 }
 	 
+		 
 	 	private ImageButton.OnClickListener btn1 = new ImageButton.OnClickListener()
 		{
 			public void onClick(View v)
