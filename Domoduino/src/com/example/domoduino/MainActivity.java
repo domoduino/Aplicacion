@@ -20,8 +20,6 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
-
-//@SuppressLint("HandlerLeak")
 public class MainActivity extends Activity 
 {
     // Adaptador local Bluetooth 
@@ -68,8 +66,7 @@ public class MainActivity extends Activity
         registerReceiver(ActionFoundReceiver, new IntentFilter(BluetoothDevice.ACTION_FOUND));
 
     }
-    
-    
+     
     private ImageButton.OnClickListener btnScanDeviceOnClickListener = new ImageButton.OnClickListener()
 	{
 		public void onClick(View v)
@@ -156,35 +153,25 @@ public class MainActivity extends Activity
     {
   	  //Una vez que se ha realizado una actividad regresa un "resultado"...
   	      switch (requestCode) 
-  	      {
-  	               
+  	      {    
   	            case REQUEST_ENABLE_BT://Respuesta de intento de encendido de BT
-  	                if (resultCode == Activity.RESULT_OK) {//BT esta activado,iniciamos servicio
-  	                	 ConfigBT();
+  	                if (resultCode == Activity.RESULT_OK) 
+  	                {
+  	                	 ConfigBT(); //BT esta activado,iniciamos servicio
   	                }
   	                else
-  	                {//No se activo BT, salimos de la app                 
-  	                    finish();
+  	                {               
+  	                    finish(); //No se activo BT, salimos de la app  
   	                 } 	                
-  	          }//fin de switch case
-  	   }//fin de onActivityResult     
+  	          }
+  	   }    
   	     
-    
-//	@Override
-//	public boolean onCreateOptionsMenu(Menu menu) {
-//	// Inflate the menu; this adds items to the action bar if it is present.
-//	getMenuInflater().inflate(R.menu.main, menu);
-//	return true;
-//	} 
-	
     @Override
     public void onDestroy()
     {
     	 super.onDestroy();
-    }
-
-    
-}//Fin MainActivity
+    } 
+}
 
 
 

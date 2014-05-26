@@ -29,34 +29,39 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class PantallaPrincipal extends Activity {
+public class PantallaPrincipal extends Activity 
+{
 	
-	//\\//\\//\\//\\//\\//\\//\\//
-		// Debugging
-	    public static final String TAG = "LEDv0";
-	    public static final boolean D = true;
-	    // Tipos de mensaje enviados y recibidos desde el Handler de ConexionBT
-	    public static final int Mensaje_Estado_Cambiado = 1;
-	    public static final int Mensaje_Leido = 2;
-	    public static final int Mensaje_Escrito = 3;
-	    public static final int Mensaje_Nombre_Dispositivo = 4;
-	    public static final int Mensaje_TOAST = 5;	        
-	    public static final int MESSAGE_Desconectado = 6;
-	    public static final int REQUEST_ENABLE_BT = 7;
+/************************ CONEXIÓN ****************************/
+	
+	public static final String TAG = "PantallaPrincipal";
+	public static final boolean D = true;
+	   
+	// Tipos de mensaje enviados y recibidos desde el Handler de ConexionBT
+	public static final int Mensaje_Estado_Cambiado = 1;
+	public static final int Mensaje_Leido = 2;
+	public static final int Mensaje_Escrito = 3;
+	public static final int Mensaje_Nombre_Dispositivo = 4;
+	public static final int Mensaje_TOAST = 5;	        
+	public static final int MESSAGE_Desconectado = 6;
+	public static final int REQUEST_ENABLE_BT = 7;
 	    
-	    public static final String DEVICE_NAME = "device_name";
-	    public static final String TOAST = "toast";
-	  //variables para el Menu de conexión
-	    private boolean seleccionador=false; 
-	 // Adaptador local Bluetooth 
-	    private BluetoothAdapter AdaptadorBT = null; 
-	  //Nombre del dispositivo conectado
-	    private String mConnectedDeviceName = null;   
-	    //Objeto miembro para el servicio de ConexionBT 
-	    private ConexionBT Servicio_BT = null;	 
+	public static final String DEVICE_NAME = "device_name";
+	public static final String TOAST = "toast";
+	 
+	//variables para el Menu de conexión
+	private boolean seleccionado=false; 
 	    
-	    private LogicaAlarma la=null;
-
+	// Adaptador local Bluetooth 
+	private BluetoothAdapter AdaptadorBT = null; 
+	    
+	 //Nombre del dispositivo conectado
+	private String mConnectedDeviceName = null;   
+	    
+	 //Objeto miembro para el servicio de ConexionBT 
+	private ConexionBT Servicio_BT = null;	 
+	    
+	private LogicaAlarma la=null;
 	
 	private ImageButton bt1;
 	private ImageButton bt2;
@@ -70,7 +75,8 @@ public class PantallaPrincipal extends Activity {
 	boolean b=false;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState){
+	protected void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pantallaprincipal);
 	
@@ -79,39 +85,8 @@ public class PantallaPrincipal extends Activity {
 		 Servicio_BT = new ConexionBT(this, mHandler);
 		 BluetoothDevice device = AdaptadorBT.getRemoteDevice("00:13:12:16:63:31");
          Servicio_BT.connect(device);
-		
- 		//insertamos ela última alarma en el text view de pantalla alarma
  		
- 		RelativeLayout horaProximaAlarma = (RelativeLayout) findViewById(R.id.layout_alarma);
- 		textAlarma =  (TextView) horaProximaAlarma.findViewById(R.id.textAlarma);
- 		
-// 		la= new LogicaAlarma(getApplicationContext());
-// 		
-// 		if (la.getProximaAlarma()!=null)
-// 		{
-// 			Log.i("pantaprincipal","hora " + la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
-// 			textAlarma.setText(la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
-// 		}
-// 		else
-// 		{
-// 			textAlarma.setText(" ");
-// 		}
-         
- 		
- 		
-// 		la= new LogicaAlarma(getApplicationContext());		
-// 		
-//		if (la.getActivada()!=null)
-// 		{
-// 			Log.i("pantaprincipal","onResume: hora " + la.getActivada().getHoraAlarma() + " : " + la.getActivada().getMinAlarma());
-// 			textAlarma.setText(la.getActivada().getHoraAlarma() + " : " + la.getActivada().getMinAlarma());
-// 		}
-// 		else
-// 		{
-// 			textAlarma.setText(" ");
-// 		}
- 		
- 		
+ 		//Asigna eventos a los botones del menú que aparece en Pantalla Principal
          
 		bt1=(ImageButton) findViewById(R.id.imageButton1);
 		bt1.setOnClickListener(btn1);
@@ -124,18 +99,9 @@ public class PantallaPrincipal extends Activity {
 		bt5=(ImageButton) findViewById(R.id.imageButton5);
 		bt5.setOnClickListener(btn5);
 		
-		textAyuda =  (TextView) findViewById(R.id.textAyuda);
-		
-		
-
-		
-		
-		
-		
-		
-		//textAlarma.setText(la.getProximaAlarma().getHoraAlarma() + " : " + la.getProximaAlarma().getMinAlarma());
-		
-		
+		RelativeLayout horaProximaAlarma = (RelativeLayout) findViewById(R.id.layout_alarma);
+ 		textAlarma =  (TextView) horaProximaAlarma.findViewById(R.id.textAlarma);
+		textAyuda =  (TextView) findViewById(R.id.textAyuda);		
 	}
 	
 	
@@ -143,15 +109,16 @@ public class PantallaPrincipal extends Activity {
 	{
  		super.onResume();
  		
- 		la= new LogicaAlarma(getApplicationContext());		
+ 		la = new LogicaAlarma(getApplicationContext());		
  		
-		if (la.getActivada()!=null)
+ 		if (la.getActivada()!=null)
  		{
- 			Log.i("pantaprincipal","onResume: hora " + la.getActivada().getHoraAlarma() + " : " + la.getActivada().getMinAlarma());
+ 		// Si existe una alarma activada, muestra su hora en Pantalla Principal.
  			textAlarma.setText(la.getActivada().getHoraAlarma() + " : " + la.getActivada().getMinAlarma());
  		}
  		else
  		{
+ 			// Si no existe una alarma activada,  no se muestra ninguna hora
  			textAlarma.setText(" ");
  		}
 	}
@@ -170,18 +137,14 @@ public class PantallaPrincipal extends Activity {
 	    switch  (item . getItemId ()) 
 	    { 
 	        case R.id.Ajustes1: 
-	        	//Toast.makeText(getApplicationContext(),"Item 1 pulsado", Toast.LENGTH_SHORT).show();
 	        	Intent i = new Intent(getApplicationContext(), PantallaAcelerometro.class);
 	       	 	startActivity(i);
 	            return  true ;
 	        case R.id.Ajustes2:
-	        	//Toast.makeText(getApplicationContext(),"Item 2 pulsado", Toast.LENGTH_SHORT).show();
 	        	Intent i1 = new Intent(getApplicationContext(), ListadoAlarmas.class);
 	       	 	startActivity(i1);
 	        	return  true ;
 	        case R.id.Ayuda: 
-	        	
-	        	//Toast.makeText(getApplicationContext(),"Item 3 pulsado", Toast.LENGTH_SHORT).show();
 	        	LayoutInflater li = LayoutInflater.from(this);
     			View prompt = li.inflate(R.layout.activity_ayuda, null);
     			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -212,7 +175,6 @@ public class PantallaPrincipal extends Activity {
 		public void onClick(View v)
 		{
 			sendMessage("D\r");
-			Toast.makeText(getApplicationContext(),"Encendido", Toast.LENGTH_SHORT).show();
 		}
 	};
 	
@@ -235,17 +197,16 @@ public class PantallaPrincipal extends Activity {
 			{
 				Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ruedabombillaapagada);
 				bt3.setImageBitmap(bmp);
-				sendMessage("B\r"); //funciona
+				sendMessage("B\r");
 				b=true;
 			}
 			else if(b==true)
 			{
 				Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ruedabombillaencendida);
 				bt3.setImageBitmap(bmp);
-				sendMessage("C\r"); //funciona
+				sendMessage("C\r"); 
 				b=false;
-			}
-							
+			}					
 		}
 	 };
 	 
@@ -254,8 +215,9 @@ public class PantallaPrincipal extends Activity {
 	 {
 		public void onClick(View v)
 		{
+			onDestroy();
 			Intent i = new Intent(getApplicationContext(), ListadoAlarmas.class);
-        	 startActivity(i);
+        	startActivity(i);
 		}
 	 };
 	 
@@ -272,71 +234,71 @@ public class PantallaPrincipal extends Activity {
 	 };
 
 	 
-	 
-	 public  void sendMessage(String message) {
-	        if (Servicio_BT.getState() == ConexionBT.STATE_CONNECTED) {//checa si estamos conectados a BT   
+	 public  void sendMessage(String message) 
+	 {
+	        if (Servicio_BT.getState() == ConexionBT.STATE_CONNECTED) //comprueba si está conectado a la tarjeta bluetooth
+	        {   
 		        if (message.length() > 0) 
-		        {   // checa si hay algo que enviar
-		            byte[] send = message.getBytes();//Obtenemos bytes del mensaje
+		        {   // comprueba si ha enviado datos
+		            byte[] send = message.getBytes();//Obtiene los bytes del mensaje
 		            if(D) Log.e(TAG, "Mensaje enviado:"+ message);            
-		                 Servicio_BT.write(send);     //Mandamos a escribir el mensaje     
+		                 Servicio_BT.write(send);     //Manda a escribir el mensaje     
 		        }
 		     }
-	        else Toast.makeText(this, "No conectado", Toast.LENGTH_SHORT).show();
-	    		}//fin de sendMessage
+	        else
+	        {
+	        	Toast.makeText(this, "No conectado", Toast.LENGTH_SHORT).show();
+	        }
+	   }
 	    
 	 
-	    final Handler mHandler = new Handler() {
+	    final Handler mHandler = new Handler() 
+	    {
 	        @Override
 	        public void handleMessage(Message msg) {
 		            	
 		                switch (msg.what) {
-		     //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   
+		       
 		                case Mensaje_Escrito:
-		                	  byte[] writeBuf = (byte[]) msg.obj;//buffer de escritura...
-		                      // Construye un String del Buffer
+		                	  byte[] writeBuf = (byte[]) msg.obj;
 		                      String writeMessage = new String(writeBuf);
-		                      if(D) Log.e(TAG, "Message_write  =w= "+ writeMessage);  
+		                      if(D) 
+		                    	  Log.i(TAG, "Message_write  =w= "+ writeMessage);  
 		                    break;
-		      //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>                                
+		                                      
 		                case Mensaje_Leido:   	                 
-		                	byte[] readBuf = (byte[]) msg.obj;//buffer de lectura...
-		                    //Construye un String de los bytes validos en el buffer
+		                	byte[] readBuf = (byte[]) msg.obj;		                    
 		                  String readMessage = new String(readBuf, 0, msg.arg1);
-		                  if(D) Log.e(TAG, "Message_read   =w= "+ readMessage);              	                 
+		                  if(D)
+		                	  Log.i(TAG, "Message_read   =w= "+ readMessage);              	                 
 		                    break;
-		     //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>	           
+		     	           
 		                case Mensaje_Nombre_Dispositivo:
-		                    mConnectedDeviceName = msg.getData().getString(DEVICE_NAME); //Guardamos nombre del dispositivo
-		     Toast.makeText(getApplicationContext(), "Conectado con "+ mConnectedDeviceName, Toast.LENGTH_SHORT).show();
-		     seleccionador=true;
+		                    mConnectedDeviceName = msg.getData().getString(DEVICE_NAME); //Guarda el nombre del dispositivo
+		                    Toast.makeText(getApplicationContext(), "Conectado con "+ mConnectedDeviceName, Toast.LENGTH_SHORT).show();
+		                    seleccionado=true;
 		                    break;
-		    //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>                  
+		                    
 		                case Mensaje_TOAST:
-		                    Toast.makeText(getApplicationContext(), msg.getData().getString(TOAST),
-		                    Toast.LENGTH_SHORT).show();
+		                    Toast.makeText(getApplicationContext(), msg.getData().getString(TOAST),Toast.LENGTH_SHORT).show();
 		                    break;
-		     //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
+
 		                case MESSAGE_Desconectado:	
-		                  	 if(D) Log.e("Conexion","DESConectados");
-		                  	 seleccionador=false;             	
-		          break;
-		    //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  
-		                }//FIN DE SWITCH CASE PRIMARIO DEL HANDLER
-		            }//FIN DE METODO INTERNO handleMessage
-		        };//Fin de Handler
+		                  	 if(D) 
+		                  		 Log.i("Conexion","DESConectados");
+		                  	 seleccionado=false;             	
+		                  	 break;
+		                }
+		            }
+		        };
 
 
 		        @Override
-		        public void onDestroy(){
+		        public void onDestroy()
+		        {
 		        	 super.onDestroy();
-		        	 if (Servicio_BT != null) Servicio_BT.stop();//Detenemos servicio
+		        	 if (Servicio_BT != null) 
+		        		 Servicio_BT.stop();//Detenemos servicio
 		        }
 		        
-		       
-		        
-//		        public void onBackPressed()
-//		    	{
-//		    		this.startActivity(new Intent(getApplicationContext(), MainActivity.class));
-//		    	}
 }

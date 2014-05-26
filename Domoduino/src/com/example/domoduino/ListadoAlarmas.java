@@ -39,7 +39,6 @@ public class ListadoAlarmas extends Activity
 	private String horaEntera = "";
 	private String nombreAlarma = "";
 	private int accion = 0;
-	private View vistaSeleccionada= null;
 	public  Entrada_lista itemSeleccionado = null;
 	ArrayList<Entrada_lista> datos = new ArrayList<Entrada_lista>();  
 	
@@ -50,7 +49,8 @@ public class ListadoAlarmas extends Activity
 	ListView lista=null;
 	
 	private ImageView bt1;
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) 
+	{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reloj);
         
@@ -58,86 +58,48 @@ public class ListadoAlarmas extends Activity
         imagen_plus.setOnClickListener(imagenPlus);
 
         logica = new LogicaAlarma(getApplicationContext());
-        //logica.guardarAlarma(new Alarma(20,"Alarma 1","8","45",1));
-        //logica.eliminarAlarma(1); SI borra
-        
-//        Vector<Alarma> alarmas = logica.alarmas();
-// 
-//        
-//        if(alarmas!=null)
-//        {
-//	        	for(int i=0; i< alarmas.size();i++)
-//		        {
-//		        	datos.add(new Entrada_lista(alarmas.get(i).getIdAlarma(),R.drawable.alarma, alarmas.get(i).getHoraAlarma()+":"+ alarmas.get(i).getMinAlarma(), alarmas.get(i).getNombreAlarma(),alarmas.get(i).getAccionAlarma()));
-//		        }
-//        }
-//        else
-//        {
-//        	Toast.makeText(getApplicationContext(), "no hay alarmas", Toast.LENGTH_LONG).show();
-//        }
-
-        
-        
+            
         lista = (ListView) findViewById(R.id.ListView_listado);
         lista.setOnItemClickListener(lista1);
         
         listar();
-//         adapListado = new Adaptador_listado(this, R.layout.entrada_lista, datos){
-//			@Override
-//			public void onEntrada(Object entrada, View view) {
-//				// TODO Auto-generated method stub
-//				TextView texto_superior_entrada = (TextView) view.findViewById(R.id.textView_superior); 
-//	            texto_superior_entrada.setText(((Entrada_lista) entrada).get_horaAlarma()); 
-//
-//	            TextView texto_inferior_entrada = (TextView) view.findViewById(R.id.textView_inferior); 
-//	            texto_inferior_entrada.setText(((Entrada_lista) entrada).get_nombreAlarma()); 
-//
-//	            ImageView imagen_entrada = (ImageView) view.findViewById(R.id.im_reloj); 
-//	            imagen_entrada.setImageResource(((Entrada_lista) entrada).get_idImagen());
-//				
-//			}};
-//        lista.setAdapter(adapListado);
-		
-       
-        registerForContextMenu(lista);
         
-       // logica.eliminarAlarma(1); No borra
-        
-        
+        registerForContextMenu(lista);   
 	 }  
 	
 	public void listar()
 	{
-		 Vector<Alarma> alarmas = logica.alarmas();
-		 
-	        
+		 Vector<Alarma> alarmas = logica.alarmas();		 
+	     
 	        if(alarmas!=null)
 	        {
 	        	int imagenAlarma = R.drawable.alarma;	
 	        	
 	        	for(int i=0; i< alarmas.size();i++)
-			        {
+			    {
 			        	
-		        		if(alarmas.get(i).getActivada())
-		        		{
-		        			imagenAlarma = R.drawable.alarmaverde;
-		        		}
-		        		else
-		        		{
-		        			imagenAlarma = R.drawable.alarma;
-		        		}	
+	        		if(alarmas.get(i).getActivada())
+		        	{
+		        		imagenAlarma = R.drawable.alarmaverde;
+		        	}
+		        	else
+		        	{
+		        		imagenAlarma = R.drawable.alarma;
+		        	}	
 		        		
-		        		datos.add(new Entrada_lista(alarmas.get(i).getIdAlarma(),imagenAlarma, alarmas.get(i).getHoraAlarma()+":"+ alarmas.get(i).getMinAlarma(), alarmas.get(i).getNombreAlarma(),alarmas.get(i).getAccionAlarma()));
-			        }
+		        	datos.add(new Entrada_lista(alarmas.get(i).getIdAlarma(),imagenAlarma, alarmas.get(i).getHoraAlarma()+":"+ alarmas.get(i).getMinAlarma(), alarmas.get(i).getNombreAlarma(),alarmas.get(i).getAccionAlarma()));
+			    }
 	        }
 	        else
 	        {
 	        	Toast.makeText(getApplicationContext(), "no hay alarmas", Toast.LENGTH_LONG).show();
 	        }
 		
-		adapListado = new Adaptador_listado(this, R.layout.entrada_lista, datos){
+		adapListado = new Adaptador_listado(this, R.layout.entrada_lista, datos)
+		{
 			@Override
-			public void onEntrada(Object entrada, View view) {
+			public void onEntrada(Object entrada, View view) 
+			{
 				// TODO Auto-generated method stub
 				TextView texto_superior_entrada = (TextView) view.findViewById(R.id.textView_superior); 
 	            texto_superior_entrada.setText(((Entrada_lista) entrada).get_horaAlarma()); 
@@ -189,142 +151,114 @@ public class ListadoAlarmas extends Activity
 	    nombreAlarma = itemSeleccionado.get_nombreAlarma();
 	    horaEntera = itemSeleccionado.get_horaAlarma();
 	    accion = itemSeleccionado.get_accion();
-	    
-	
-	    
+
 	    // Set title for the context menu
 	   menu.setHeaderTitle(itemSeleccionado.get_nombreAlarma()); 
 	  
 	     // Add all the menu options
 	     menu.add(Menu.NONE, CONTEXTMENU_OPTION1, 0, "Editar"); 
 	     menu.add(Menu.NONE, CONTEXTMENU_OPTION2, 1, "Eliminar"); 
-	     menu.add(Menu.NONE, CONTEXTMENU_OPTION3, 2, "Activar"); 
-	  
-	     
+	     menu.add(Menu.NONE, CONTEXTMENU_OPTION3, 2, "Activar");  
 	 } 
 	 
 	 
 	 @Override 
-	 public boolean onContextItemSelected(MenuItem item) { 
- 
+	 public boolean onContextItemSelected(MenuItem item) 
+	 { 
 		 // Get extra info about list item that was long-pressed
 	     AdapterContextMenuInfo menuInfo = (AdapterContextMenuInfo)item.getMenuInfo();
-	     
-	     
+	         
 	     // Perform action according to selected item from context menu
-	     switch (item.getItemId()) {
+	     switch (item.getItemId()) 
+	     {
 	  
-	     case CONTEXTMENU_OPTION1:
-	         // Show message
-	    	 Intent i = new Intent(getApplicationContext(), PantallaAlarma.class);
-             i.putExtra("idAlarma", idAlarmaABorrar);
-             i.putExtra("nombreAlarma", nombreAlarma);
-         	 i.putExtra("horaEntera", horaEntera);
-         	 i.putExtra("accion", accion);
-        	 startActivity(i);
-        	 finish();
-	    	 
-	         break;
+		     case CONTEXTMENU_OPTION1:
+		         // Show message
+		    	 Intent i = new Intent(getApplicationContext(), PantallaAlarma.class);
+	             i.putExtra("idAlarma", idAlarmaABorrar);
+	             i.putExtra("nombreAlarma", nombreAlarma);
+	         	 i.putExtra("horaEntera", horaEntera);
+	         	 i.putExtra("accion", accion);
+	        	 startActivity(i);
+	        	 finish();
+		    	 
+		         break;
 	         
 	  
-	     case CONTEXTMENU_OPTION2:
-	         // Show message
-	         //Toast.makeText(getApplicationContext(), "Option 2: ID "+menuInfo.id+", position "+menuInfo.position, Toast.LENGTH_SHORT).show();
-	    	 //Toast.makeText(getApplicationContext(), "id alarma a borrar: " + idAlarmaABorrar, Toast.LENGTH_LONG).show();
-	         boolean b = logica.eliminarAlarma(idAlarmaABorrar); 
-	         //Toast.makeText(getApplicationContext(),Boolean.toString(b), Toast.LENGTH_LONG).show();
-	         
-	         adapListado.clear();
-	         adapListado.notifyDataSetChanged();
-
-	         Intent i1 = new Intent(getApplicationContext(), ListadoAlarmas.class);
-	       	 startActivity(i1);
-	       	finish();
-	         
-	    	 break;
+		     case CONTEXTMENU_OPTION2:
+		         // Show message
+		         //Toast.makeText(getApplicationContext(), "Option 2: ID "+menuInfo.id+", position "+menuInfo.position, Toast.LENGTH_SHORT).show();
+		    	 //Toast.makeText(getApplicationContext(), "id alarma a borrar: " + idAlarmaABorrar, Toast.LENGTH_LONG).show();
+		         boolean b = logica.eliminarAlarma(idAlarmaABorrar); 
+		         //Toast.makeText(getApplicationContext(),Boolean.toString(b), Toast.LENGTH_LONG).show();
+		         
+		         adapListado.clear();
+		         adapListado.notifyDataSetChanged();
+	
+		         Intent i1 = new Intent(getApplicationContext(), ListadoAlarmas.class);
+		       	 startActivity(i1);
+		       	finish();
+		         
+		    	 break;
 	    	 
 	    	 
-	     case CONTEXTMENU_OPTION3:
-	    	 
-	    	//Cambiar el XML
-	    	 
-	    	 String[] values = itemSeleccionado.get_horaAlarma().split(":", 2);
-		     
-	    	 logica.setActivada(new Alarma(itemSeleccionado.get_idAlarma(),itemSeleccionado.get_nombreAlarma(), values[0], values[1], itemSeleccionado.get_accion(), true));
-	    	
-	    	 //Enviar la hora al arduino (horas y minitos que faltan)
-	    	
-	    	 //Hora y minutos actuales
-	    	 
-	    	 Calendar now = Calendar.getInstance();
-	 		
-	    	 int horaActual = now.get(Calendar.HOUR_OF_DAY);
-	    	 int minutosActual = now.get(Calendar.MINUTE);
-			
-	    	 
-	    	 //Hora y minutos para los que está programada la alarma
-			 int horaAlarma = Integer.parseInt(values[0]);
-		     int minutosAlarma = Integer.parseInt(values[1]);
-	    	
-	    	 
-			//Calculo de las horas que faltan desde la hora actual hasta la hora a la que está programada la alarma
-			int horaArd = - 1;
-			
-			if(horaAlarma > horaActual)
-			{
-				 horaArd = horaAlarma - horaActual;
-			}
-			else if(horaAlarma>12)
-			{
-				horaArd = 24 - (horaActual - horaAlarma);
-			}
-			else
-			{
-				horaArd = (24 - horaActual) + horaAlarma;
-			}
-			
-			int minsArduino = Math.abs (minutosAlarma - minutosActual);
-			
-			int segundos = horaArd*3600 + minsArduino*60;
-			
-			Log.i("ListadoAlarmas", "Horas que quedan para la alarma: " + horaArd + " mins: " + minsArduino);
-			Log.i("ListadoAlarmas", "Segundos hasta la alarma: " + segundos);
-			
-			//Cambio la imagen asociada a la alarma por un reloj verde, que indica que la alarma está activada
-	        
-			Log.i("ListadoAlarmas","item:" + itemSeleccionado.get_horaAlarma());
-			itemSeleccionado.set_idImagen(R.drawable.alarmaverde);
-			//adapListado.clear(); //Borrar listado
-			datos.clear();
-			listar();
-			
-			//Entrada_lista item_lista = (Entrada_lista) item;
+		     case CONTEXTMENU_OPTION3:
+		    	 
+		    	//Modifica la alarma activada en el fichero XML
+		    	 
+		    	 String[] values = itemSeleccionado.get_horaAlarma().split(":", 2);
+			     
+		    	 logica.setActivada(new Alarma(itemSeleccionado.get_idAlarma(),itemSeleccionado.get_nombreAlarma(), values[0], values[1], itemSeleccionado.get_accion(), true));
+		    	
+		    	 //Enviar la hora al arduino (horas y minitos que faltan)
+		    	
+		    	 //Hora y minutos actuales
+		    	 
+		    	 Calendar now = Calendar.getInstance();
+		 		
+		    	 int horaActual = now.get(Calendar.HOUR_OF_DAY);
+		    	 int minutosActual = now.get(Calendar.MINUTE);
 				
-	    	 //item_lista.set_idImagen(R.drawable.alarmaverde);
+		    	 
+		    	 //Hora y minutos para los que está programada la alarma
+				 int horaAlarma = Integer.parseInt(values[0]);
+			     int minutosAlarma = Integer.parseInt(values[1]);
+		    	
+		    	 
+				//Calculo de las horas que faltan desde la hora actual hasta la hora a la que está programada la alarma
+				int horaArd = - 1;
+				
+				if(horaAlarma > horaActual)
+				{
+					 horaArd = horaAlarma - horaActual;
+				}
+				else if(horaAlarma>12)
+				{
+					horaArd = 24 - (horaActual - horaAlarma);
+				}
+				else
+				{
+					horaArd = (24 - horaActual) + horaAlarma;
+				}
+				
+				int minsArduino = Math.abs (minutosAlarma - minutosActual);
+				
+				int segundos = horaArd*3600 + minsArduino*60;
+				
+				Log.i("ListadoAlarmas", "Horas que quedan para la alarma: " + horaArd + " mins: " + minsArduino);
+				Log.i("ListadoAlarmas", "Segundos hasta la alarma: " + segundos);
+				
+				//Cambio la imagen asociada a la alarma por un reloj verde, que indica que la alarma está activada
+		        
+				Log.i("ListadoAlarmas","item:" + itemSeleccionado.get_horaAlarma());
+				itemSeleccionado.set_idImagen(R.drawable.alarmaverde);
+				//adapListado.clear(); //Borrar listado
+				datos.clear();
+				listar();
+				
+				//Entrada_lista item_lista = (Entrada_lista) item;
 			
-			
-			
-//			Log.i("ListadoAlarma","Antes get");
-//	    	 bt1=(ImageView) findViewById(item_lista.get_idImagen());
-//	    	 Log.i("ListadoAlarma","Antes set");
-//	    	 bt1.setImageResource(R.drawable.alarmaverde);
-//	    	 Log.i("ListadoAlarma","Después set");
-	    	 
-//	    	 Log.i("ListadoAlarma","Antes ");
-//	    	 ImageView imagReloj = (ImageView) vistaSeleccionada.findViewById(R.id.im_reloj); 
-//	    	 Log.i("ListadoAlarma","Entre");
-//	    	 imagReloj.setImageResource(R.drawable.alarmaverde);
-//	    	 Log.i("ListadoAlarma","Después");
-	    	 
-	    	 
-//	    	 bt1=(ImageView) findViewById(R.id.im_reloj);
-//	        bt1.setImageResource(R.drawable.alarmaverde);
-			
-			
-//			Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.alarmaverde);
-//			bt1.setImageBitmap(bmp);
-			
-	    	 break;
+		    	 break;
 	     }
 	  
 	     return true; 
@@ -340,25 +274,5 @@ public class ListadoAlarmas extends Activity
        	    finish();
 		}
 	};
-
-
-//	 public  void sendMessage(String message) 
-//	 {
-//	        if (Servicio_BT.getState() == ConexionBT.STATE_CONNECTED) {//checa si estamos conectados a BT   
-//		        if (message.length() > 0) 
-//		        {   // checa si hay algo que enviar
-//		            byte[] send = message.getBytes();//Obtenemos bytes del mensaje
-//		            if(D) Log.e(TAG, "Mensaje enviado:"+ message);            
-//		                 Servicio_BT.write(send);     //Mandamos a escribir el mensaje     
-//		        }
-//		     }
-//	        else Toast.makeText(this, "No conectado", Toast.LENGTH_SHORT).show();
-//	    		}
-	
-//	public void onBackPressed()
-//	{
-//		this.startActivity(new Intent(getApplicationContext(), PantallaPrincipal.class));
-//	}
-	
 
 }
