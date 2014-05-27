@@ -164,6 +164,7 @@ public class PantallaPrincipal extends Activity
     			 
     			// Creamos un AlertDialog y lo mostramos
     			AlertDialog alertDialog = alertDialogBuilder.create();
+    			alertDialog.getListView().setFastScrollEnabled(true);
     			alertDialog.show();
     			
 	            return  true ; 
