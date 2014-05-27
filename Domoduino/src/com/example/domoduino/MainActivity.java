@@ -97,11 +97,10 @@ public class MainActivity extends Activity
     				 else
     				 {
     					Toast.makeText(getApplicationContext(),"No es la MAC del módulo", Toast.LENGTH_SHORT).show();
-
-    					vibrador = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-	   		            vibrador.vibrate(1000);
-	   		         	Intent i = new Intent(getApplicationContext(), PantallaPrincipal.class);
-	   		         	startActivity(i);
+    					 vibrador = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+	   		             vibrador.vibrate(1000);
+	   		         	 Intent i = new Intent(getApplicationContext(), PantallaPrincipal.class);
+	   		         	 startActivity(i);
     				 }
     			}
     	});

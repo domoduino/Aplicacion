@@ -33,7 +33,7 @@ public class ConexionBT {
     private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
 
-    // Campos de coexion
+    // Campos de conexion
     private final BluetoothAdapter AdaptadorBT;
     private final Handler mHandler;
     private AcceptThread HebraDeAceptacion;
@@ -142,7 +142,7 @@ public class ConexionBT {
         //Cancela el hilo que actualmente esta usando la conexion 
         if (HiloConetado != null) {HiloConetado.cancel(); HiloConetado = null;}
 
-        // Cancela la Hebradeaceptacion debido a que solo queremos conectar con un dispositivo
+        // Cancela el hilo debido a que solo queremos conectar con un dispositivo
         if (HebraDeAceptacion != null) {HebraDeAceptacion.cancel(); HebraDeAceptacion = null;}
 
         //Inicia el hilo para administrar la conexion y realizar transmisiones
