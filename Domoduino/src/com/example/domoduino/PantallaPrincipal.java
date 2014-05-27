@@ -153,7 +153,7 @@ public class PantallaPrincipal extends Activity
     			alertDialogBuilder.setView(prompt);
     			alertDialogBuilder.setTitle("Ayuda");
     			
-    			// Mostramos el mensaje del cuadro de dialogo
+    			// Muestra el mensaje del cuadro de dialogo
     			alertDialogBuilder.setCancelable(false).setPositiveButton("Aceptar", new DialogInterface.OnClickListener()
     			{
 	    			public void onClick(DialogInterface dialog,int id)
@@ -162,7 +162,7 @@ public class PantallaPrincipal extends Activity
 	    			}
     			});
     			 
-    			// Creamos un AlertDialog y lo mostramos
+    			// Crea un cuadro de dialogo y lo muestra
     			AlertDialog alertDialog = alertDialogBuilder.create();
     			alertDialog.show();
     			
@@ -172,25 +172,28 @@ public class PantallaPrincipal extends Activity
 	    } 
 	}
 	
+	// Botón Start
 	private ImageButton.OnClickListener btn1 = new ImageButton.OnClickListener()
 	{
 		public void onClick(View v)
 		{
-			sendMessage("D\r");
+			sendMessage("D\r"); // Envía al arduino una letra, para que el coche se mueva.
+			Toast.makeText(getApplicationContext(),"Start", Toast.LENGTH_SHORT).show();
 		}
 	};
 	
-	
+	//Botón Stop
 	 private ImageButton.OnClickListener btn2 = new ImageButton.OnClickListener()
 	 {
 		public void onClick(View v)
 		{
-			sendMessage("E\r");
+			sendMessage("E\r"); // Envía al arduino una letra, para que el coche se detenga.
 			Toast.makeText(getApplicationContext(),"Stop", Toast.LENGTH_SHORT).show();
 							
 		}
 	};
 	
+	//Botón luz 
 	 private ImageButton.OnClickListener btn3 = new ImageButton.OnClickListener()
 	 {
 		public void onClick(View v)
@@ -199,20 +202,20 @@ public class PantallaPrincipal extends Activity
 			{
 				Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ruedabombillaapagada);
 				bt3.setImageBitmap(bmp);
-				sendMessage("B\r");
+				sendMessage("B\r"); // Envía al arduino una letra, para que encienda las luces del coche
 				b=true;
 			}
 			else if(b==true)
 			{
 				Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ruedabombillaencendida);
 				bt3.setImageBitmap(bmp);
-				sendMessage("C\r"); 
+				sendMessage("C\r"); // Envía al arduino una letra, para que apague las luces del coche
 				b=false;
 			}					
 		}
 	 };
 	 
-	 
+	 //Botón alarmas
 	 private ImageButton.OnClickListener btn4 = new ImageButton.OnClickListener()
 	 {
 		public void onClick(View v)
@@ -223,7 +226,7 @@ public class PantallaPrincipal extends Activity
 		}
 	 };
 	 
-	 
+	//Botón acelerómetro
 	 private ImageButton.OnClickListener btn5 = new ImageButton.OnClickListener()
 	 {
 		public void onClick(View v)
@@ -300,7 +303,7 @@ public class PantallaPrincipal extends Activity
 		        {
 		        	 super.onDestroy();
 		        	 if (Servicio_BT != null) 
-		        		 Servicio_BT.stop();//Detenemos servicio
+		        		 Servicio_BT.stop();//Detiene el servicio
 		        }
 		        
 }

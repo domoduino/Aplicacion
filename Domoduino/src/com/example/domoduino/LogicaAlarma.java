@@ -15,30 +15,34 @@ public class LogicaAlarma
 		alarmaXML = new AlarmaXML(c);
 	}
 	
-	public void guardarAlarma (Alarma a)
+	// Guarda la alarma
+	public void guardarAlarma (Alarma a) 
 	{
 		alarmaXML.guardarAlarma(a);
 	}
 	
+	// Elimina la alarma
 	public boolean eliminarAlarma(int id)
 	{
 		return alarmaXML.eliminarAlarma(id);
 	}
 	
+	// Modifica la alarma
 	public void modificarAlarma (int idAlarmaAnt, Alarma aNueva)
 	{
 		alarmaXML.eliminarAlarma(idAlarmaAnt);
 		alarmaXML.guardarAlarma(aNueva);
 	}
 	
+	// Devuelve un vector con todas las alarmas
 	public Vector<Alarma> alarmas()
 	{
 		return alarmaXML.listadoAlarmas();
 	}
 	
+	// Devuelve el identificador para la nueva alarma
 	public int obtenerId()
 	{
-		//return (alarmaXML.numAlarmas()+1);
 		return alarmas().size()+1;
 	}
 	
@@ -77,6 +81,7 @@ public class LogicaAlarma
 		return a;
 	}
 	
+	// Devuelve la alarma activada
 	public Alarma getActivada()
 	{
 		Alarma a = null;
@@ -103,9 +108,9 @@ public class LogicaAlarma
 		return (a);
 	}
 
+	//Desactiva la anterior alarma activada y activa la alarma indicada por el usuario
 	public void setActivada (Alarma nuevaActivada)
 	{
-		//Cambia la propiedad de la anterior alarma activada a false
 		Vector<Alarma> alarmas = alarmaXML.listadoAlarmas();
 
 		Alarma a = getActivada();
@@ -114,22 +119,7 @@ public class LogicaAlarma
 		{
 			modificarAlarma(a.getIdAlarma(), new Alarma(a.getIdAlarma(), a.getNombreAlarma(), a.getHoraAlarma() , a.getMinAlarma(), a.getAccionAlarma(), false));
 		}
-
-
-//		boolean encontrado = false;
-//		int i = 0;
-//		
-//		while (!encontrado && i < alarmas.size())
-//		{
-//			if(alarmas.get(i).getActivada() == true)
-//			{
-//				encontrado = true;
-//				modificarAlarma(alarmas.get(i).getIdAlarma(), new Alarma(alarmas.get(i).getIdAlarma(), alarmas.get(i).getNombreAlarma(), alarmas.get(i).getHoraAlarma() , alarmas.get(i).getMinAlarma(), alarmas.get(i).getAccionAlarma(), false));	
-//			}
-//			
-//			i++;	
-//		}
-		//Cambia la propiedad de la nueva alarma activada a true
+		
 		modificarAlarma(nuevaActivada.getIdAlarma(), nuevaActivada);
 	}
 }
