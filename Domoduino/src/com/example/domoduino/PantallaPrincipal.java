@@ -32,7 +32,7 @@ import android.widget.Toast;
 public class PantallaPrincipal extends Activity 
 {
 	
-/************************ CONEXIÓN ****************************/
+	/************************ CONEXIÓN ****************************/
 	
 	public static final String TAG = "PantallaPrincipal";
 	public static final boolean D = true;
@@ -60,6 +60,8 @@ public class PantallaPrincipal extends Activity
 	    
 	 //Objeto miembro para el servicio de ConexionBT 
 	private ConexionBT Servicio_BT = null;	 
+	
+	/************************ CONEXIÓN ****************************/
 	    
 	private LogicaAlarma la=null;
 	

@@ -78,11 +78,11 @@ public class PantallaAcelerometro extends Activity implements SensorListener
 			{
 				if((values[1]< (-60))&& (values[1]> (-95)))
 				{			
-					sendMessage("E\r");//stop
+					sendMessage("E\r");
 				}
 				else if((values[1]>(-10)) && (values[1]<10))
 				{
-					sendMessage("D\r");//start
+					sendMessage("D\r");
 				}
 			}
 
@@ -92,7 +92,7 @@ public class PantallaAcelerometro extends Activity implements SensorListener
 
 	public void onAccuracyChanged(int sensor, int accuracy) 
 	{
-		//Log.d(tag, "onAccuracyChanged: " + sensor + ", accuracy: " + accuracy);
+		
 	}
 
 	

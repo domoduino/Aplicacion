@@ -7,11 +7,15 @@ import java.util.Vector;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -33,6 +37,38 @@ import android.widget.Toast;
 
 public class ListadoAlarmas extends Activity
 {
+	
+	/********************CONEXIÓN******************************/
+    public static final String TAG = "LEDv0";
+    public static final boolean D = true;
+    
+    // Tipos de mensaje enviados y recibidos desde el Handler de ConexionBT
+    public static final int Mensaje_Estado_Cambiado = 1;
+    public static final int Mensaje_Leido = 2;
+    public static final int Mensaje_Escrito = 3;
+    public static final int Mensaje_Nombre_Dispositivo = 4;
+    public static final int Mensaje_TOAST = 5;	        
+    public static final int MESSAGE_Desconectado = 6;
+    public static final int REQUEST_ENABLE_BT = 7;
+    
+    public static final String DEVICE_NAME = "device_name";
+    public static final String TOAST = "toast";
+    
+  //variables para el Menu de conexión
+    private boolean seleccionador=false; 
+    
+ // Adaptador local Bluetooth 
+    private BluetoothAdapter AdaptadorBT = null; 
+    
+  //Nombre del dispositivo conectado
+    private String mConnectedDeviceName = null;  
+    
+    //Objeto miembro para el servicio de ConexionBT 
+    private ConexionBT Servicio_BT = null;	 
+	
+   /*****************CONEXIÓN************************/
+	
+	
 	private ImageButton imagen_plus;
 	private static LogicaAlarma logica;
 	private int idAlarmaABorrar = -1;
@@ -56,6 +92,12 @@ public class ListadoAlarmas extends Activity
         
         imagen_plus =(ImageButton) findViewById(R.id.img_plus);
         imagen_plus.setOnClickListener(imagenPlus);
+        
+        //Crear conexión
+		 AdaptadorBT = BluetoothAdapter.getDefaultAdapter();
+		 Servicio_BT = new ConexionBT(this, mHandler);
+		 BluetoothDevice device = AdaptadorBT.getRemoteDevice("00:13:12:16:63:31");
+         Servicio_BT.connect(device);
 
         logica = new LogicaAlarma(getApplicationContext());
             
@@ -173,7 +215,6 @@ public class ListadoAlarmas extends Activity
 	     {
 	  
 		     case CONTEXTMENU_OPTION1:
-		         // Show message
 		    	 Intent i = new Intent(getApplicationContext(), PantallaAlarma.class);
 	             i.putExtra("idAlarma", idAlarmaABorrar);
 	             i.putExtra("nombreAlarma", nombreAlarma);
@@ -186,11 +227,7 @@ public class ListadoAlarmas extends Activity
 	         
 	  
 		     case CONTEXTMENU_OPTION2:
-		         // Show message
-		         //Toast.makeText(getApplicationContext(), "Option 2: ID "+menuInfo.id+", position "+menuInfo.position, Toast.LENGTH_SHORT).show();
-		    	 //Toast.makeText(getApplicationContext(), "id alarma a borrar: " + idAlarmaABorrar, Toast.LENGTH_LONG).show();
 		         boolean b = logica.eliminarAlarma(idAlarmaABorrar); 
-		         //Toast.makeText(getApplicationContext(),Boolean.toString(b), Toast.LENGTH_LONG).show();
 		         
 		         adapListado.clear();
 		         adapListado.notifyDataSetChanged();
@@ -243,20 +280,54 @@ public class ListadoAlarmas extends Activity
 				
 				int minsArduino = Math.abs (minutosAlarma - minutosActual);
 				
-				int segundos = horaArd*3600 + minsArduino*60;
-				
-				Log.i("ListadoAlarmas", "Horas que quedan para la alarma: " + horaArd + " mins: " + minsArduino);
-				Log.i("ListadoAlarmas", "Segundos hasta la alarma: " + segundos);
+				//Envío a ARDUINO
+				switch(minsArduino) {
+				 case 1: 
+					 sendMessage("F\r");
+				     break;
+				 case 2: 
+					 sendMessage("G\r");
+				     break;
+				 case 3: 
+					 sendMessage("H\r");
+				     break;
+				 case 4: 
+					 sendMessage("I\r");
+				     break;
+				 case 5: 
+					 sendMessage("J\r");
+					 break;
+				 case 6: 
+					 sendMessage("K\r");
+				     break;
+				 case 7:
+					 sendMessage("L\r");
+					 break;
+				 case 8:
+					 sendMessage("M\r");
+					 break;
+				 case 9:
+					 sendMessage("N\r");
+					 break;
+				 case 10:
+					 sendMessage("Ñ\r");
+					 break;
+				 case 20:
+					 sendMessage("O\r");
+					 break;
+				 case 30:
+					 sendMessage("P\r");
+					 break;
+				}
 				
 				//Cambio la imagen asociada a la alarma por un reloj verde, que indica que la alarma está activada
 		        
 				Log.i("ListadoAlarmas","item:" + itemSeleccionado.get_horaAlarma());
 				itemSeleccionado.set_idImagen(R.drawable.alarmaverde);
-				//adapListado.clear(); //Borrar listado
+
 				datos.clear();
 				listar();
 				
-				//Entrada_lista item_lista = (Entrada_lista) item;
 			
 		    	 break;
 	     }
@@ -274,5 +345,64 @@ public class ListadoAlarmas extends Activity
        	    finish();
 		}
 	};
+	
+	public  void sendMessage(String message) {
+        if (Servicio_BT.getState() == ConexionBT.STATE_CONNECTED)  //comprueba si está conectado a la tarjeta bluetooth
+        {
+	        if (message.length() > 0) 
+	        {   // comprueba si ha enviado datos
+	            byte[] send = message.getBytes();//Obtiene bytes del mensaje
+	            if(D) Log.e(TAG, "Mensaje enviado:"+ message);            
+	                 Servicio_BT.write(send);     //Manda a escribir el mensaje     
+	        }
+	     }
+        else
+        {
+        	Toast.makeText(this, "No conectado", Toast.LENGTH_SHORT).show();
+        }
+    }
+	 
+	    final Handler mHandler = new Handler() {
+	        @Override
+	        public void handleMessage(Message msg) {
+		            	
+		                switch (msg.what) {
+		                case Mensaje_Escrito:
+		                	  byte[] writeBuf = (byte[]) msg.obj;
+		                      String writeMessage = new String(writeBuf);
+		                      if(D) Log.e(TAG, "Message_write  =w= "+ writeMessage);  
+		                    break;
+		                case Mensaje_Leido: 
+		                	byte[] readBuf = (byte[]) msg.obj;
+		                  String readMessage = new String(readBuf, 0, msg.arg1);
+		                  if(D) Log.e(TAG, "Message_read   =w= "+ readMessage);              	                 
+		                    break;
+	           
+		                case Mensaje_Nombre_Dispositivo:
+		                    mConnectedDeviceName = msg.getData().getString(DEVICE_NAME); //Guardamos nombre del dispositivo
+					     //Toast.makeText(getApplicationContext(), "Conectado con "+ mConnectedDeviceName, Toast.LENGTH_SHORT).show();
+					     seleccionador=true;
+		                    break;
+		                     
+		                case Mensaje_TOAST:
+		                    Toast.makeText(getApplicationContext(), msg.getData().getString(TOAST),
+		                    Toast.LENGTH_SHORT).show();
+		                    break;
+		    
+		                case MESSAGE_Desconectado:	
+		                  	 if(D) Log.e("Conexion","DESConectados");
+		                  	 seleccionador=false;             	
+		                  	 break;
+		   
+		                }
+		            }
+		        };
+	
+		       
+		      @Override
+		      public void onDestroy(){
+		        	 super.onDestroy();
+		        	 if (Servicio_BT != null) Servicio_BT.stop();//Detenemos servicio
+		        }
 
 }
