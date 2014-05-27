@@ -1,22 +1,13 @@
 package com.example.domoduino;
 
-import java.util.Date;
-
-import android.R.bool;
-
 public class Alarma 
 {
 	private int id;
 	private String nombre;
-	//private Date hora;
 	private String hora;
 	private String min;
 	private int accion;
 	private boolean activada;
-	private final static int START = 1;
-	private final static int STOP = 2;
-	private final static int LUZ = 3;
-	private final static int LUZ_APAGADA = 4;
 	
 	public Alarma (int id, String nombre,String hora, String min, int accion, boolean activada)
 	{
@@ -27,6 +18,7 @@ public class Alarma
 		this.accion = accion;
 		this.activada = activada;
 	}
+	
 	public int getIdAlarma()
 	{
 		return (this.id);
@@ -55,16 +47,6 @@ public class Alarma
 	public boolean getActivada()
 	{
 		return (this.activada);
-	}
-	
-	public void setIdAlarma (int id)
-	{
-		this.id = id;
-	}
-	
-	public void setNombreAlarma (String nombre)
-	{
-		this.nombre = nombre;
 	}
 	
 	public void setHoraAlarma (String hora)
