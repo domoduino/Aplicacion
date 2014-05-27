@@ -22,7 +22,7 @@ public class PantallaAcelerometro extends Activity implements SensorListener
 	SensorManager sm = null;
 	
 	/********************CONEXIÓN******************************/
-    public static final String TAG = "LEDv0";
+    public static final String TAG = "PantallaAcelerometro";
     public static final boolean D = true;
     
     // Tipos de mensaje enviados y recibidos desde el Handler de ConexionBT
@@ -115,7 +115,7 @@ public class PantallaAcelerometro extends Activity implements SensorListener
 	 @Override
      public void onDestroy(){
      	 super.onDestroy();
-     	 if (Servicio_BT != null) Servicio_BT.stop();//Detenemos servicio
+     	 if (Servicio_BT != null) Servicio_BT.stop();//Detiene el servicio
      }
 	
 	 public  void sendMessage(String message) {

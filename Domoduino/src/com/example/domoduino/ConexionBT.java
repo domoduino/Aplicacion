@@ -15,15 +15,15 @@ import android.os.Message;
 import android.util.Log;
 
 /**
- * Esta clase configura y administra la conexion Bluetooth con otro dispositivo.
+ * Esta clase configura y administra la conexión Bluetooth con otro dispositivo.
  * Hay un hilo que escucha las conexiones entrantes, otro para las conexiones con un dispositivo y
- * otro más para realizar las transmisiones una vez que este conectado.
+ * otro que realiza las transmisiones una vez que este conectado.
  */
 public class ConexionBT {
 
 	
     // Variables para probar los eventos
-    private static final String TAG = "Servicio_Bluetooth";
+    private static final String TAG = "ConexionBT";
     private static final boolean D = true;
     
     // Nombre para el registro SDP cuando el socket sea creado
@@ -49,7 +49,7 @@ public class ConexionBT {
 
 
     /**
-     * Constructor. Prepara una nueva sesion para la conexion Bluetooth Smartphone-Dispositivo
+     * Constructor. Prepara una nueva sesión para la conexion Bluetooth 
      * @param context  El identificador UI de la actividad de context
      * @param handler  Un Handler para enviar mensajes de regreso a la actividad marcada por el UI
      * 
@@ -63,7 +63,7 @@ public class ConexionBT {
 
  
     /**
-     * Actualizamos  el estado de la conexion BT a la actividad 
+     * Actualizamos  el estado de la conexión Bluetooth a la actividad 
      * @param estado  Un entero definido para cada estado
      */
     private synchronized void setState(int estado) {
@@ -74,7 +74,7 @@ public class ConexionBT {
 
        
     /**
-     * Devuelve el estado de la conexion */
+     * Devuelve el estado de la conexión */
     public synchronized int getState() {
         return EstadoActual;
     }
@@ -104,8 +104,8 @@ public class ConexionBT {
 
    
     /**
-     * Inicia el HiloConectado para iniciar la conexion con un dispositivo remoto
-     * @param device  -->El dispositivo BT a conectar
+     * Inicia el HiloConectado para iniciar la conexión con un dispositivo remoto
+     * @param device  El dispositivo Bluetooth a conectar
      */
     public synchronized void connect(BluetoothDevice device) 
     {
@@ -128,8 +128,8 @@ public class ConexionBT {
     
     
     /**
-     * Inicia el hilo conectado para iniciar la administracion de la conexión BT
-     * @param socket  El socket Bt donde se realizara la conexion
+     * Inicia el hilo conectado para iniciar la administracion de la conexión Bluetooth
+     * @param socket  El socket Bt donde se realizara la conexión
      * @param device  El dispositivo BT con el que se conectara
      */
     public synchronized void connected(BluetoothSocket socket, BluetoothDevice device) 
@@ -252,7 +252,7 @@ public class ConexionBT {
                     Log.e(TAG, "accept() failed", e);
                     break;
                 }
-                //Si la conexion fue aceptada
+                //Si la conexión fue aceptada
                 if (socket != null) {
                     synchronized (ConexionBT.this) {
                         switch (EstadoActual) {
@@ -293,7 +293,7 @@ public class ConexionBT {
 
   
     /**
-     * Este hilo correrá mientras se intente realizar una conexion de salida con un dispositivo.
+     * Este hilo correrá mientras se intente realizar una conexión de salida con un dispositivo.
      */
     private class ConnectThread extends Thread 
     {
@@ -304,7 +304,7 @@ public class ConexionBT {
         {
             mmDevice = device;
             BluetoothSocket tmp = null;
-            // Obtiene un BluetoothSocket para la conexion con el Dispositivo obtenido
+            // Obtiene un BluetoothSocket para la conexión con el Dispositivo obtenido
             try 
             {
                 tmp = device.createRfcommSocketToServiceRecord(MY_UUID);
@@ -320,12 +320,12 @@ public class ConexionBT {
         {
             Log.e(TAG, "Comenzando HebraConectada");
             setName("HiloConectado");
-            //Siempre cancela la busqueda debido a que esta hara lenta la conexion
+            //Siempre cancela la busqueda debido a que esta hara lenta la conexión
             AdaptadorBT.cancelDiscovery();
-            // Realiza la conexion con el socketBluetooth
+            // Realiza la conexión con el socketBluetooth
             try 
             {
-                // Aqui solo recibiremos o una conexion establecida o una excepcion
+                // Aqui solo recibiremos o una conexión establecida o una excepción
                 mmSocket.connect();
             } 
             catch (IOException e) 
@@ -365,7 +365,7 @@ public class ConexionBT {
     
 
     /**
-     * Este hilo corre durante la conexion con un dispositivo remoto.
+     * Este hilo corre durante la conexión con un dispositivo remoto.
      * Este maneja todas las transmisiones de entrada y salida.
      */
     private class ConnectedThread extends Thread {

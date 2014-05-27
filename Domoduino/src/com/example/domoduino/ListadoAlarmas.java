@@ -2,35 +2,26 @@ package com.example.domoduino;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Vector;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnLongClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,7 +30,7 @@ public class ListadoAlarmas extends Activity
 {
 	
 	/********************CONEXIÓN******************************/
-    public static final String TAG = "LEDv0";
+    public static final String TAG = "ListadoAlarmas";
     public static final boolean D = true;
     
     // Tipos de mensaje enviados y recibidos desde el Handler de ConexionBT
@@ -93,7 +84,7 @@ public class ListadoAlarmas extends Activity
         imagen_plus =(ImageButton) findViewById(R.id.img_plus);
         imagen_plus.setOnClickListener(imagenPlus);
         
-        //Crear conexión
+        //Crea la  conexión
 		 AdaptadorBT = BluetoothAdapter.getDefaultAdapter();
 		 Servicio_BT = new ConexionBT(this, mHandler);
 		 BluetoothDevice device = AdaptadorBT.getRemoteDevice("00:13:12:16:63:31");
@@ -109,6 +100,7 @@ public class ListadoAlarmas extends Activity
         registerForContextMenu(lista);   
 	 }  
 	
+	// Lista las alarmas que contiene la aplicación
 	public void listar()
 	{
 		 Vector<Alarma> alarmas = logica.alarmas();		 
@@ -182,10 +174,11 @@ public class ListadoAlarmas extends Activity
 	     
 	     ListView listView = (ListView) v;
 	
-	   	// Get the list item position    
+	     // Obtiene la posición del item en la lista    
 	    AdapterContextMenuInfo info = (AdapterContextMenuInfo)menuInfo;
 	    int position = info.position;  
 	   
+	    //Obtiene el item seleccionado en la lista
 	    itemSeleccionado = (Entrada_lista) listView.getItemAtPosition(position);
 	    
 	     
@@ -194,10 +187,10 @@ public class ListadoAlarmas extends Activity
 	    horaEntera = itemSeleccionado.get_horaAlarma();
 	    accion = itemSeleccionado.get_accion();
 
-	    // Set title for the context menu
+	    // Cambia el titulo del menú contextual
 	   menu.setHeaderTitle(itemSeleccionado.get_nombreAlarma()); 
 	  
-	     // Add all the menu options
+	   	// Añade las opciones al menú
 	     menu.add(Menu.NONE, CONTEXTMENU_OPTION1, 0, "Editar"); 
 	     menu.add(Menu.NONE, CONTEXTMENU_OPTION2, 1, "Eliminar"); 
 	     menu.add(Menu.NONE, CONTEXTMENU_OPTION3, 2, "Activar");  
@@ -207,14 +200,13 @@ public class ListadoAlarmas extends Activity
 	 @Override 
 	 public boolean onContextItemSelected(MenuItem item) 
 	 { 
-		 // Get extra info about list item that was long-pressed
 	     AdapterContextMenuInfo menuInfo = (AdapterContextMenuInfo)item.getMenuInfo();
 	         
-	     // Perform action according to selected item from context menu
+	     // Acciones que realiza según la opción escogida en el menú contextual
 	     switch (item.getItemId()) 
 	     {
 	  
-		     case CONTEXTMENU_OPTION1:
+		     case CONTEXTMENU_OPTION1: // Editar alarma
 		    	 Intent i = new Intent(getApplicationContext(), PantallaAlarma.class);
 	             i.putExtra("idAlarma", idAlarmaABorrar);
 	             i.putExtra("nombreAlarma", nombreAlarma);
@@ -226,7 +218,7 @@ public class ListadoAlarmas extends Activity
 		         break;
 	         
 	  
-		     case CONTEXTMENU_OPTION2:
+		     case CONTEXTMENU_OPTION2: // Eliminar alarma
 		         boolean b = logica.eliminarAlarma(idAlarmaABorrar); 
 		         
 		         adapListado.clear();
@@ -239,7 +231,7 @@ public class ListadoAlarmas extends Activity
 		    	 break;
 	    	 
 	    	 
-		     case CONTEXTMENU_OPTION3:
+		     case CONTEXTMENU_OPTION3: // Activar alarma
 		    	 
 		    	//Modifica la alarma activada en el fichero XML
 		    	 
@@ -247,12 +239,9 @@ public class ListadoAlarmas extends Activity
 			     
 		    	 logica.setActivada(new Alarma(itemSeleccionado.get_idAlarma(),itemSeleccionado.get_nombreAlarma(), values[0], values[1], itemSeleccionado.get_accion(), true));
 		    	
-		    	 //Enviar la hora al arduino (horas y minitos que faltan)
 		    	
-		    	 //Hora y minutos actuales
-		    	 
+		    	 //Hora y minutos actuales	 
 		    	 Calendar now = Calendar.getInstance();
-		 		
 		    	 int horaActual = now.get(Calendar.HOUR_OF_DAY);
 		    	 int minutosActual = now.get(Calendar.MINUTE);
 				
@@ -262,7 +251,7 @@ public class ListadoAlarmas extends Activity
 			     int minutosAlarma = Integer.parseInt(values[1]);
 		    	
 		    	 
-				//Calculo de las horas que faltan desde la hora actual hasta la hora a la que está programada la alarma
+				//Calcula las horas que faltan desde la hora actual hasta la hora a la que está programada la alarma
 				int horaArd = - 1;
 				
 				if(horaAlarma > horaActual)
@@ -280,7 +269,7 @@ public class ListadoAlarmas extends Activity
 				
 				int minsArduino = Math.abs (minutosAlarma - minutosActual);
 				
-				//Envío a ARDUINO
+				//Envía a ARDUINO los minutos que faltan hasta la hora de la alarma
 				switch(minsArduino) {
 				 case 1: 
 					 sendMessage("F\r");
@@ -320,7 +309,7 @@ public class ListadoAlarmas extends Activity
 					 break;
 				}
 				
-				//Cambio la imagen asociada a la alarma por un reloj verde, que indica que la alarma está activada
+				//Cambia la imagen asociada a la alarma por un reloj verde, que indica que la alarma está activada
 		        
 				Log.i("ListadoAlarmas","item:" + itemSeleccionado.get_horaAlarma());
 				itemSeleccionado.set_idImagen(R.drawable.alarmaverde);
@@ -331,7 +320,6 @@ public class ListadoAlarmas extends Activity
 			
 		    	 break;
 	     }
-	  
 	     return true; 
 	 }  
 	 

@@ -156,11 +156,11 @@ public class MainActivity extends Activity
   	            case REQUEST_ENABLE_BT://Respuesta de intento de encendido de BT
   	                if (resultCode == Activity.RESULT_OK) 
   	                {
-  	                	 ConfigBT(); //BT esta activado,iniciamos servicio
+  	                	 ConfigBT(); //Si el Bluetooth está activado, inicia el servicio
   	                }
   	                else
   	                {               
-  	                    finish(); //No se activo BT, salimos de la app  
+  	                    finish(); //Si el Bluetooth no está activado, detiene la aplicación
   	                 } 	                
   	          }
   	   }    
